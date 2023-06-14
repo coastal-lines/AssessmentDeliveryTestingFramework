@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <TestRunParameters>
+    <Parameter name="config" value="config.json" />
+    <Parameter name="env" value="qa" />
+  </TestRunParameters>
+  <!-- Configuration for parallel test execution -->
+  <RunConfiguration>
+    <MaxCpuCount>2</MaxCpuCount>
+  </RunConfiguration>
+</RunSettings>
