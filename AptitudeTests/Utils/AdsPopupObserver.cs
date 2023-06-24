@@ -40,7 +40,7 @@ namespace AptitudeTests.Utils
                 {
                     if (_driver.FindElements(By.XPath("//android.widget.Button[@text='Update']")).FirstOrDefault().Displayed)
                     {
-                        byte[] imageArray = File.ReadAllBytes(@"C:\Users\User\Pictures\Penta\Screenshot_2.jpg");
+                        byte[] imageArray = File.ReadAllBytes(@"Resources\CloseAdsButton.jpg");
                         string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
                         var imgEl2 = _driver.FindElement(MobileBy.Image(base64ImageRepresentation));
