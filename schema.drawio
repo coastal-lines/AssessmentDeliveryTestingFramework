@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" modified="2023-12-18T11:47:26.591Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Iron Safari/537.36" etag="1c17n5JgK-dK3dcHdPa8" version="22.1.11" type="device">
+  <diagram name="Page-1" id="6ax5AF3SJ0rXut9YnB9X">
+    <mxGraphModel dx="1372" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2ue-FdrvPYozjpDLPWod-1" value="TEST&lt;br&gt;&lt;br&gt;Desktop -&amp;gt; Windows&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-2" value="TEST&lt;br&gt;&lt;br&gt;Mobile -&amp;gt; Android" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-3" value="TEST&lt;br&gt;&lt;br&gt;Web -&amp;gt; Browser" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-4" value="OS&amp;nbsp;&lt;br&gt;for running test&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Windows&lt;br&gt;or&lt;br&gt;Linux" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="160" y="200" width="120" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-5" value="Run &lt;br&gt;type&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Local&lt;br&gt;or&lt;br&gt;Remote" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="200" width="120" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-6" value="Local" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="640" y="200" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-7" value="Remote" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="640" y="330" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-8" value="Driver &lt;br&gt;Options&lt;br&gt;type&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Windows&lt;br&gt;Android&lt;br&gt;IWenDriver&lt;br&gt;options" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="480" y="200" width="120" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-9" value="Local Driver&lt;br&gt;&lt;br&gt;Windows&lt;br style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Android&lt;/span&gt;&lt;br style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0);&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;Chrome&lt;br&gt;&lt;/font&gt;Firefox&lt;br&gt;etc&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="800" y="200" width="120" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-10" value="Remote&lt;br&gt;driver" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="800" y="370" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-11" value="Driver" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="960" y="200" width="120" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-13" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry y="440" width="920" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-14" value="TEST&lt;br&gt;&lt;br&gt;Desktop -&amp;gt; Windows&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="20" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-15" value="TEST&lt;br&gt;&lt;br&gt;Mobile -&amp;gt; Android" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="20" y="550" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-16" value="TEST&lt;br&gt;&lt;br&gt;Web -&amp;gt; Browser" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="20" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-17" value="Windows" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="160" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-18" value="Local" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-19" value="Windows" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="160" y="550" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-20" value="Windows" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="160" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-21" value="Local" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="550" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2ue-FdrvPYozjpDLPWod-22" value="Local" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
