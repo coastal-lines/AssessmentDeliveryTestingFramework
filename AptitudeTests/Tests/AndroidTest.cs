@@ -13,7 +13,7 @@ namespace AptitudeTests.Tests
     {
         [Test]
         [Category(TestType.Android)]
-        [TestCategory("Type")]
+        //[TestCategory("Type")]
         [Description("TC1")]
         public void Test1()
         {
