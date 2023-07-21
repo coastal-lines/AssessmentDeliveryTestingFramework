@@ -29,6 +29,12 @@ namespace AptitudeTests.Tests
 
             var test = aptitudeMainScreen.OpenTest("AGE");
         }
+
+        [Test]
+        public void SimpleTest()
+        {
+            Assert.Pass();
+        }
     }
 
     /*
