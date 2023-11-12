@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AptitudeTests", "..\Aptitud
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E0A281F4-6443-463B-AF39-7702F196B31A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GorillaTests", "..\Web\GorillaTests\GorillaTests.csproj", "{6084D642-7B8D-49A2-8AF5-53873C1E758D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,9 +31,16 @@ Global
 		{A61B4121-CA9F-4367-9275-F293B1CF75F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A61B4121-CA9F-4367-9275-F293B1CF75F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A61B4121-CA9F-4367-9275-F293B1CF75F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6084D642-7B8D-49A2-8AF5-53873C1E758D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6084D642-7B8D-49A2-8AF5-53873C1E758D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6084D642-7B8D-49A2-8AF5-53873C1E758D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6084D642-7B8D-49A2-8AF5-53873C1E758D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6084D642-7B8D-49A2-8AF5-53873C1E758D} = {E0A281F4-6443-463B-AF39-7702F196B31A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39D9C2B7-D9E7-4CCF-BF52-ACD8B1297E01}
