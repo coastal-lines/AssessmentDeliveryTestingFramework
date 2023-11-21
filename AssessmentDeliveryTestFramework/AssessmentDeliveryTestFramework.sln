@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{707C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{D4E55785-20D1-429F-821B-BDF924D4F277}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeQuizMakerTests", "..\Desktop\Windows\FreeQuizMakerTests\FreeQuizMakerTests.csproj", "{759F30E9-43AF-43C9-A8DF-301E327457E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{E1BC3976-A46B-4D3E-884A-411997A5DDC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1BC3976-A46B-4D3E-884A-411997A5DDC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1BC3976-A46B-4D3E-884A-411997A5DDC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759F30E9-43AF-43C9-A8DF-301E327457E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759F30E9-43AF-43C9-A8DF-301E327457E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759F30E9-43AF-43C9-A8DF-301E327457E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759F30E9-43AF-43C9-A8DF-301E327457E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{52EB652F-323D-49F1-AF42-CD4E105D08CF} = {20D2BF2A-45FF-4168-BAA7-0C5C7908FFDE}
 		{E1BC3976-A46B-4D3E-884A-411997A5DDC5} = {52EB652F-323D-49F1-AF42-CD4E105D08CF}
 		{D4E55785-20D1-429F-821B-BDF924D4F277} = {707C4661-7519-460C-9F67-C29306FCC944}
+		{759F30E9-43AF-43C9-A8DF-301E327457E4} = {D4E55785-20D1-429F-821B-BDF924D4F277}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39D9C2B7-D9E7-4CCF-BF52-ACD8B1297E01}
