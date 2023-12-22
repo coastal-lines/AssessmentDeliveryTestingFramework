@@ -16,8 +16,8 @@ namespace GorillaTests
         public void RemoteTestFirefox()
         {
             var options = new FirefoxOptions();
-            //var driver = new RemoteWebDriver(new Uri("http://192.168.56.101:9247"), options);
-            var driver = new RemoteWebDriver(new Uri("http://192.168.43.78:9247"), options);
+            //var driver = new RemoteWebDriver(new Uri("http://ip:port"), options);
+            var driver = new RemoteWebDriver(new Uri("http://ip:port"), options);
             driver.Navigate().GoToUrl("https://stackoverflow.com/questions/10607806/bind-selenium-to-a-specific-ip-possible");
         }
 
@@ -26,7 +26,7 @@ namespace GorillaTests
         public void TestFirefox()
         {
             var options = new FirefoxOptions();
-            var driver = new RemoteWebDriver(new Uri("http://192.168.43.78:9247"), options);
+            var driver = new RemoteWebDriver(new Uri("http://ip:port"), options);
             driver.Navigate().GoToUrl("https://stackoverflow.com/questions/10607806/bind-selenium-to-a-specific-ip-possible");
         }
 
@@ -34,7 +34,7 @@ namespace GorillaTests
         public void RemoteTestChrome()
         {
             var options = new ChromeOptions();
-            var driver = new RemoteWebDriver(new Uri("http://192.168.43.78:9247"), options);
+            var driver = new RemoteWebDriver(new Uri("http://ip:port"), options);
             driver.Navigate().GoToUrl("https://stackoverflow.com/questions/10607806/bind-selenium-to-a-specific-ip-possible");
         }
         */

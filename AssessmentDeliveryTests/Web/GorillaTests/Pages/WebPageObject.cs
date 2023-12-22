@@ -7,7 +7,7 @@ public static class MySetUpClass
     [OneTimeSetUp]
     public static void RunBeforeAnyTests()
     {
-        Directory.SetCurrentDirectory("f:\\Data\\Work\\Projects\\C#\\AssessmentDeliveryAutomation\\GorillaTests\\bin\\Debug\\net6.0\\");
+        Directory.SetCurrentDirectory("AssessmentDeliveryAutomation\\GorillaTests\\bin\\Debug\\net6.0\\");
     }
 }
 
