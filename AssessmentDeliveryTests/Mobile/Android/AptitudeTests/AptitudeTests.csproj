@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\AssessmentDeliveryTestFramework\AssessmentDeliveryTestingFramework.csproj" />
+    <ProjectReference Include="..\..\..\..\AssessmentDeliveryTestFramework\AssessmentDeliveryTestingFramework.csproj" />
   </ItemGroup>
 
 </Project>
