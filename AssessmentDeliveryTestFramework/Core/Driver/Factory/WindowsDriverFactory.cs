@@ -10,11 +10,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AssessmentDeliveryTestingFramework.Core.Utils;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
     public sealed class WindowsDriverFactory
     {
+        private WindowsPlatformUtils _windowsPlatformUtils;
+
+        public WindowsDriverFactory()
+        {
+            _windowsPlatformUtils = new WindowsPlatformUtils();
+        }
+
         //Appium 4.4.5
         /*
         public void StartWinAppDriver()
@@ -24,7 +32,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             if (currentProcesses.Count == 0)
             {
                  // Must be run as Administrator - in other case winappdriver doesn't see any app
-                var pathWinAppDriver = "f:\\Data\\Work\\Projects\\!Tools\\WinAppDriver\\WinAppDriver.exe";
+                var pathWinAppDriver = "\\WinAppDriver\\WinAppDriver.exe";
 
                 Process p = new Process();
                 p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
@@ -59,7 +67,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
         public WindowsDriver<IWebElement> CreateWindowsDriver()
         {
             AppiumOptions Options = new AppiumOptions();
-            Options.AddAdditionalCapability("app", "C:\\Program Files (x86)\\Media Freeware\\Free Quiz Maker\\FreeQuizMaker.exe");
+            Options.AddAdditionalCapability("app", "\\Free Quiz Maker\\FreeQuizMaker.exe");
             Options.AddAdditionalCapability("deviceName", "WindowsPC");
             Options.AddAdditionalCapability("platformName", "Windows");
             //var DesktopSession = new WindowsDriver<IWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), Options);
@@ -82,7 +90,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 .WithIPAddress("127.0.0.1")
                 .UsingPort(4723)
                 .UsingDriverExecutable(new FileInfo(@"C:\Program Files\nodejs\node.exe"))
-                .WithAppiumJS(new FileInfo(@"c:\Users\User\AppData\Roaming\npm\node_modules\appium\build\lib\main.js"))
+                .WithAppiumJS(new FileInfo(@"\AppData\Roaming\npm\node_modules\appium\build\lib\main.js"))
                 .WithStartUpTimeOut(TimeSpan.FromMinutes(3))
                 .Build();
 
@@ -92,7 +100,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             var appiumServer = new AppiumServiceBuilder();
             var appiumOptions = new OptionCollector();
             appiumServer.WithArguments(appiumOptions);
-            //builder.WithLogFile(new FileInfo(@"F:\Data\Work\OwnProjects\AllForSelenium\MobileTestsDemo\appium_log.txt"));
+            //builder.WithLogFile(new FileInfo(@"MobileTestsDemo\appium_log.txt"));
             var service = appiumServer.Build();
             service.Start();
         }
@@ -130,10 +138,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
         {
             try
             {
-                Process.GetProcessesByName("WinAppDriver").FirstOrDefault().Kill();
+                _windowsPlatformUtils.KillProcessByName("WinAppDriver");
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 Console.WriteLine("WinAppDriver was closed or was not started");
             }
         }

@@ -30,8 +30,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             options.SetLoggingPreference(LogType.Browser, LogLevel.All);
             options.SetLoggingPreference(LogType.Driver, LogLevel.All);
 
-            //string chromeDriverPath = "F:\\Data\\Work\\OwnProjects\\C#\\AssessmentDeliveryAutomation\\AssessmentDeliveryTestFramework\\Core\\Driver\\CustomDrivers\\ChromiumBased\\Chrome119\\";
-            //return new ChromeDriver(chromeDriverPath, options);
 
             //new DriverManager().SetUpDriver(new ChromeConfig());
 
@@ -41,16 +39,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 "chromedriver.exe"
             );
 
-            //return new ChromeDriver("F:\\Data\\Work\\Projects\\C#\\AssessmentDeliveryAutomation\\AssessmentDeliveryTestFramework\\Files\\CustomDrivers\\ChromiumBased\\Chrome119", options);
-
             return new ChromeDriver(options);
         }
 
         public IWebDriver CreateFirefoxDriver()
         {
-            //string firefoxDriverPath = "F:\\Data\\Work\\OwnProjects\\C#\\AssessmentDeliveryAutomation\\AssessmentDeliveryTestFramework\\Core\\Driver\\CustomDrivers\\GeckoBased\\Firefox033";
-            //return new FirefoxDriver(firefoxDriverPath);
-
             new DriverManager().SetUpDriver(new FirefoxConfig());
             return new FirefoxDriver();
         }
@@ -70,9 +63,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             //var userSystemFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var options = new ChromeOptions();
 
-            string chromeDriverPath = "F:\\Data\\Work\\OwnProjects\\C#\\AssessmentDeliveryAutomation\\AssessmentDeliveryTestFramework\\Core\\Driver\\CustomDrivers\\ChromiumBased\\Chrome89\\";
+            string chromeDriverPath = "\\Core\\Driver\\CustomDrivers\\ChromiumBased\\Chrome89\\";
 
-            options.BinaryLocation = "C:\\Program Files\\OhHai Browser\\OhHai Browser.exe";
+            options.BinaryLocation = "\\OhHai Browser\\OhHai Browser.exe";
             options.AddWindowType("webview");
 
             return new ChromeDriver(options);
@@ -83,8 +76,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             //var userSystemFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var options = new ChromeOptions();
 
-            string chromeDriverPath = "F:\\Data\\Work\\Projects\\C#\\AssessmentDeliveryAutomation_28_11_23\\AssessmentDeliveryTestFramework\\Files\\CustomDrivers\\ChromiumBased\\Chrome116\\";
-            options.BinaryLocation = "c:\\Users\\User\\AppData\\Local\\min\\app-1.29.0\\min.exe";
+            string chromeDriverPath = "\\AssessmentDeliveryTestFramework\\Files\\CustomDrivers\\ChromiumBased\\Chrome116\\";
+            options.BinaryLocation = "\\AppData\\Local\\min\\app-1.29.0\\min.exe";
             options.AddWindowType("webview");
 
             return new ChromeDriver(chromeDriverPath, options);

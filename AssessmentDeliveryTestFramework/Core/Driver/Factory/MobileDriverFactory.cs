@@ -28,7 +28,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             //oc.AddArguments(new KeyValuePair<string, string>("--avd", "pixel_2_-_api_28"));
             builder.WithArguments(oc);
 
-            builder.WithLogFile(new FileInfo(@"F:\Data\Work\OwnProjects\AllForSelenium\MobileTestsDemo\appium_log.txt"));
+            builder.WithLogFile(new FileInfo(@"\MobileTestsDemo\appium_log.txt"));
             var service = builder.Build();
             service.Start();
 
@@ -70,7 +70,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                     {
                         timer.Stop();
                         //timer.Restart();
-                        var status = RunCmdScript("/c \"c:\\Program Files (x86)\\Android\\android-sdk\\platform-tools\\adb.exe\" -s emulator-5554 shell getprop init.svc.bootanim", true, true);
+                        var status = RunCmdScript("/c \"\\android-sdk\\platform-tools\\adb.exe\" -s emulator-5554 shell getprop init.svc.bootanim", true, true);
                         if (status.Equals("stopped\r\n"))
                         {
                             timer.Stop();

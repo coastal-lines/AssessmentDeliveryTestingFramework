@@ -19,11 +19,12 @@ namespace FreeQuizMakerTests.Pages
             _session = new DesktopSession();
         }
 
+        [TearDown]
         public void TearDown()
         {
-            Session.GetDriver().Quit();
+            //Session.GetDriver().Quit();
 
-            Session.TearDown();
+            Session.TearDown("FreeQuizMaker");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.TestManagement;
+using AssessmentDeliveryTestingFramework.Core.Utils;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,22 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
 {
     public class WindowsDriverUtils : IPlatformDriverUtils
     {
+        private WindowsPlatformUtils _windowsPlatformUtils;
+
+        public WindowsDriverUtils()
+        {
+            _windowsPlatformUtils = new WindowsPlatformUtils();
+        }
+
         public List<int> GetDriversProcessesId(string browserType)
         {
             switch (browserType)
             {
                 case BrowserType.Chrome:
-                    return Process.GetProcessesByName("chromedriver").Select(process => process.Id).ToList();
+                    return _windowsPlatformUtils.GetProcessByName("chromedriver").Select(process => process.Id).ToList();
 
                 case BrowserType.Firefox:
-                    return Process.GetProcessesByName("geckodriver").Select(process => process.Id).ToList();
+                    return _windowsPlatformUtils.GetProcessByName("geckodriver").Select(process => process.Id).ToList();
 
                 default:
                     throw new NotSupportedException($"Browser type {browserType} is not supported.");

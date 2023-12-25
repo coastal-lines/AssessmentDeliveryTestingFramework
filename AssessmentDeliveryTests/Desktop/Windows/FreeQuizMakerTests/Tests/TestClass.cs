@@ -2,8 +2,6 @@
 using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using FreeQuizMakerTests.Pages;
 using FreeQuizMakerTests.Pages.FreeQuizMakerExams.ControlsPane;
-using AssessmentDeliveryTestingFramework.Core.Session;
-using AssessmentDeliveryTestingFramework.Core.Driver;
 
 namespace FreeQuizMakerTests.Tests
 {
@@ -18,14 +16,6 @@ namespace FreeQuizMakerTests.Tests
         {
             var toolsPane = new ToolsPage(Session.GetDriver());
             toolsPane.ClickMediaFreewareUrlLink();
-        }
-
-        [Test]
-        [Category(TestType.Desktop)]
-        [Description("TC1 - Create MCQ item")]
-        public void Test1()
-        {
-
         }
 
         [Test]
