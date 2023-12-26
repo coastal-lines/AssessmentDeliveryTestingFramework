@@ -10,13 +10,11 @@ using System.Threading.Tasks;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
 {
-    public class WindowsDriverUtils : IPlatformDriverUtils
+    public sealed class WindowsDriverUtils : IPlatformDriverUtils
     {
-        private WindowsPlatformUtils _windowsPlatformUtils;
-
-        public WindowsDriverUtils()
+        private Process[] GetProcessByName(string processName)
         {
-            _windowsPlatformUtils = new WindowsPlatformUtils();
+            return Process.GetProcessesByName(processName);
         }
 
         public List<int> GetDriversProcessesId(string browserType)
@@ -24,33 +22,14 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
             switch (browserType)
             {
                 case BrowserType.Chrome:
-                    return _windowsPlatformUtils.GetProcessByName("chromedriver").Select(process => process.Id).ToList();
+                    return GetProcessByName("chromedriver").Select(process => process.Id).ToList();
 
                 case BrowserType.Firefox:
-                    return _windowsPlatformUtils.GetProcessByName("geckodriver").Select(process => process.Id).ToList();
+                    return GetProcessByName("geckodriver").Select(process => process.Id).ToList();
 
                 default:
                     throw new NotSupportedException($"Browser type {browserType} is not supported.");
             }
-        }
-
-        public void TearDownAllDrivers()
-        {
-            foreach (var process in Process.GetProcessesByName("chromedriver"))
-            {
-                process.Kill();
-            }
-
-            foreach (var process in Process.GetProcessesByName("geckodriver"))
-            {
-                process.Kill();
-            }
-        }
-
-        //TODO
-        public void TearDownDriver(List<IDriverContainer> sessionDrivers, string browserType)
-        {
-            throw new NotImplementedException();
         }
 
         public void TerminateProcess(string processName)
@@ -61,16 +40,15 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
             }
         }
 
-        /*
-        public void TearDownDriver(List<DriverContainer> sessionDrivers, string browserType = BrowserType.Chrome)
+        public void TearDownDriver(List<IDriverContainer> sessionDrivers, string currentTestType = "Windows")
         {
-            foreach (DriverContainer driverContainer in sessionDrivers)
+            foreach (IDriverContainer driverContainer in sessionDrivers)
             {
-                if (driverContainer.BrowserType == browserType)
+                if (driverContainer.CurrentTestType == "Windows")
                 {
                     try
                     {
-                        driverContainer.Driver.Quit();
+                        driverContainer.Driver;
                     }
                     catch (ObjectDisposedException ex)
                     {
@@ -79,7 +57,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
 
                     try
                     {
-                        //Process.GetProcessById(driverContainer.DriverProcessId).Kill();
                         TearDownAllDrivers();
                     }
                     catch (ArgumentException ex)
@@ -89,48 +66,10 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
                 }
             }
         }
-        */
 
-        /*
-        public int GetDriverId(List<DriverContainer> sessionDrivers, List<int> driversIdBefore, string browserType)
+        public void TearDownAllDrivers()
         {
-            switch (browserType)
-            {
-                case BrowserType.Chrome:
-                    var driversChromeIdAfter = GetDriversProcessesId(browserType);
-                    var newChromeId = driversChromeIdAfter.Except(driversIdBefore).ToList();
-                    var currentDriversProcessIds = sessionDrivers.Where(driver => driver.BrowserType.Contains("chromedriver")).Select(driver => driver.DriverProcessId).ToList();
-                    var newChromeId2 = newChromeId.Except(currentDriversProcessIds).ToList();
-
-
-                    if (newChromeId.Count != 0)
-                    {
-                        return newChromeId[0];
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("More than one new Chrome process were found.");
-                    }
-
-
-                case BrowserType.Firefox:
-                    //var currentFirefoxProcessIds = GetDriversProcessesId(browserType);
-                    var currentFirefoxDriversProcessIds = sessionDrivers.Where(driver => driver.BrowserType.Contains("geckodriver")).Select(driver => driver.DriverProcessId).ToList();
-
-                    var newFirefoxId = driversIdBefore.Except(currentFirefoxDriversProcessIds).ToList();
-                    if (newFirefoxId.Count == 1)
-                    {
-                        return Process.GetProcessesByName("geckodriver")[0].Id;
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("More than one new Chrome process were found.");
-                    }
-
-                default:
-                    throw new NotSupportedException($"Browser type {browserType} is not supported.");
-            }
+            TerminateProcess("winappdriver");
         }
-        */
     }
 }

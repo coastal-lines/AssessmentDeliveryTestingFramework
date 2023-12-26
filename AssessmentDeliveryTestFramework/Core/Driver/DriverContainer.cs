@@ -41,7 +41,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver
 
     public class DesktopDriverContainer : DriverContainer<WindowsDriver>
     {
-        public string CurrentTestType { get; private set; }
+        //public string CurrentTestType { get; private set; }
 
         //Appium 4.4.5
         /*
@@ -52,9 +52,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver
         */
 
         //Appium 2.x
-        public DesktopDriverContainer(WindowsDriver driver, string name, string platform, string currentTestType) : base(driver, name, platform)
+        public DesktopDriverContainer(WindowsDriver driver, string name, string platform, string currentTestType) : base(driver, name, platform, currentTestType)
         {
-            CurrentTestType = currentTestType;
+            //CurrentTestType = currentTestType;
         }
     }
 
@@ -66,13 +66,13 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver
 
         public WebElementWaiting WebElementWaiting { get; private set; }
 
-        public MobileAndroidDriverContainer(AndroidDriver driver, string name, string platform, string currentTestType) : base(driver, name, platform)
+        public MobileAndroidDriverContainer(AndroidDriver driver, string name, string platform, string currentTestType) : base(driver, name, platform, currentTestType)
         {
             MobileAndroidElementWaiting = new MobileAndroidElementWaiting(driver);
 
             WebElementWaiting = new WebElementWaiting(driver);
 
-            CurrentTestType = currentTestType;
+            //CurrentTestType = currentTestType;
         }
     }
 
@@ -81,6 +81,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver
         object Driver { get; }
         string Name { get; }
         string Platform { get; }
+        string CurrentTestType { get; }
     }
 
     public class DriverContainer<TDriver> : IDriverContainer where TDriver : IWebDriver
@@ -88,12 +89,14 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver
         private object _driver;
         private string _name;
         private string _platform;
+        private string _currentTestType;
 
-        public DriverContainer(TDriver driver, string name, string platform)
+        public DriverContainer(TDriver driver, string name, string platform, string currentTestType)
         {
             _driver = driver;
             _name = name;
             _platform = platform;
+            _currentTestType = currentTestType;
         }
 
         public object Driver => _driver;
@@ -101,5 +104,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver
         public string Name => _name;
 
         public string Platform => _platform;
+
+        public string CurrentTestType => _currentTestType;
     }
 }

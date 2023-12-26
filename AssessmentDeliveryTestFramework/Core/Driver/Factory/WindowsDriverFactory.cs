@@ -16,13 +16,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
     public sealed class WindowsDriverFactory
     {
-        private WindowsPlatformUtils _windowsPlatformUtils;
-
-        public WindowsDriverFactory()
-        {
-            _windowsPlatformUtils = new WindowsPlatformUtils();
-        }
-
         //Appium 4.4.5
         /*
         public void StartWinAppDriver()
@@ -133,6 +126,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             return driver;
         }
 
+        /*
         [OneTimeTearDown]
         public void TearDown()
         {
@@ -146,5 +140,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 Console.WriteLine("WinAppDriver was closed or was not started");
             }
         }
+        */
     }
 }

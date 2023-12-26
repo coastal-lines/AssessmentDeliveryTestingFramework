@@ -22,8 +22,6 @@ namespace FreeQuizMakerTests.Pages
         [TearDown]
         public void TearDown()
         {
-            //Session.GetDriver().Quit();
-
             Session.TearDown("FreeQuizMaker");
         }
     }

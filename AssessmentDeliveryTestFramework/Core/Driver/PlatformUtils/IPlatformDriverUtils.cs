@@ -11,8 +11,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils
     {
         void TearDownDriver(List<IDriverContainer> sessionDrivers, string browserType);
 
-        List<int> GetDriversProcessesId(string browserType);
-
         void TerminateProcess(string processName);
+
+        List<int> GetDriversProcessesId(string browserType);
     }
 }

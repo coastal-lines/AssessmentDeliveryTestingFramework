@@ -1,4 +1,5 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Driver;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils
             return _driverUtils.GetDriversProcessesId(browserType);
         }
 
-        public void TearDownDriver(string browserType)
+        public void TearDownDriver(List<IDriverContainer> sessionDrivers, string type)
         {
-            
+            _driverUtils.TearDownDriver(sessionDrivers, type);
         }
     }
 }

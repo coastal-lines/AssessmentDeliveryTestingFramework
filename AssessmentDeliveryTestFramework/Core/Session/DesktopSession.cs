@@ -15,12 +15,10 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
     {
         private string _categories;
 
-        private WindowsPlatformUtils _windowsPlatformUtils;
-
         public DesktopSession()
         {
             _categories = GetCurrentTestCategories();
-            _windowsPlatformUtils = new WindowsPlatformUtils();
+
             AddDriverContainer();
         }
 
@@ -57,7 +55,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
         {
             try
             {
-                GetDriver().Quit();
+                PlatformDriverUtils.TearDownDriver(driverContainers, "Windows");
             }
             catch (Exception ex)
             {
@@ -67,7 +65,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
 
             try
             {
-                _windowsPlatformUtils.KillProcessByName(windowsApplicationName);
+                PlatformDriverUtils.TerminateProcess(windowsApplicationName);
             }
             catch (NullReferenceException ex)
             {
@@ -77,7 +75,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
 
             try
             {
-                _windowsPlatformUtils.KillProcessByName("node");
+                PlatformDriverUtils.TerminateProcess("node");
             }
             catch (NullReferenceException ex)
             {
@@ -85,7 +83,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
                 Console.WriteLine("'node.exe' was closed or was not started");
             }
 
-            driverFactory.WindowsDriverFactory.TearDown();
+            PlatformDriverUtils.TearDownDriver(GetDriver());
         }
     }
 }
