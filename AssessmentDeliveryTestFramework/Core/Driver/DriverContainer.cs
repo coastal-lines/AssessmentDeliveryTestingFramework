@@ -17,7 +17,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver
     {
         public ElectronBrowserFeatures BrowserFeatures { get; }
 
-        public MinBrowserDriverContainer(ElectronBrowserFeatures electronBrowserFeatures, IWebDriver driver, string name, string platform, string browserType) : base(driver, name, platform, browserType)
+        public MinBrowserDriverContainer(ElectronBrowserFeatures electronBrowserFeatures, IWebDriver driver, string name, string platform, string browserType, string currentTestType) : base(driver, name, platform, browserType, currentTestType)
         {
             BrowserFeatures = electronBrowserFeatures;
         }
@@ -31,7 +31,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver
 
         public WebElementWaiting WebElementWaiting { get; private set; }
 
-        public BrowserDriverContainer(IWebDriver driver, string name, string platform, string browserType) : base(driver, name, platform)
+        public BrowserDriverContainer(IWebDriver driver, string name, string platform, string browserType, string currentTestType) : base(driver, name, platform, currentTestType)
         {
             WebElementWaiting = new WebElementWaiting(driver);
 

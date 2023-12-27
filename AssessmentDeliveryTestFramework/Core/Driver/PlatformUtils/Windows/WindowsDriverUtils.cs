@@ -1,5 +1,7 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using AssessmentDeliveryTestingFramework.Core.Utils;
+using OpenQA.Selenium.Appium.Windows;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
@@ -40,36 +42,39 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
             }
         }
 
-        public void TearDownDriver(List<IDriverContainer> sessionDrivers, string currentTestType = "Windows")
+        public void TearDownWindowsDriver(WindowsDriver driver, string currentTestType = "Windows")
         {
-            foreach (IDriverContainer driverContainer in sessionDrivers)
+            try
             {
-                if (driverContainer.CurrentTestType == "Windows")
-                {
-                    try
-                    {
-                        driverContainer.Driver;
-                    }
-                    catch (ObjectDisposedException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+                driver.Quit();
+            }
+            catch (ObjectDisposedException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
-                    try
-                    {
-                        TearDownAllDrivers();
-                    }
-                    catch (ArgumentException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
+            try
+            {
+                TearDownAllDrivers();
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
         public void TearDownAllDrivers()
         {
             TerminateProcess("winappdriver");
+        }
+
+        public void TearDownWebDriver(List<IDriverContainer> sessionDrivers, string browserType)
+        {
+            throw new NotImplementedException();
         }
     }
 }

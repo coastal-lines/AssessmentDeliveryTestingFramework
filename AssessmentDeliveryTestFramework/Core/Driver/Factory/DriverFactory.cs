@@ -49,7 +49,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 case TestType.Desktop:
                     WindowsDriverFactory.StartWinAppDriver();
                     //return new DesktopDriverContainer(WindowsDriverFactory.CreateWindowsDriver(), testType + "_count_", ConfigManager.Config.Platform, "Windows");
-                    return new DesktopDriverContainer(WindowsDriverFactory.CreateWindowsDriver(), testType + "_count_", ConfigurationManager.GetConfigurationModel().Desktop.Platform, "Windows");
+                    return new DesktopDriverContainer(WindowsDriverFactory.CreateWindowsDriver(), "desktop_test_name", ConfigurationManager.GetConfigurationModel().Desktop.Platform, "Windows");
                 default:
                     throw new NotSupportedException($"Test type {testType} is not supported.");
             }
@@ -60,7 +60,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             switch (browserType)
             {
                 case BrowserType.Firefox:
-                    return new BrowserDriverContainer(WebDriverFactory.CreateRemoteFirefoxDriver(), browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType);
+                    return new BrowserDriverContainer(WebDriverFactory.CreateRemoteFirefoxDriver(), browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType, "Web");
 
                 default:
                     throw new NotSupportedException($"Browser type {browserType} is not supported.");
@@ -72,11 +72,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             switch (browserType)
             {
                 case BrowserType.Chrome:
-                    return new BrowserDriverContainer(WebDriverFactory.CreateChromeDriver(), browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType);
+                    return new BrowserDriverContainer(WebDriverFactory.CreateChromeDriver(), browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType, "Web");
 
                 case BrowserType.Firefox:
                     //return new BrowserDriverContainer(CreateFirefoxDriver(), browserType + "_count_", ConfigManager.Config.Platform, browserType);
-                    return new BrowserDriverContainer(WebDriverFactory.CreateFirefoxDriver(), browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType);
+                    return new BrowserDriverContainer(WebDriverFactory.CreateFirefoxDriver(), browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType, "Web");
 
                 //case BrowserType.ElectronBasedBrowserOhHai:
                 //    return CreateElectronBasedBrowserOhHai();
@@ -84,7 +84,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 case BrowserType.Min:
                     var minDriver = WebDriverFactory.CreateElectronBasedBrowserMin();
                     //return new MinBrowserDriverContainer(new MinBrowserFeatures(minDriver), minDriver, browserType + "_count_", ConfigManager.Config.Platform, browserType);
-                    return new MinBrowserDriverContainer(new MinBrowserFeatures(minDriver), minDriver, browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType);
+                    return new MinBrowserDriverContainer(new MinBrowserFeatures(minDriver), minDriver, browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType, "Web");
 
                 default:
                     throw new NotSupportedException($"Browser type {browserType} is not supported.");

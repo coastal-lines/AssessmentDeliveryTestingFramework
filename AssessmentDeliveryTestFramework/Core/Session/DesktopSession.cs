@@ -51,11 +51,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             }
         }
 
-        public void TearDown(string windowsApplicationName)
+        public void TearDown(WindowsDriver driver, string windowsApplicationName)
         {
             try
             {
-                PlatformDriverUtils.TearDownDriver(driverContainers, "Windows");
+                PlatformDriverUtils.TearDownWindowsDriver(driver, "Windows");
             }
             catch (Exception ex)
             {
@@ -83,7 +83,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
                 Console.WriteLine("'node.exe' was closed or was not started");
             }
 
-            PlatformDriverUtils.TearDownDriver(GetDriver());
+            PlatformDriverUtils.TearDownWindowsDriver(driver, "Windows");
         }
     }
 }
