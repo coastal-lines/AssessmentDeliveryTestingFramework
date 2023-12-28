@@ -22,29 +22,25 @@ namespace GorillaTests
             Thread.CurrentThread.Join(3000);
         }
 
-        /*
+
         [Test(Description = "TC2")]
         [Category(BrowserType.Chrome)]
         public void Test2()
         {
-            //var examBase = new BaseFixtures(Session.GetDriver());
-            //var examBaseComponent = examBase.NavigateIntoExam();
-            //examBaseComponent.SelectMcqAnswer();
+            var examBase = new BaseFixtures(Session.GetDriver());
+            var examBaseComponent = examBase.NavigateIntoExam();
+            examBaseComponent.SelectMcqAnswer();
             //Thread.CurrentThread.Join(1000);
         }
-        */
 
-        /*
         [Test(Description = "TC3")]
         [Category(BrowserType.Firefox)]
         public void Test3()
         {
-            var examBase = new BaseFixtures(Session.GetDriver(), Session.GetWait());
+            var examBase = new BaseFixtures(Session.GetDriver());
             var examBaseComponent = examBase.NavigateIntoExam();
             examBaseComponent.SelectMcqAnswer();
-            Thread.CurrentThread.Join(15000);
         }
-        */
 
         /*
         [Test(Description = "TC4")]
