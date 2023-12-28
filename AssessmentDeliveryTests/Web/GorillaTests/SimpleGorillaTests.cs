@@ -11,7 +11,6 @@ namespace GorillaTests
     public class SimpleGorillaTests : WebPageObject
     {
         [Test(Description = "SimpleTest")]
-
         [BrowserType("Firefox")]
         [Category("Web")]
         public void SimpleTest()
@@ -43,17 +42,7 @@ namespace GorillaTests
         }
 
         /*
-        [Test(Description = "TC4")]
-        [Category(BrowserType.Min)]
-        public void Test4()
-        {
-            Session.GetDriver().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            Thread.CurrentThread.Join(5000);
-            Console.WriteLine("Test executed on thread " + Thread.CurrentThread.ManagedThreadId);
-            Session.GetDriverFeatures<ElectronBrowserFeatures>().NavigateToUrl("https://www.testgorilla.com/");
 
-            Assert.AreEqual("Talent Assessments for Skills-Based Hiring - TestGorilla", Session.GetDriver().Title, $"The {"https://www.testgorilla.com/"} page has a wrong title.");
-        }
         */
 
         /*
