@@ -40,31 +40,5 @@ namespace GorillaTests.Tests
             var examBaseComponent = examBase.NavigateIntoExam();
             examBaseComponent.SelectMcqAnswer();
         }
-
-        /*
-
-        */
-
-        /*
-        [Test(Description = "TC5")]
-        [Category(BrowserType.Chrome)]
-        [Category(PlatformTypes.Android)]
-        public void Test4()
-        {
-            Session.GetDriver().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            Thread.CurrentThread.Join(5000);
-            Console.WriteLine("Test executed on thread " + Thread.CurrentThread.ManagedThreadId);
-            Session.GetDriverFeatures<ElectronBrowserFeatures>().NavigateToUrl("https://www.testgorilla.com/");
-
-            Assert.AreEqual("Talent Assessments for Skills-Based Hiring - TestGorilla", Session.GetDriver().Title, $"The {"https://www.testgorilla.com/"} page has a wrong title.");
-        }
-        */
     }
 }
-
-/*
-            Session.GetDriver().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            Session.GetDriver().Navigate().GoToUrl("https://www.example.com");
-            Thread.CurrentThread.Join(5000);
-            Console.WriteLine("Test executed on thread " + Thread.CurrentThread.ManagedThreadId);
-*/
