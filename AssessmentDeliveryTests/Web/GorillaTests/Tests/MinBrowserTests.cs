@@ -3,7 +3,7 @@ using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using AssessmentDeliveryTestingFramework.Page;
 using NUnit.Framework;
 
-namespace GorillaTests
+namespace GorillaTests.Tests
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]

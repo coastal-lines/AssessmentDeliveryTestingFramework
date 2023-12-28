@@ -4,7 +4,7 @@ using AssessmentDeliveryTestingFramework.Page;
 using GorillaTests.Pages.GorillaExams;
 using AssessmentDeliveryTestingFramework.Core.TestManagement.Extensions.NUnit;
 
-namespace GorillaTests
+namespace GorillaTests.Tests
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]
