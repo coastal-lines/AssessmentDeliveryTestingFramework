@@ -31,6 +31,8 @@ namespace AssessmentDeliveryTestingFramework.Page
         public void TearDown()
         {
             _session.GetDriver().Quit();
+
+            Session.TearDown();
         }
     }
 }

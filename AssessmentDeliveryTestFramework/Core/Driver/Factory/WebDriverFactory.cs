@@ -45,6 +45,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
         public IWebDriver CreateFirefoxDriver()
         {
             new DriverManager().SetUpDriver(new FirefoxConfig());
+
             return new FirefoxDriver();
         }
 

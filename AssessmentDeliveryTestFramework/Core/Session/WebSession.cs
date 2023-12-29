@@ -2,6 +2,7 @@
 using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using AssessmentDeliveryTestingFramework.Core.Wait;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,23 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
                 default:
                     return (IWebDriver)driverContainers.OfType<BrowserDriverContainer>().ToList().Where(d => d.BrowserType.Equals(_browserType)).First().Driver;
             }
+        }
+
+        public void TearDown()
+        {
+            try
+            {
+                GetDriver().Quit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                Console.WriteLine("Driver was closed");
+            }
+
+            //TODO
+            //Add closing 'chromedriver', 'geckodriver', etc by browser type and process ID
+            //Actual for multithreading
         }
     }
 }
