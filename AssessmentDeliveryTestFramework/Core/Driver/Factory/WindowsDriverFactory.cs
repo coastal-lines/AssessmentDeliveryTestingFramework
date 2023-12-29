@@ -1,16 +1,8 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium.Appium.Service.Options;
+﻿using OpenQA.Selenium.Appium.Service.Options;
 using OpenQA.Selenium.Appium.Service;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AssessmentDeliveryTestingFramework.Core.Utils;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
@@ -125,21 +117,5 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 
             return driver;
         }
-
-        /*
-        [OneTimeTearDown]
-        public void TearDown()
-        {
-            try
-            {
-                _windowsPlatformUtils.KillProcessByName("WinAppDriver");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                Console.WriteLine("WinAppDriver was closed or was not started");
-            }
-        }
-        */
     }
 }
