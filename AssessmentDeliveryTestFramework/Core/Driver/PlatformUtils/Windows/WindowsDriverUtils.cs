@@ -71,10 +71,5 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
         {
             TerminateProcess("winappdriver");
         }
-
-        public void TearDownWebDriver(List<IDriverContainer> sessionDrivers, string browserType)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

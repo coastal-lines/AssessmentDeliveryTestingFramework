@@ -35,15 +35,5 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils
         {
             return _driverUtils.GetDriversProcessesId(browserType);
         }
-
-        public void TearDownWebDriver(string browserType)
-        {
-            _driverUtils.TearDownWebDriver(_sessionDrivers, browserType);
-        }
-
-        public void TearDownDesktopDriver(IWebDriver driver, string currentTestType)
-        {
-            _driverUtils.TearDownDesktopDriver(driver, currentTestType);
-        }
     }
 }
