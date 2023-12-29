@@ -41,9 +41,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils
             _driverUtils.TearDownWebDriver(_sessionDrivers, browserType);
         }
 
-        public void TearDownWindowsDriver(WindowsDriver driver, string currentTestType)
+        public void TearDownDesktopDriver(IWebDriver driver, string currentTestType)
         {
-            _driverUtils.TearDownWindowsDriver(driver, currentTestType);
+            _driverUtils.TearDownDesktopDriver(driver, currentTestType);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Driver;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils
     {
         void TearDownWebDriver(List<IDriverContainer> sessionDrivers, string browserType);
 
-        void TearDownWindowsDriver(WindowsDriver driver, string currentTestType);
+        void TearDownDesktopDriver(IWebDriver driver, string currentTestType);
 
         void TerminateProcess(string processName);
 

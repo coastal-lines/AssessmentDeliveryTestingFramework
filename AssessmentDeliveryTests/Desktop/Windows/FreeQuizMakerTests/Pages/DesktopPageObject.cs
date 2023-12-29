@@ -24,7 +24,7 @@ namespace FreeQuizMakerTests.Pages
         {
             _session.GetDriver().Quit();
 
-            Session.TearDown(Session.GetDriver(), "FreeQuizMaker");
+            Session.TearDown("FreeQuizMaker");
         }
     }
 }
