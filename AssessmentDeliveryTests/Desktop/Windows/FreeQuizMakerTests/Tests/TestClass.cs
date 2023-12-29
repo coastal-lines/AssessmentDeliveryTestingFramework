@@ -21,7 +21,7 @@ namespace FreeQuizMakerTests.Tests
         [Test]
         [Category(TestType.Desktop)]
         [Description("TC1 - Create MCQ item")]
-        public void Test2()
+        public void CreateMCQItem()
         {
             var generalActions = new GeneralActions(Session.GetDriver());
             var questionDetailsPage = generalActions.CreateNewQuestion();
