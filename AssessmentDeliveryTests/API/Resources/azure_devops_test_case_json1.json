@@ -1,7 +1,7 @@
 {
   "id": 12345,
   "name": "Verify Login Functionality",
-  "tags": [ "Regression", "UI" ],
+  "tags": ["Regression", "UI"],
   "state": "Active",
   "area": "Authentication",
   "iteration": "Sprint 1",

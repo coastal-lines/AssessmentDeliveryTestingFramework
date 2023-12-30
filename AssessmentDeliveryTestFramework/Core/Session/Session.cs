@@ -122,12 +122,12 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
 
         public string GetDefaultBrowser()
         {
-            return ConfigurationManager.GetConfigurationModel().Web.DefaultBrowser ?? throw new NullReferenceException("Browser is not supported."); //TODO
+            return ConfigurationManager.GetConfigurationModel().Web.DefaultBrowser ?? throw new NullReferenceException("Browser is not supported.");
         }
 
         public string GetRunType()
         {
-            return ConfigurationManager.GetConfigurationModel().Web.RunType ?? throw new NullReferenceException("Run type is not supported."); //TODO
+            return ConfigurationManager.GetConfigurationModel().Web.RunType ?? throw new NullReferenceException("Run type is not supported.");
         }
     }
 }

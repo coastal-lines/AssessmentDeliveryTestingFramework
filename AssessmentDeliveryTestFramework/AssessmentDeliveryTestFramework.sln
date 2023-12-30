@@ -31,6 +31,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GorillaTests", "GorillaTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GorillaTests", "..\AssessmentDeliveryTests\Web\GorillaTests\GorillaTests.csproj", "{AE223A92-1F38-4891-95EC-8CB7CDCE46E8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{48B2A10D-B383-4E77-BAEA-3932CA7856B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{EDBE2277-572E-4AE6-ABD3-87873FA091E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{3EC7705A-DA80-46A8-A436-3BB228891348}"
+	ProjectSection(SolutionItems) = preProject
+		..\AssessmentDeliveryTests\API\Resources\azure_devops_test_case_json1.json = ..\AssessmentDeliveryTests\API\Resources\azure_devops_test_case_json1.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +79,9 @@ Global
 		{65DF10CA-EA18-4A91-8102-F0AC6E447966} = {77D432F0-97C2-419E-928C-88105192F016}
 		{26447017-C7DC-43B4-89AA-867DD4C63A4D} = {E0A281F4-6443-463B-AF39-7702F196B31A}
 		{AE223A92-1F38-4891-95EC-8CB7CDCE46E8} = {26447017-C7DC-43B4-89AA-867DD4C63A4D}
+		{48B2A10D-B383-4E77-BAEA-3932CA7856B8} = {E4F31633-B2CA-4402-9605-8C76131F3377}
+		{EDBE2277-572E-4AE6-ABD3-87873FA091E2} = {E4F31633-B2CA-4402-9605-8C76131F3377}
+		{3EC7705A-DA80-46A8-A436-3BB228891348} = {E4F31633-B2CA-4402-9605-8C76131F3377}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39D9C2B7-D9E7-4CCF-BF52-ACD8B1297E01}
