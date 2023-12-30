@@ -1,12 +1,7 @@
-﻿using FreeQuizMakerTests.Pages.FreeQuizMakerExams.ControlsPane;
+﻿using AssessmentDeliveryTestingFramework.Core.Wait;
+using FreeQuizMakerTests.Pages.FreeQuizMakerExams.ControlsPane;
 using FreeQuizMakerTests.Pages.FreeQuizMakerExams.QuestionDetailsPane;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FreeQuizMakerTests.ApplicationActions
 {
@@ -14,21 +9,30 @@ namespace FreeQuizMakerTests.ApplicationActions
     {
         private WindowsDriver _driver;
 
-        private ToolsPage _toolsPage;
+        private DesktopWindowsElementWaiting _desktopWindowsElementWaiting;
 
-        public ToolsPage ToolsPage => _toolsPage ?? new ToolsPage(_driver);
+        private WebElementWaiting _webElementWaiting;
 
-        public GeneralActions(WindowsDriver driver)
+        public ToolsPage _toolsPage;
+
+        public GeneralActions(WindowsDriver driver, DesktopWindowsElementWaiting desktopWindowsElementWaiting, WebElementWaiting webElementWaiting)
         {
             _driver = driver;
-            _toolsPage = new ToolsPage(driver);
+
+            _desktopWindowsElementWaiting = desktopWindowsElementWaiting;
+
+            _webElementWaiting = webElementWaiting;
+
+            _toolsPage = new ToolsPage(driver, desktopWindowsElementWaiting, webElementWaiting);
         }
 
         public QuestionDetailsPage CreateNewQuestion()
         {
-            ToolsPage.ClickNewQuestionButton();
+            _toolsPage.ClickNewQuestionButton();
+
             Thread.Sleep(4000);
-            return new QuestionDetailsPage(_driver);
+
+            return new QuestionDetailsPage(_driver, _desktopWindowsElementWaiting, _webElementWaiting);
         }
     }
 }

@@ -1,10 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using AssessmentDeliveryTestingFramework.Core.Wait;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FreeQuizMakerTests.Pages.FreeQuizMakerExams.QuestionDetailsPane
 {
@@ -12,7 +8,8 @@ namespace FreeQuizMakerTests.Pages.FreeQuizMakerExams.QuestionDetailsPane
     {
         private IWebElement QuestionEdit => WebElementWaiting.WaitElement(By.XPath("//Edit[@AutomationId='txtQuestion']"));
 
-        public QuestionDetailsPage(WindowsDriver driver) : base(driver)
+        public QuestionDetailsPage(WindowsDriver driver, DesktopWindowsElementWaiting desktopWindowsElementWaiting, WebElementWaiting webElementWaiting) 
+            : base(driver, desktopWindowsElementWaiting, webElementWaiting)
         {
 
         }

@@ -12,7 +12,7 @@ namespace FreeQuizMakerTests.Pages.FreeQuizMakerExams.ControlsPane
 
         private IWebElement NewQuestionButton2 => WebElementWaiting.ForceCustomWaitElements(By.XPath("//Button[@Name='New Question']"), WebElementWaiting.IsElementsSelected).FirstOrDefault();
 
-        public ToolsPage(WindowsDriver driver) : base(driver)
+        public ToolsPage(WindowsDriver driver, DesktopWindowsElementWaiting desktopWindowsElementWaiting, WebElementWaiting webElementWaiting) : base(driver, desktopWindowsElementWaiting, webElementWaiting)
         {
 
         }

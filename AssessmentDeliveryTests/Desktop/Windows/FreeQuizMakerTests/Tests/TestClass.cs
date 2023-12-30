@@ -14,7 +14,7 @@ namespace FreeQuizMakerTests.Tests
         [Description("TC2 - FreeQuiz web page is opened from the application")]
         public void OpenQuizLinkTest()
         {
-            var toolsPane = new ToolsPage(Session.GetDriver());
+            var toolsPane = new ToolsPage(Session.GetDriver(), Session.DesktopWindowsElementWaiting, Session.WebElementWaiting);
             toolsPane.ClickMediaFreewareUrlLink();
         }
 
@@ -23,7 +23,7 @@ namespace FreeQuizMakerTests.Tests
         [Description("TC1 - Create MCQ item")]
         public void CreateMCQItem()
         {
-            var generalActions = new GeneralActions(Session.GetDriver());
+            var generalActions = new GeneralActions(Session.GetDriver(), Session.DesktopWindowsElementWaiting, Session.WebElementWaiting);
             var questionDetailsPage = generalActions.CreateNewQuestion();
             Assert.AreEqual("New Question", questionDetailsPage.GetQuestionEditText(), "Error");
         }

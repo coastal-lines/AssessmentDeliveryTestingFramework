@@ -8,12 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using AssessmentDeliveryTestingFramework.Core.Utils;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
+using AssessmentDeliveryTestingFramework.Core.Wait;
 
 namespace AssessmentDeliveryTestingFramework.Core.Session
 {
     public class DesktopSession : Session
     {
         private string _categories;
+
+        public WebElementWaiting WebElementWaiting { get; private set; }
+
+        public DesktopWindowsElementWaiting DesktopWindowsElementWaiting { get; private set; }
 
         public DesktopSession()
         {
@@ -30,6 +35,10 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             }
 
             driverContainers.Add(driverFactory.CreateDesktopDriverContainer(_categories));
+
+            WebElementWaiting = driverContainers.OfType<DesktopDriverContainer>().Last().WebElementWaiting;
+
+            DesktopWindowsElementWaiting = driverContainers.OfType<DesktopDriverContainer>().Last().DesktopWindowsElementWaiting;
         }
 
         public WindowsDriver GetDriver(string platformType = "Windows")
@@ -83,5 +92,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
                 Console.WriteLine("'node.exe' was closed or was not started");
             }
         }
+
+
     }
 }
