@@ -7,7 +7,7 @@ namespace FreeQuizMakerTests.Tests
 {
     [TestFixture]
     [NonParallelizable]
-    public class TestClass : DesktopPageObject
+    public class SimpleFreeQuizTests : DesktopPageObject
     {
         [Test]
         [Category(TestType.Desktop)]
@@ -15,6 +15,7 @@ namespace FreeQuizMakerTests.Tests
         public void OpenQuizLinkTest()
         {
             var toolsPane = new ToolsPage(Session.GetDriver(), Session.DesktopWindowsElementWaiting, Session.WebElementWaiting);
+
             toolsPane.ClickMediaFreewareUrlLink();
         }
 
@@ -24,7 +25,9 @@ namespace FreeQuizMakerTests.Tests
         public void CreateMCQItem()
         {
             var generalActions = new GeneralActions(Session.GetDriver(), Session.DesktopWindowsElementWaiting, Session.WebElementWaiting);
+
             var questionDetailsPage = generalActions.CreateNewQuestion();
+
             Assert.AreEqual("New Question", questionDetailsPage.GetQuestionEditText(), "Error");
         }
     }

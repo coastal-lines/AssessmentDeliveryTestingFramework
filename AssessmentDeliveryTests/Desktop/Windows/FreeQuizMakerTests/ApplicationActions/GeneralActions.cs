@@ -30,8 +30,6 @@ namespace FreeQuizMakerTests.ApplicationActions
         {
             _toolsPage.ClickNewQuestionButton();
 
-            Thread.Sleep(4000);
-
             return new QuestionDetailsPage(_driver, _desktopWindowsElementWaiting, _webElementWaiting);
         }
     }
