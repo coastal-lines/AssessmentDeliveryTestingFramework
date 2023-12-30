@@ -11,25 +11,19 @@ namespace FreeQuizMakerTests.Pages
 {
     public class DesktopWindowsBasePage
     {
-        private WindowsDriver _driver;
+        public WindowsDriver Driver { get; }
 
-        private DesktopWindowsElementWaiting _elementWaiting;
+        public DesktopWindowsElementWaiting ElementWaiting { get; }
 
-        private WebElementWaiting _webElementWaiting;
+        public WebElementWaiting WebElementWaiting { get; }
 
-        public WindowsDriver Driver => _driver;
-
-        public DesktopWindowsElementWaiting DesktopWindowsElementWaiting => _elementWaiting;
-
-        public WebElementWaiting WebElementWaiting => _webElementWaiting;
-
-        public DesktopWindowsBasePage(WindowsDriver driver)
+        public DesktopWindowsBasePage(WindowsDriver driver, DesktopWindowsElementWaiting desktopWindowsElementWaiting, WebElementWaiting webElementWaiting)
         {
-            _driver = driver ?? throw new ArgumentNullException(nameof(driver)); //TODO message
+            Driver = driver;
 
-            _elementWaiting = new DesktopWindowsElementWaiting(driver);
+            ElementWaiting = desktopWindowsElementWaiting;
 
-            _webElementWaiting = new WebElementWaiting(driver);
+            WebElementWaiting = webElementWaiting;
         }
     }
 }

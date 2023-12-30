@@ -1,16 +1,20 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Wait;
-using AssessmentDeliveryTestingFramework.Page;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GorillaTests.Pages.GorillaExams
 {
-    public class WebBasePage //: WebPageObject
+    public class WebBasePage
     {
+        public IWebDriver Driver { get; }
+        public WebElementWaiting WebElementWaiting { get; }
+
+        public WebBasePage(IWebDriver driver, WebElementWaiting webElementWaiting)
+        {
+            Driver = driver;
+            WebElementWaiting = webElementWaiting;
+        }
+
+        /*
         private IWebDriver _driver;
 
         private WebElementWaiting _elementWait;
@@ -21,11 +25,10 @@ namespace GorillaTests.Pages.GorillaExams
 
         public WebBasePage(IWebDriver driver, WebElementWaiting webElementWaiting)
         {
-            _driver = driver ?? throw new ArgumentNullException(nameof(driver)); //TODO message
-
-            //_elementWait = new WebElementWaiting(driver);
+            _driver = driver;
 
             _elementWait = webElementWaiting;
         }
+        */
     }
 }
