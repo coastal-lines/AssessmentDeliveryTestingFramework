@@ -6,11 +6,10 @@ namespace GorillaTests.Pages.GorillaExams
 {
     public class BaseFixtures : WebBasePage
     {
-        public BaseFixtures(IWebDriver driver) : base(driver) 
+        public BaseFixtures(IWebDriver driver, WebElementWaiting webElementWaiting) : base(driver, webElementWaiting) 
         { 
         
         }
-
 
         public ExamBaseComponent NavigateIntoExam()
         {

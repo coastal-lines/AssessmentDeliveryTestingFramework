@@ -18,6 +18,7 @@ using OpenQA.Selenium.Remote;
 using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
+using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers.CustomContainers;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {

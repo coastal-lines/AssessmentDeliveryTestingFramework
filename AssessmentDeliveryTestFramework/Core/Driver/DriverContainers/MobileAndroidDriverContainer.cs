@@ -5,8 +5,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers
 {
     public class MobileAndroidDriverContainer : DriverContainer<AndroidDriver>
     {
-        public string CurrentTestType { get; private set; }
-
         public MobileAndroidElementWaiting MobileAndroidElementWaiting { get; private set; }
 
         public WebElementWaiting WebElementWaiting { get; private set; }

@@ -17,6 +17,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
 
         private string _runType;
 
+        public WebElementWaiting WebElementWaiting { get; private set; }
+
         public WebSession()
         {
             _browserType = GetCurrentTestCategories();
@@ -41,6 +43,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             {
                 driverContainers.Add(driverFactory.CreateBrowserRemoteDriverContainer(_browserType));
             }
+
+            WebElementWaiting = driverContainers.OfType<BrowserDriverContainer>().Last().WebElementWaiting;
         }
 
         public IWebDriver GetDriver()

@@ -7,6 +7,7 @@ using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 using AssessmentDeliveryTestingFramework.Core.Driver.Factory;
 using AssessmentDeliveryTestingFramework.Core.Wait;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
+using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers.CustomContainers;
 
 namespace AssessmentDeliveryTestingFramework.Core.Session
 {

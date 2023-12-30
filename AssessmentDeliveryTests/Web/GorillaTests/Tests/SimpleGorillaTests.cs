@@ -26,7 +26,7 @@ namespace GorillaTests.Tests
         [Category(BrowserType.Chrome)]
         public void Test2()
         {
-            var examBase = new BaseFixtures(Session.GetDriver());
+            var examBase = new BaseFixtures(Session.GetDriver(), Session.WebElementWaiting);
             var examBaseComponent = examBase.NavigateIntoExam();
             examBaseComponent.SelectMcqAnswer();
             //Thread.CurrentThread.Join(1000);
