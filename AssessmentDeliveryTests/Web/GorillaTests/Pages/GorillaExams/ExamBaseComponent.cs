@@ -12,12 +12,12 @@ namespace GorillaTests.Pages.GorillaExams
 
         private IList<IWebElement> _ListAnswersMCQ => WebElementWaiting.WaitElements(By.TagName("app-tgo-choice"));
 
-        public ExamBaseComponent(IWebDriver driver) : base(driver) 
+        public ExamBaseComponent(IWebDriver driver, WebElementWaiting webElementWaiting) : base(driver, webElementWaiting) 
         { 
         
         }
 
-        public ExamNavigationComponent ExamNavigationComponent => _examNavigationComponent ?? new ExamNavigationComponent(Driver);
+        public ExamNavigationComponent ExamNavigationComponent => _examNavigationComponent ?? new ExamNavigationComponent(Driver, WebElementWaiting);
 
         public ExamToolsComponent ExamToolsComponent => _examToolsComponent ??= new ExamToolsComponent();
 

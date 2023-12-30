@@ -8,7 +8,7 @@ namespace GorillaTests.Pages.GorillaExams
     {
         private IWebElement _ImageLogo => WebElementWaiting.WaitElement(By.XPath("//content//img[@src='assets/tgo-logo.jpeg']"));
 
-        public ExamNavigationComponent(IWebDriver driver) : base(driver)
+        public ExamNavigationComponent(IWebDriver driver, WebElementWaiting webElementWaiting) : base(driver, webElementWaiting)
         {
             
         }

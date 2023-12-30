@@ -36,7 +36,7 @@ namespace GorillaTests.Tests
         [Category(BrowserType.Firefox)]
         public void Test3()
         {
-            var examBase = new BaseFixtures(Session.GetDriver());
+            var examBase = new BaseFixtures(Session.GetDriver(), Session.WebElementWaiting);
             var examBaseComponent = examBase.NavigateIntoExam();
             examBaseComponent.SelectMcqAnswer();
         }
