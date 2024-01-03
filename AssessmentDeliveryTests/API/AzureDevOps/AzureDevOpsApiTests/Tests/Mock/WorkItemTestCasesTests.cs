@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+﻿using AzureDevOpsApiTests.Clients;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using NUnit.Framework;
 using RestSharp;
 using WireMock.Server;
@@ -7,23 +8,22 @@ namespace AzureDevOpsApiTests.Tests.Mock
 {
     public class WorkItemTestCasesTests
     {
-        private WireMockServer wireMockServer;
+        private RestClientWrapper _restClient;
+
+        private WireMockClient _wireMockClient;
 
         [SetUp]
         public void Setup()
         {
-            wireMockServer = WireMockServer.Start(8080);
+            _wireMockClient = new WireMockClient(8080);
 
-            string mappingsPath = Path.Combine(Directory.GetCurrentDirectory(), "AzureDevOpsApiTests", "Resources", "WireMockFiles");
-
-            wireMockServer.ReadStaticMappings(mappingsPath);
+            _restClient = new RestClientWrapper("http://localhost:8080");
         }
 
         [TearDown]
         public void TearDown()
         {
-            wireMockServer.Stop();
-            wireMockServer.Dispose();
+            _wireMockClient.Stop();
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
 
             string expectedTestCaseName = "Verify Login Functionality";
 
-            wireMockServer
+            _wireMockClient.GetWireMockServer()
                 .Given(WireMock.RequestBuilders.Request.Create().WithPath($"/api/testcases/{testCaseId}").UsingGet())
                 .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200).WithBody($@"
                     {{
@@ -42,10 +42,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
                     }}
                 "));
 
-            var client = new RestClient(wireMockServer.Urls[0]);
-            var request = new RestRequest($"/api/testcases/{testCaseId}", Method.Get);
-
-            var response = client.Execute(request);
+            var response = _restClient.Get($"/api/testcases/{testCaseId}");
 
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
 
