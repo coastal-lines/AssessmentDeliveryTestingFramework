@@ -1,4 +1,6 @@
-﻿using AzureDevOpsApiTests.Clients;
+﻿using AssessmentDeliveryTestingFramework.Core.Browsers.Min;
+using AssessmentDeliveryTestingFramework.Core.Session;
+using AzureDevOpsApiTests.Clients;
 using NUnit.Framework;
 
 namespace AzureDevOpsApiTests.Tests.Mock
@@ -59,7 +61,9 @@ namespace AzureDevOpsApiTests.Tests.Mock
 
             var response = _restClient.Get($"/api/testcases/{TestCaseData.TestCaseId}");
 
-            var testCase = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.TestCase>(response.Content);
+            //var testCase = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.TestCase>(response.Content);
+
+            var testCase = _wireMockClient.JsonUtils.Deserialize<Models.TestCase>(response.Content);
 
             Assert.AreEqual(TestCaseData.ExpectedTestCaseName, testCase.Name);
         }

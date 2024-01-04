@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssessmentDeliveryTestingFramework.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,11 @@ namespace AzureDevOpsApiTests.Clients
 {
     public class WireMockClient
     {
+        private readonly WireMockServer _wireMockServer;
+
         private readonly string MappingPath = Path.Combine(Directory.GetCurrentDirectory(), "AzureDevOpsApiTests", "Resources", "WireMockFiles");
 
-        private readonly WireMockServer _wireMockServer;
+        public JsonUtils JsonUtils => new JsonUtils();
 
         public WireMockClient(int port)
         {
