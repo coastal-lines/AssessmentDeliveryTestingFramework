@@ -1,11 +1,15 @@
 ﻿using AzureDevOpsApiTests.Clients;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using NUnit.Framework;
-using RestSharp;
-using WireMock.Server;
 
 namespace AzureDevOpsApiTests.Tests.Mock
 {
+    public static class TestCaseData
+    {
+        public static int TestCaseId = 12345;
+
+        public static string ExpectedTestCaseName = "Verify Login Functionality";
+    }
+
     public class WorkItemTestCasesTests
     {
         private RestClientWrapper _restClient;
@@ -27,28 +31,37 @@ namespace AzureDevOpsApiTests.Tests.Mock
         }
 
         [Test]
-        public void GetTestCaseById_ValidId_ReturnsTestCaseName()
+        public void Get_TestCaseById_ValidId()
         {
-            int testCaseId = 12345;
-
-            string expectedTestCaseName = "Verify Login Functionality";
-
             _wireMockClient.GetWireMockServer()
-                .Given(WireMock.RequestBuilders.Request.Create().WithPath($"/api/testcases/{testCaseId}").UsingGet())
+                .Given(WireMock.RequestBuilders.Request.Create().WithPath($"/api/testcases/{TestCaseData.TestCaseId}").UsingGet())
                 .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200).WithBody($@"
                     {{
-                        ""id"": {testCaseId},
-                        ""name"": ""{expectedTestCaseName}""
+                        ""id"": {TestCaseData.TestCaseId}
                     }}
                 "));
 
-            var response = _restClient.Get($"/api/testcases/{testCaseId}");
+            var response = _restClient.Get($"/api/testcases/{TestCaseData.TestCaseId}");
 
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
+        }
+
+        [Test]
+        public void Get_TestCaseById_ValidTestCaseName()
+        {
+            _wireMockClient.GetWireMockServer()
+                .Given(WireMock.RequestBuilders.Request.Create().WithPath($"/api/testcases/{TestCaseData.TestCaseId}").UsingGet())
+                .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200).WithBody($@"
+                    {{
+                        ""name"": ""{TestCaseData.ExpectedTestCaseName}""
+                    }}
+                "));
+
+            var response = _restClient.Get($"/api/testcases/{TestCaseData.TestCaseId}");
 
             var testCase = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.TestCase>(response.Content);
 
-            Assert.AreEqual(expectedTestCaseName, testCase.Name);
+            Assert.AreEqual(TestCaseData.ExpectedTestCaseName, testCase.Name);
         }
     }
 }
