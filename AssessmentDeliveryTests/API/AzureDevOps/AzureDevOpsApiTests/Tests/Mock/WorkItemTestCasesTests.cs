@@ -1,16 +1,14 @@
-﻿using AngleSharp.Common;
-using AssessmentDeliveryTestingFramework.Core.Browsers.Min;
-using AssessmentDeliveryTestingFramework.Core.Session;
-using AzureDevOpsApiTests.Clients;
+﻿using AzureDevOpsApiTests.Clients;
 using NUnit.Framework;
+using System.Net;
 
 namespace AzureDevOpsApiTests.Tests.Mock
 {
     public static class TestCaseData
     {
-        public static string TestCaseEndPoint = "/api/testcases/";
+        public static string Server = "http://localhost";
 
-        public static int TestCaseId = 12345;
+        public static int Port = 8090;
 
         public static string ExpectedTestCaseName = "Verify Login Functionality";
     }
@@ -21,14 +19,15 @@ namespace AzureDevOpsApiTests.Tests.Mock
 
         private WireMockClient _wireMockClient;
 
-        private readonly string EndPointGetTestById = string.Concat(TestCaseData.TestCaseEndPoint, TestCaseData.TestCaseId);
+        private string _testCaseEndPoint = "/_apis/test/plans/1/suites/1/cases/1";
+
 
         [SetUp]
         public void Setup()
         {
-            _wireMockClient = new WireMockClient(8080);
+            _wireMockClient = new WireMockClient(TestCaseData.Port);
 
-            _restClient = new RestClientWrapper("http://localhost:8080");
+            _restClient = new RestClientWrapper($"{TestCaseData.Server}:{TestCaseData.Port}");
         }
 
         [TearDown]
@@ -37,24 +36,36 @@ namespace AzureDevOpsApiTests.Tests.Mock
             _wireMockClient.Stop();
         }
 
-        [Test]
-        public void GetTestCaseById_Valid_Returns200Ok()
+        private void SetupGetTestCaseStub()
         {
-            _wireMockClient.GetWireMockServer().Given(
-                WireMock.RequestBuilders.Request.Create()
-                .WithPath(EndPointGetTestById)
-                .UsingGet()
-            )
-            .RespondWith(
-                WireMock.ResponseBuilders.Response.Create()
-                .WithStatusCode(200)
-                .WithBody($@"
-                    {{
-                        ""id"": {TestCaseData.TestCaseId}
-                    }}
-            "));
+            var mappingAzureDevOpsTest1Path = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "WireMockFiles", "mapping-get-azure-devops-testcase-1.json");
 
-            var response = _restClient.Get(EndPointGetTestById);
+            _wireMockClient.GetWireMockServer()
+                .Given(WireMock.RequestBuilders.Request.Create().WithPath("/_apis/test/plans/1/suites/1/cases/1").UsingGet())
+                .RespondWith(WireMock.ResponseBuilders.Response.Create()
+                    .WithHeader("Content-Type", "text/plain")
+                    .WithStatusCode(200)
+                    .WithBodyFromFile(mappingAzureDevOpsTest1Path));
+        }
+
+        private void SetupPatchTestCaseStub()
+        {
+            var mappingAzureDevOpsTest1Path = Path.Combine(Directory.GetCurrentDirectory(), "Resources", "WireMockFiles", "mapping-path-name-azure-devops-testcase-1.json");
+
+            _wireMockClient.GetWireMockServer()
+                .Given(WireMock.RequestBuilders.Request.Create().WithPath("/_apis/test/plans/1/suites/1/cases/1").UsingPatch())
+                .RespondWith(WireMock.ResponseBuilders.Response.Create()
+                    .WithHeader("Content-Type", "text/plain")
+                    .WithStatusCode(201)
+                    .WithBodyFromFile(mappingAzureDevOpsTest1Path));
+        }
+
+        [Test]
+        public void Get_TestCaseById_Valid_200OK()
+        {
+            SetupGetTestCaseStub();
+
+            var response = _restClient.Get(_testCaseEndPoint);
 
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
         }
@@ -62,25 +73,39 @@ namespace AzureDevOpsApiTests.Tests.Mock
         [Test]
         public void Get_TestCaseById_Valid_TestCaseName()
         {
-            _wireMockClient.GetWireMockServer().Given(
-                WireMock.RequestBuilders.Request.Create()
-                .WithPath(EndPointGetTestById)
-                .UsingGet()
-            )
-            .RespondWith(
-                WireMock.ResponseBuilders.Response.Create()
-                    .WithStatusCode(200)
-                    .WithBody($@"
-                    {{
-                        ""name"": ""{TestCaseData.ExpectedTestCaseName}""
-                    }}
-            "));
+            SetupGetTestCaseStub();
 
-            var response = _restClient.Get(EndPointGetTestById);
+            var response = _restClient.Get("http://localhost:8090/" + _testCaseEndPoint);
 
-            var testCase = _wireMockClient.JsonUtils.Deserialize<Models.TestCase>(response.Content);
+            var content = _wireMockClient.JsonUtils.GetValueFromResponse(response.Content, "response.body");
 
-            Assert.AreEqual(TestCaseData.ExpectedTestCaseName, testCase.Name);
+            var testCase = _wireMockClient.JsonUtils.Deserialize<Models.AzureDevOpsTestCase>(content);
+
+            Assert.AreEqual("Login test", testCase.Fields.SystemTitle);
+        }
+
+        [Test]
+        public void Patch_TestCaseName_Valid_201OK()
+        {
+            SetupPatchTestCaseStub();
+
+            _wireMockClient.GetWireMockServer()
+            .Given(WireMock.RequestBuilders.Request.Create().WithPath("/_apis/test/plans/1/suites/1/cases/1").UsingPatch()
+                .WithHeader("Content-Type", "text/plain")
+                .WithBody(@"{
+                    ""bodyPatterns"": [
+                        {
+                            ""contains"": {
+                                ""path"": ""$.fields['System.Title']"",
+                                ""value"": ""New Test Case Name""
+                            }
+                        }
+                    ]
+                }"));
+
+            var response = _restClient.Patch("http://localhost:8090" + _testCaseEndPoint);
+
+            Assert.AreEqual((int)HttpStatusCode.Created, (int)response.StatusCode, "Expected 201 but was " + (int)response.StatusCode);
         }
     }
 }

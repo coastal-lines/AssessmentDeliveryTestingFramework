@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\OriginalJson\" />
-    <Folder Include="Resources\WireMockFiles\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +32,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\WireMockFiles\mapping-get-azure-devops-testcase-1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\WireMockFiles\mapping-path-azure-devops-testcase-1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\WireMockFiles\mapping-path-name-azure-devops-testcase-1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

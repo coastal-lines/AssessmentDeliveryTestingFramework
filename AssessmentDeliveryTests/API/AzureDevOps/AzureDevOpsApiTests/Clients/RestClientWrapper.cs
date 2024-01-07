@@ -17,5 +17,12 @@ namespace AzureDevOpsApiTests.Clients
 
             return _client.Execute(request);
         }
+
+        public RestResponse Patch(string endPoint)
+        {
+            var request = new RestRequest(endPoint, Method.Patch);
+
+            return _client.Execute(request);
+        }
     }
 }
