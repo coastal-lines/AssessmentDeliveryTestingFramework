@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System.Diagnostics;
 
@@ -103,6 +104,34 @@ namespace AssessmentDeliveryTestingFramework.Core.Wait
                 Console.WriteLine(ex);
                 Console.WriteLine($"Element timeout waiting. Element is '{locator}'.");
                 throw;
+            }
+        }
+
+        public void WaitElementDisplayed(By by)
+        {
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(base.GetDriver(), TimeSpan.FromSeconds(30));
+                wait.Until(ExpectedConditions.ElementIsVisible(by));
+            }
+            catch (NoSuchElementException err)
+            {
+                Console.WriteLine(err);
+                Console.WriteLine("Element with locator '" + by + "' is not displayed");
+            }
+        }
+
+        public void WaitElementDisappear(By by, int waitingTime = 30)
+        {
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(base.GetDriver(), TimeSpan.FromSeconds(waitingTime));
+                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(by));
+            }
+            catch (NoSuchElementException err)
+            {
+                Console.WriteLine(err);
+                Console.WriteLine("Element with locator '" + by + "' is displayed");
             }
         }
     }
