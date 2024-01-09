@@ -49,6 +49,8 @@ namespace AzureDevOpsApiTests.Tests.Mock
         public void TearDown()
         {
             _wireMockClient.Stop();
+
+            _restClient.Dispose();
         }
 
         private void SetupGetTestCaseStub()
@@ -78,6 +80,9 @@ namespace AzureDevOpsApiTests.Tests.Mock
         [Test]
         public void Get_TestCaseById_Valid_200OK()
         {
+            var test = new Program444();
+            test.Main444();
+
             SetupGetTestCaseStub();
 
             var response = _restUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Get);

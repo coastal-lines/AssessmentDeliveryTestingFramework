@@ -37,6 +37,10 @@ namespace AssessmentDeliveryTestingFramework.Utils
         {
             if (isTLS)
             {
+                /*
+                 * set security protocols
+                */
+
                 ServicePointManager.SecurityProtocol |= SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             }
 
