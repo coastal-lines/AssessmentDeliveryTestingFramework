@@ -2,8 +2,10 @@
 
 namespace AzureDevOpsApiTests.Clients
 {
+    /*
     public class RestClientWrapper
     {
+
         private readonly RestClient _client;
 
         public RestClientWrapper(string baseUrl)
@@ -25,4 +27,5 @@ namespace AzureDevOpsApiTests.Clients
             return _client.Execute(request);
         }
     }
+    */
 }

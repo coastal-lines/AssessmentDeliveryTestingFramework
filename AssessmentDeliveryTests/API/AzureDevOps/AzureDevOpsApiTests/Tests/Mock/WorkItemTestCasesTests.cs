@@ -1,5 +1,7 @@
-﻿using AzureDevOpsApiTests.Clients;
+﻿using AssessmentDeliveryTestingFramework.Utils;
+using AzureDevOpsApiTests.Clients;
 using NUnit.Framework;
+using RestSharp;
 using System.Net;
 
 namespace AzureDevOpsApiTests.Tests.Mock
@@ -15,19 +17,22 @@ namespace AzureDevOpsApiTests.Tests.Mock
 
     public class WorkItemTestCasesTests
     {
-        private RestClientWrapper _restClient;
+        private RestUtils _restUtils;
+
+        private RestClient _restClient;
 
         private WireMockClient _wireMockClient;
 
         private string _testCaseEndPoint = "/_apis/test/plans/1/suites/1/cases/1";
 
+        public RestUtils RestUtils => _restUtils ?? new RestUtils();
 
         [SetUp]
         public void Setup()
         {
             _wireMockClient = new WireMockClient(TestCaseData.Port);
 
-            _restClient = new RestClientWrapper($"{TestCaseData.Server}:{TestCaseData.Port}");
+            _restClient = _restUtils.CreateRestClient($"{TestCaseData.Server}:{TestCaseData.Port}");
         }
 
         [TearDown]
@@ -65,7 +70,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
         {
             SetupGetTestCaseStub();
 
-            var response = _restClient.Get(_testCaseEndPoint);
+            var response = _restUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Get);
 
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
         }
@@ -75,7 +80,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
         {
             SetupGetTestCaseStub();
 
-            var response = _restClient.Get("http://localhost:8090/" + _testCaseEndPoint);
+            var response = _restUtils.ExecureRequest(_restClient, "http://localhost:8090/" + _testCaseEndPoint, Method.Get);
 
             var content = _wireMockClient.JsonUtils.GetValueFromResponse(response.Content, "response.body");
 
@@ -103,7 +108,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
                     ]
                 }"));
 
-            var response = _restClient.Patch("http://localhost:8090" + _testCaseEndPoint);
+            var response = _restUtils.ExecureRequest(_restClient, "http://localhost:8090/" + _testCaseEndPoint, Method.Patch);
 
             Assert.AreEqual((int)HttpStatusCode.Created, (int)response.StatusCode, "Expected 201 but was " + (int)response.StatusCode);
         }
