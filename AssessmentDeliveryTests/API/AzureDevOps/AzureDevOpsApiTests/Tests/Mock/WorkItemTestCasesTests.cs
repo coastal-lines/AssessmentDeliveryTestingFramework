@@ -25,14 +25,24 @@ namespace AzureDevOpsApiTests.Tests.Mock
 
         private string _testCaseEndPoint = "/_apis/test/plans/1/suites/1/cases/1";
 
-        public RestUtils RestUtils => _restUtils ?? new RestUtils();
+        public RestUtils RestUtils
+        {
+            get
+            {
+                if (_restUtils == null)
+                {
+                    _restUtils = new RestUtils();
+                }
+                return _restUtils;
+            }
+        }
 
         [SetUp]
         public void Setup()
         {
             _wireMockClient = new WireMockClient(TestCaseData.Port);
 
-            _restClient = _restUtils.CreateRestClient($"{TestCaseData.Server}:{TestCaseData.Port}");
+            _restClient = RestUtils.CreateRestClient($"{TestCaseData.Server}:{TestCaseData.Port}");
         }
 
         [TearDown]
@@ -80,7 +90,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
         {
             SetupGetTestCaseStub();
 
-            var response = _restUtils.ExecureRequest(_restClient, "http://localhost:8090/" + _testCaseEndPoint, Method.Get);
+            var response = _restUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Get);
 
             var content = _wireMockClient.JsonUtils.GetValueFromResponse(response.Content, "response.body");
 
@@ -108,7 +118,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
                     ]
                 }"));
 
-            var response = _restUtils.ExecureRequest(_restClient, "http://localhost:8090/" + _testCaseEndPoint, Method.Patch);
+            var response = _restUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Patch);
 
             Assert.AreEqual((int)HttpStatusCode.Created, (int)response.StatusCode, "Expected 201 but was " + (int)response.StatusCode);
         }
