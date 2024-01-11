@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AssessmentDeliveryTestingFramework.Utils
+namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
 {
     public class JsonUtils
     {
         public T Deserialize<T>(string jsonResponse)
         {
-            return (T)(object)Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonResponse);
+            return (T)(object)JsonConvert.DeserializeObject<T>(jsonResponse);
         }
 
         public T LoadJsonFromFile<T>(string filePath)

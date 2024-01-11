@@ -1,6 +1,6 @@
-﻿namespace AssessmentDeliveryTestingFramework.Utils
+﻿namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
 {
-    public class FilesManager
+    public class TextFileUtils
     {
         public string ReadTxtFile(string filePath)
         {
