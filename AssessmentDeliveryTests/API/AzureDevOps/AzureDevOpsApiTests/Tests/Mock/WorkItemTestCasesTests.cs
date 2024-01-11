@@ -25,17 +25,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
 
         private string _testCaseEndPoint = "/_apis/test/plans/1/suites/1/cases/1";
 
-        public RestUtils RestUtils
-        {
-            get
-            {
-                if (_restUtils == null)
-                {
-                    _restUtils = new RestUtils();
-                }
-                return _restUtils;
-            }
-        }
+        public RestUtils RestUtils { get; } = new RestUtils();
 
         [SetUp]
         public void Setup()
