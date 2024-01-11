@@ -32,7 +32,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                Console.WriteLine($"Error loading HTML from file path 'filePath'" + ex.Message);
+                Console.WriteLine($"Error loading HTML from file path 'filePath'");
                 throw;
             }
         }
