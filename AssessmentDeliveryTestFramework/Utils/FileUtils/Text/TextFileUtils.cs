@@ -1,4 +1,6 @@
-﻿namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
+﻿using System.IO;
+
+namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
 {
     public class TextFileUtils
     {
