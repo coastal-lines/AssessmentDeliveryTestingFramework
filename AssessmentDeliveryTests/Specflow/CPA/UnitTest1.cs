@@ -1,3 +1,5 @@
+using NUnit.Framework;
+
 namespace CPATests
 {
     public class Tests
