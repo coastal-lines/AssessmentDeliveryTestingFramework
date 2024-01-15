@@ -27,14 +27,22 @@ namespace QuestionProTests.Steps
             _session.GetDriver().Navigate().GoToUrl("https://www.questionpro.com/survey-templates/service-evaluation-internet-service-provider/");
         }
 
-        [When(@"User scrolls to table type question '([^']*)'")]
-        public void WhenUserScrollsToTableTypeQuestion(string questionText)
+        [When(@"User scrolls to question '([^']*)'")]
+        public void WhenUserScrollsToQuestion(string questionText)
         {
             IWebElement questionContainerElement;
             IWebElement questionTitleElement;
             _serviceEvaluationInternetServicePage.GetElementByQuestion(questionText, out questionContainerElement, out questionTitleElement);
 
+            ScenarioContext.Current["QuestionContainerElement"] = questionContainerElement;
+
             _session.WebElementActions.ScrollToElement(questionTitleElement);
+        }
+
+        [Then(@"User provides answers")]
+        public void ThenUserProvidesAnswers(Table table)
+        {
+            IWebElement questionContainerElement = (IWebElement)ScenarioContext.Current["QuestionContainerElement"];
         }
     }
 }

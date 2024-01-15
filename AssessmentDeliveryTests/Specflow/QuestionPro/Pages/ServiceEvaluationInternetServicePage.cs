@@ -20,11 +20,18 @@ namespace QuestionProTests.Pages
             {
                 var tempQuestionTitleElement = el.FindElement(By.ClassName("question-text-span"));
 
+                var t1 = tempQuestionTitleElement.Text;
+                Console.WriteLine(t1);
+
                 if (tempQuestionTitleElement.Text.Contains(questionText))
                 {
+                    Console.WriteLine(questionText);
+
                     questionContainerElement = el;
 
                     questionTitleElement = tempQuestionTitleElement;
+
+                    return;
                 }
             }
 

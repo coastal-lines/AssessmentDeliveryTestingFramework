@@ -52,9 +52,16 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
 
         public void ScrollToElement(IWebElement element)
         {
-            new Actions(_driver)
-                .ScrollToElement(element)
-                .Perform();
+            try
+            {
+                new Actions(_driver)
+                    .ScrollToElement(element)
+                    .Perform();
+            }
+            catch (WebDriverArgumentException)
+            {
+                JavaScriptUtils.ScrollToElement(_driver, element);
+            }
         }
 
         public void MoveCursorOnElementBySelenium(IWebDriver driver, IWebElement element)
