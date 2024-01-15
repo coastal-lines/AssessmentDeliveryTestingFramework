@@ -7,6 +7,13 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
 {
     public class WebElementActions
     {
+        private IWebDriver _driver;
+
+        public WebElementActions(IWebDriver driver)
+        {
+            _driver = driver;
+        }
+
         public JavaScriptUtils JavaScriptUtils { get; } = new JavaScriptUtils();
 
         #region Selenium actions
@@ -41,6 +48,13 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
             string script = $"window.scroll({x}, {y});";
 
             JavaScriptUtils.ExecuteJS(driver, script);
+        }
+
+        public void ScrollToElement(IWebDriver driver, IWebElement element)
+        {
+            new Actions(driver)
+                .ScrollToElement(element)
+                .Perform();
         }
 
         public void MoveCursorOnElementBySelenium(IWebDriver driver, IWebElement element)

@@ -20,7 +20,7 @@ namespace QuestionProTests.Pages
             _session = session;
         }
 
-        public (IWebElement, IWebElement) GetElementByQuestion(string questionText)
+        public void GetElementByQuestion(string questionText, out IWebElement questionContainerElement, out IWebElement questionTitleElement)
         {
             foreach (var el in _QuestionElementList)
             {
@@ -28,7 +28,9 @@ namespace QuestionProTests.Pages
 
                 if (tempQuestionTitleElement.Text.Contains(questionText))
                 {
-                    return (el, tempQuestionTitleElement);
+                    questionContainerElement = el;
+
+                    questionTitleElement = tempQuestionTitleElement;
                 }
             }
 
