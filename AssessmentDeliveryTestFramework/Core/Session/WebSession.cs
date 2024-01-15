@@ -1,13 +1,7 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
-using AssessmentDeliveryTestingFramework.Core.TestManagement;
+using AssessmentDeliveryTestingFramework.Core.Element.Web;
 using AssessmentDeliveryTestingFramework.Core.Wait;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssessmentDeliveryTestingFramework.Core.Session
 {
@@ -18,6 +12,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
         private string _runType;
 
         public WebElementWaiting WebElementWaiting { get; private set; }
+
+        public WebElementActions WebElementActions { get; private set; }
 
         public WebSession()
         {
@@ -45,6 +41,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             }
 
             WebElementWaiting = driverContainers.OfType<BrowserDriverContainer>().Last().WebElementWaiting;
+
+            WebElementActions = driverContainers.OfType<BrowserDriverContainer>().Last().WebElementActions;
         }
 
         public IWebDriver GetDriver()

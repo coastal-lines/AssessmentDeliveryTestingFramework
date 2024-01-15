@@ -34,7 +34,7 @@ namespace QuestionProTests.Steps
             IWebElement questionTitleElement;
             _serviceEvaluationInternetServicePage.GetElementByQuestion(questionText, out questionContainerElement, out questionTitleElement);
 
-
+            _session.WebElementActions.ScrollToElement(questionTitleElement);
         }
     }
 }

@@ -50,9 +50,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
             JavaScriptUtils.ExecuteJS(driver, script);
         }
 
-        public void ScrollToElement(IWebDriver driver, IWebElement element)
+        public void ScrollToElement(IWebElement element)
         {
-            new Actions(driver)
+            new Actions(_driver)
                 .ScrollToElement(element)
                 .Perform();
         }
