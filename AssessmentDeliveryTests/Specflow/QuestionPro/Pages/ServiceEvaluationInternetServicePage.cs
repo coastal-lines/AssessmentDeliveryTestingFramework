@@ -7,16 +7,21 @@ namespace QuestionProTests.Pages
     {
         private readonly WebSession _session;
 
-        private IList<IWebElement> _QuestionElementList => _session.WebElementWaiting.WaitElements(By.XPath("//div[@id='desktop']//div[contains(@id, 'QuestionSection')]"));
+        private IList<IWebElement> QuestionElementList => _session.WebElementWaiting.WaitElements(By.XPath("//div[@id='desktop']//div[contains(@id, 'QuestionSection')]"));
 
         public ServiceEvaluationInternetServicePage(WebSession session) 
         {
             _session = session;
         }
 
+        private IWebElement GetTableCell(IWebElement tableElement, int column, int row)
+        {
+            return tableElement.FindElement(By.XPath($"//tr[@role='radiogroup'][{row}]//td[@role='cell'][{column + 1}]"));
+        }
+
         public void GetElementByQuestion(string questionText, out IWebElement questionContainerElement, out IWebElement questionTitleElement)
         {
-            foreach (var el in _QuestionElementList)
+            foreach (var el in QuestionElementList)
             {
                 var tempQuestionTitleElement = el.FindElement(By.ClassName("question-text-span"));
 
@@ -36,6 +41,11 @@ namespace QuestionProTests.Pages
             }
 
             throw new NoSuchElementException($"Element with question '{questionText}' was not found.");
+        }
+
+        public void ProvideAnswerForTable(IWebElement tableElement, int column, int row)
+        {
+            GetTableCell(tableElement, column, row).Click();
         }
     }
 }

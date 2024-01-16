@@ -16,5 +16,15 @@ namespace QuestionProTests.Hooks
         {
             _scenarioContext = scenarioContext;
         }
+
+        public void SetContextValue(string key, object value)
+        {
+            _scenarioContext[key] = value;
+        }
+
+        public T GetContextValue<T>(string key)
+        {
+            return _scenarioContext.Get<T>(key);
+        }
     }
 }

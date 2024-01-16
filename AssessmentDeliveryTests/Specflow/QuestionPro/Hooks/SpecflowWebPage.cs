@@ -20,6 +20,11 @@ namespace QuestionProTests.Hooks
             var session = new WebSession();
 
             container.RegisterInstanceAs(session);
+
+            //get 'ScenarioContext' object for 'ScenarioContextManager'
+            var scenarioContext = container.Resolve<ScenarioContext>();
+
+            container.RegisterInstanceAs(new ScenarioContextManager(scenarioContext));
         }
 
         [AfterScenario(Order = 9999)]

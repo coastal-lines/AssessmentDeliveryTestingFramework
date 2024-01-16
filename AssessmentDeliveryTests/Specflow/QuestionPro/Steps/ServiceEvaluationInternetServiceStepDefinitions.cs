@@ -1,26 +1,25 @@
 using AssessmentDeliveryTestingFramework.Core.Session;
-using NUnit.Framework;
 using OpenQA.Selenium;
+using QuestionProTests.Hooks;
 using QuestionProTests.Pages;
-using System;
 using TechTalk.SpecFlow;
 
 namespace QuestionProTests.Steps
 {
     [Binding]
-    public class ServiceEvaluationInternetServiceStepDefinitions
+    internal class ServiceEvaluationInternetServiceStepDefinitions
     {
         private WebSession _session;
 
-        private BindingScenarioContext _scenarioContext;
+        private ScenarioContextManager _contextManager;
 
         private ServiceEvaluationInternetServicePage _serviceEvaluationInternetServicePage;
 
-        public ServiceEvaluationInternetServiceStepDefinitions(WebSession session, BindingScenarioContext scenarioContext) 
+        public ServiceEvaluationInternetServiceStepDefinitions(WebSession session, ScenarioContextManager contextManager)
         {
             _session = session;
 
-            _scenarioContext = scenarioContext;
+            _contextManager = contextManager;
 
             _serviceEvaluationInternetServicePage = new ServiceEvaluationInternetServicePage(session);
         }
@@ -38,8 +37,7 @@ namespace QuestionProTests.Steps
             IWebElement questionTitleElement;
             _serviceEvaluationInternetServicePage.GetElementByQuestion(questionText, out questionContainerElement, out questionTitleElement);
 
-            //ScenarioContext.Current["QuestionContainerElement"] = questionContainerElement;
-            _scenarioContext["QuestionContainerElement"] = questionContainerElement;
+            _contextManager.SetContextValue("QuestionContainerElement", questionContainerElement);
 
             _session.WebElementActions.ScrollToElement(questionTitleElement);
         }
@@ -47,7 +45,19 @@ namespace QuestionProTests.Steps
         [Then(@"User provides answers")]
         public void ThenUserProvidesAnswers(Table table)
         {
-            IWebElement questionContainerElement = (IWebElement)_scenarioContext["QuestionContainerElement"];
+            var questionContainerElement = _contextManager.GetContextValue<IWebElement>("QuestionContainerElement");
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                int answerColumnIndex = Int16.Parse(GetValueFromTable(table, i, 1));
+
+                _serviceEvaluationInternetServicePage.ProvideAnswerForTable(questionContainerElement, answerColumnIndex, i + 1);
+            }
+        }
+
+        public string GetValueFromTable(Table table, int row, int column)
+        {
+            return table.Rows[row].Values.ToList()[column];
         }
     }
 }
