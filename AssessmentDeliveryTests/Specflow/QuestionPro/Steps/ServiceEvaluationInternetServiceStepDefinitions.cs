@@ -8,9 +8,22 @@ using TechTalk.SpecFlow;
 namespace QuestionProTests.Steps
 {
     [Binding]
+    public class Binding
+    {
+        private ScenarioContext _scenarioContext;
+
+        public Binding(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+    }
+
+    [Binding]
     public class ServiceEvaluationInternetServiceStepDefinitions
     {
         private WebSession _session;
+
+        private readonly ScenarioContext _scenarioContext;
 
         private ServiceEvaluationInternetServicePage _serviceEvaluationInternetServicePage;
 
@@ -34,7 +47,8 @@ namespace QuestionProTests.Steps
             IWebElement questionTitleElement;
             _serviceEvaluationInternetServicePage.GetElementByQuestion(questionText, out questionContainerElement, out questionTitleElement);
 
-            ScenarioContext.Current["QuestionContainerElement"] = questionContainerElement;
+            //ScenarioContext.Current["QuestionContainerElement"] = questionContainerElement;
+            _scenarioContext["QuestionContainerElement"] = questionContainerElement;
 
             _session.WebElementActions.ScrollToElement(questionTitleElement);
         }
@@ -42,7 +56,7 @@ namespace QuestionProTests.Steps
         [Then(@"User provides answers")]
         public void ThenUserProvidesAnswers(Table table)
         {
-            IWebElement questionContainerElement = (IWebElement)ScenarioContext.Current["QuestionContainerElement"];
+            IWebElement questionContainerElement = (IWebElement)_scenarioContext["QuestionContainerElement"];
         }
     }
 }
