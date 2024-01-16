@@ -8,28 +8,19 @@ using TechTalk.SpecFlow;
 namespace QuestionProTests.Steps
 {
     [Binding]
-    public class Binding
-    {
-        private ScenarioContext _scenarioContext;
-
-        public Binding(ScenarioContext scenarioContext)
-        {
-            _scenarioContext = scenarioContext;
-        }
-    }
-
-    [Binding]
     public class ServiceEvaluationInternetServiceStepDefinitions
     {
         private WebSession _session;
 
-        private readonly ScenarioContext _scenarioContext;
+        private BindingScenarioContext _scenarioContext;
 
         private ServiceEvaluationInternetServicePage _serviceEvaluationInternetServicePage;
 
-        public ServiceEvaluationInternetServiceStepDefinitions(WebSession session) 
+        public ServiceEvaluationInternetServiceStepDefinitions(WebSession session, BindingScenarioContext scenarioContext) 
         {
             _session = session;
+
+            _scenarioContext = scenarioContext;
 
             _serviceEvaluationInternetServicePage = new ServiceEvaluationInternetServicePage(session);
         }
