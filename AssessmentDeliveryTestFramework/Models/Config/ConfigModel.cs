@@ -31,6 +31,8 @@ namespace AssessmentDeliveryTestingFramework.Models.Config
 
         public string DefaultBrowser { get; set; }
 
+        public string DownloadFolder { get; set; }
+
         public MinBrowserSettings MinBrowser { get; set; }
     }
 

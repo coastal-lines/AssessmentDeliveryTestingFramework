@@ -16,7 +16,7 @@ namespace QuestionProTests.Pages
 
         private IWebElement GetTableCell(IWebElement tableElement, int column, int row)
         {
-            return tableElement.FindElement(By.XPath($"//tr[@role='radiogroup'][{row}]//td[@role='cell'][{column + 1}]"));
+            return _session.WebElementWaiting.WaitElement(By.XPath($"//tr[@role='radiogroup'][{row}]//td[@role='cell'][{column + 1}]"));
         }
 
         public void GetElementByQuestion(string questionText, out IWebElement questionContainerElement, out IWebElement questionTitleElement)

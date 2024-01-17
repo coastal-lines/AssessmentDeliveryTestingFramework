@@ -54,6 +54,10 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Files\Files\DownloadFolder\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties resources_4appconfig_1json__JsonSchema="https://api.airplane.dev/v0/schemas/task.json" /></VisualStudio></ProjectExtensions>
 
 </Project>
