@@ -52,7 +52,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Utils.Config
             {
                 var configurationBuilder = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("Resources\\appconfig.json");
+                    .AddJsonFile("Resources/appconfig.json");
 
                 return configurationBuilder.Build();
             }
