@@ -12,7 +12,7 @@
     "DefaultBrowser": "Firefox",
     "DockerUrl": "http://localhost:4444/wd/hub/",
     "ChromeDriverPath": "Files/CustomDrivers/ChromiumBased/Chrome119",
-    "FirefoxDriverPath": "CustomDrivers/GeckoBased/Firefox033/",
+    "FirefoxDriverPath": "CustomDrivers/GeckoBased/Firefox034/",
     "DownloadFolder": "Files/DownloadFolder",
     "Timeouts": {
       "ImplicitWait": 10,

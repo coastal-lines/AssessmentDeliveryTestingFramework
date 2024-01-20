@@ -10,21 +10,52 @@ using System.Threading.Tasks;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager;
 using WebDriverManager.Helpers;
+using OpenQA.Selenium.Interactions;
+using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
     public sealed class WebDriverFactory
     {
-        public IWebDriver CreateChromeDriver()
+        public T GetWebDriverByDriverManagerSolution<T>(string driverType)
         {
-            ChromeOptions options = new ChromeOptions();
-
             /*
                 INFO = 0, 
                 WARNING = 1, 
                 LOG_ERROR = 2, 
                 LOG_FATAL = 3.
             */
+
+            switch (driverType) 
+            {
+                case "chrome":
+                    var options = new ChromeOptions();
+
+                    options.AddArgument("log-level=0");
+                    options.SetLoggingPreference(LogType.Browser, LogLevel.All);
+                    options.SetLoggingPreference(LogType.Driver, LogLevel.All);
+
+                    new DriverManager().SetUpDriver(
+                        "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/120.0.6099.109/win64/chromedriver-win64.zip",
+                        Path.Combine(Directory.GetCurrentDirectory(), "chromedriver.exe"),
+                        "chromedriver.exe"
+                    );
+
+                    return (T)(object)new ChromeDriver(options);
+
+                case "firefox":
+                    new DriverManager().SetUpDriver(new FirefoxConfig());
+
+                    return (T)(object)new FirefoxDriver();
+
+                default:
+                    throw new Exception($"Driver '{driverType}' not supported");
+            }
+        }
+
+        public IWebDriver CreateChromeDriver()
+        {
+            ChromeOptions options = new ChromeOptions();
 
             options.AddArgument("log-level=0");
             options.SetLoggingPreference(LogType.Browser, LogLevel.All);
@@ -44,9 +75,15 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 
         public IWebDriver CreateFirefoxDriver()
         {
-            new DriverManager().SetUpDriver(new FirefoxConfig());
+            FirefoxOptions options = new FirefoxOptions();
+            options.SetPreference("log.level", "info");
 
-            return new FirefoxDriver();
+            FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
+            service.FirefoxBinaryPath = Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.GetConfigurationModel().Web.FirefoxDriverPath);
+
+            IWebDriver driver = new FirefoxDriver(service, options);
+
+            return driver;
         }
 
         public IWebDriver CreateRemoteFirefoxDriver()
