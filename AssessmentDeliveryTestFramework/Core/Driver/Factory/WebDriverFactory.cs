@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebDriverManager.DriverConfigs.Impl;
-using WebDriverManager;
-using WebDriverManager.Helpers;
+//using WebDriverManager.DriverConfigs.Impl;
+//using WebDriverManager;
+//using WebDriverManager.Helpers;
 using OpenQA.Selenium.Interactions;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 
@@ -17,14 +17,13 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
     public sealed class WebDriverFactory
     {
+        /*
         public T GetWebDriverByDriverManagerSolution<T>(string driverType)
         {
-            /*
-                INFO = 0, 
-                WARNING = 1, 
-                LOG_ERROR = 2, 
-                LOG_FATAL = 3.
-            */
+                //INFO = 0, 
+                //WARNING = 1, 
+                //LOG_ERROR = 2, 
+                //LOG_FATAL = 3.
 
             switch (driverType) 
             {
@@ -52,29 +51,33 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                     throw new Exception($"Driver '{driverType}' not supported");
             }
         }
+        */
 
         public IWebDriver CreateChromeDriver()
         {
-            ChromeOptions options = new ChromeOptions();
+            /*
+                ChromeOptions options = new ChromeOptions();
 
-            options.AddArgument("log-level=0");
-            options.SetLoggingPreference(LogType.Browser, LogLevel.All);
-            options.SetLoggingPreference(LogType.Driver, LogLevel.All);
+                options.AddArgument("log-level=0");
+                options.SetLoggingPreference(LogType.Browser, LogLevel.All);
+                options.SetLoggingPreference(LogType.Driver, LogLevel.All);
 
 
-            //new DriverManager().SetUpDriver(new ChromeConfig());
+                //new DriverManager().SetUpDriver(new ChromeConfig());
 
-            new DriverManager().SetUpDriver(
-                "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/120.0.6099.109/win64/chromedriver-win64.zip",
-                Path.Combine(Directory.GetCurrentDirectory(), "chromedriver.exe"),
-                "chromedriver.exe"
-            );
-
-            return new ChromeDriver(options);
+                new DriverManager().SetUpDriver(
+                    "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/120.0.6099.109/win64/chromedriver-win64.zip",
+                    Path.Combine(Directory.GetCurrentDirectory(), "chromedriver.exe"),
+                    "chromedriver.exe"
+                );
+                */
+            //return new ChromeDriver(options);
+            return new ChromeDriver();
         }
 
         public IWebDriver CreateFirefoxDriver()
         {
+            /*
             FirefoxOptions options = new FirefoxOptions();
             options.SetPreference("log.level", "info");
 
@@ -84,6 +87,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             IWebDriver driver = new FirefoxDriver(service, options);
 
             return driver;
+            */
+            return  new FirefoxDriver();
         }
 
         public IWebDriver CreateRemoteFirefoxDriver()
