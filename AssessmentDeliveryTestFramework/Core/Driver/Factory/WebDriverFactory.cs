@@ -79,7 +79,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             options.SetPreference("log.level", "info");
 
             FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
-            service.FirefoxBinaryPath = Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.GetConfigurationModel().Web.FirefoxDriverPath);
+            service.FirefoxBinaryPath = Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.GetConfigurationModel().Web.FirefoxDriverPath).Replace("\\", "//");
 
             IWebDriver driver = new FirefoxDriver(service, options);
 
