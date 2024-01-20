@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using WebDriverManager.DriverConfigs.Impl;
-//using WebDriverManager;
-//using WebDriverManager.Helpers;
+using WebDriverManager.DriverConfigs.Impl;
+using WebDriverManager;
+using WebDriverManager.Helpers;
 using OpenQA.Selenium.Interactions;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 
@@ -17,7 +17,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
     public sealed class WebDriverFactory
     {
-        /*
         public T GetWebDriverByDriverManagerSolution<T>(string driverType)
         {
                 //INFO = 0, 
@@ -51,11 +50,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                     throw new Exception($"Driver '{driverType}' not supported");
             }
         }
-        */
 
         public IWebDriver CreateChromeDriver()
         {
-            /*
                 ChromeOptions options = new ChromeOptions();
 
                 options.AddArgument("log-level=0");
@@ -70,14 +67,12 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                     Path.Combine(Directory.GetCurrentDirectory(), "chromedriver.exe"),
                     "chromedriver.exe"
                 );
-                */
-            //return new ChromeDriver(options);
-            return new ChromeDriver();
+            return new ChromeDriver(options);
+            //return new ChromeDriver();
         }
 
         public IWebDriver CreateFirefoxDriver()
         {
-            /*
             FirefoxOptions options = new FirefoxOptions();
             options.SetPreference("log.level", "info");
 
@@ -87,8 +82,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             IWebDriver driver = new FirefoxDriver(service, options);
 
             return driver;
-            */
-            return  new FirefoxDriver();
+            //return  new FirefoxDriver();
         }
 
         public IWebDriver CreateRemoteFirefoxDriver()
