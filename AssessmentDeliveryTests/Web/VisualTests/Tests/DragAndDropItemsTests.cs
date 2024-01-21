@@ -44,6 +44,19 @@ namespace VisualTests.Tests
             sikuliManager.DragAndDropElementns(session, lion_picture, lion_figure);
             sikuliManager.DragAndDropElementns(session, giraffe_picture, giraffe_figure);
             sikuliManager.DragAndDropElementns(session, monkey_picture, monkey_figure);
+
+            IJavaScriptExecutor js = (IJavaScriptExecutor)Session.GetDriver();
+            var scrollY = (System.Int64)js.ExecuteScript("return window.scrollY");
+
+            var canvas = Session.GetDriver().FindElement(By.XPath("//div[@class='page-entry']//iframe[1]"));
+            var x = canvas.Location.X;
+            var y = canvas.Location.Y - (int)scrollY;
+            var w = canvas.Size.Width;
+            var h = canvas.Size.Height;
+
+            Screenshot screenshot = ((ITakesScreenshot)Session.GetDriver()).GetScreenshot();
+            MagickImage actualScreenshot = new MagickImage(new MemoryStream(screenshot.AsByteArray));
+            actualScreenshot.Crop(new MagickGeometry(x, y, w, h));
         }
     }
 }
