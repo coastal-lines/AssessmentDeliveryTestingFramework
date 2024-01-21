@@ -1,5 +1,10 @@
+using AngleSharp.Dom;
+using AssessmentDeliveryTestingFramework.Core.Element.Web;
 using AssessmentDeliveryTestingFramework.Core.TestManagement.Extensions.NUnit;
+using AssessmentDeliveryTestingFramework.Utils;
+using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Drawing;
 using VisualTests.Pages;
@@ -9,8 +14,7 @@ namespace VisualTests.Tests
     public class Tests : WebPageObject
     {
         [Test]
-        [Category("Web")]
-        [BrowserType("Firefox")]
+        [BrowserType("Chrome")]
         [Description("TC1 - KonvaJS - Drag and Drop by Sikuli")]
         public void TC1KonvaJSDragAndDropBySikuliTest()
         {
@@ -18,7 +22,10 @@ namespace VisualTests.Tests
 
             Session.GetDriver().Manage().Window.Size = new Size(880, 880);
 
-            Assert.Pass();
+            Session.WebElementActions.MoveToElement(Session.GetDriver().FindElement(By.PartialLinkText("Drag and Drop Stress Test")));
+
+            ScreenshotUtils screenshotUtils  = new ScreenshotUtils();
+            screenshotUtils.TakeScreenshotAndSaveAsFile(Session.GetDriver());
         }
     }
 }
