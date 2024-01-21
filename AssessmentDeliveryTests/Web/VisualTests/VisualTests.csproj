@@ -22,7 +22,37 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\PatternImages\" />
+    <Folder Include="Resources\PatternImages\KonvaJS\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\PatternImages\KonvaJS\expected_result.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\PatternImages\KonvaJS\giraffe.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\PatternImages\KonvaJS\giraffe2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\PatternImages\KonvaJS\lion.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\PatternImages\KonvaJS\lion2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\PatternImages\KonvaJS\monkey.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\PatternImages\KonvaJS\monkey2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\PatternImages\KonvaJS\snake.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\PatternImages\KonvaJS\snake2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

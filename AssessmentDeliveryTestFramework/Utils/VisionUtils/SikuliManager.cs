@@ -1,4 +1,5 @@
-﻿using SikuliSharp;
+﻿using AssessmentDeliveryTestingFramework.Core.Session;
+using SikuliSharp;
 
 namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 {
@@ -10,6 +11,13 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
             return session;
         }
 
+        public IPattern LoadPatternFromFile(string filePath, float similarity = 0.9f)
+        {
+            var pattern = Patterns.FromFile(filePath, similarity);
+
+            return pattern;
+        }
+
         public Match FindMatch(ISikuliSession session, IPattern pattern)
         {
             var match = session.Find(pattern);
@@ -17,11 +25,9 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
             return match;
         }
 
-        public IPattern GetPattern(string filePath, float similarity = 0.9f)
+        public void DragAndDropElementns(ISikuliSession session, IPattern patternSource, IPattern patternDestination)
         {
-            var pattern = Patterns.FromFile(filePath, similarity);
-
-            return pattern;
+            session.DragDrop(patternSource, patternDestination);
         }
 
         public bool IsPatternExisted(ISikuliSession session, IPattern pattern)
