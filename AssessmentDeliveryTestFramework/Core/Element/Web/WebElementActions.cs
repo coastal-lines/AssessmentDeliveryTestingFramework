@@ -64,7 +64,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
             }
         }
 
-        public void MoveCursorOnElementBySelenium(IWebDriver driver, IWebElement element)
+        public void MoveToElementBySelenium(IWebDriver driver, IWebElement element)
         {
             new Actions(driver).MoveToElement(element).Build().Perform();
         }

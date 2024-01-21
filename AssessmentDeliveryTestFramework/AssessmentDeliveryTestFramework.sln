@@ -45,6 +45,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuestionPro", "QuestionPro"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionProTests", "..\AssessmentDeliveryTests\Specflow\QuestionPro\QuestionProTests.csproj", "{74576680-2123-41EA-B630-77CC6519E305}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualTests", "VisualTests", "{6CB7EA21-6D61-4325-9A01-CAD88E3DCB28}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualTests", "..\AssessmentDeliveryTests\Web\VisualTests\VisualTests.csproj", "{429B8A1A-669F-465C-98C9-C9A3D7302CCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,10 @@ Global
 		{74576680-2123-41EA-B630-77CC6519E305}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74576680-2123-41EA-B630-77CC6519E305}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74576680-2123-41EA-B630-77CC6519E305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{429B8A1A-669F-465C-98C9-C9A3D7302CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{429B8A1A-669F-465C-98C9-C9A3D7302CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{429B8A1A-669F-465C-98C9-C9A3D7302CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{429B8A1A-669F-465C-98C9-C9A3D7302CCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +111,8 @@ Global
 		{FAF39591-6BBE-4E78-9675-1FB9A0FEA4D9} = {E5FBE490-9AD9-4DD5-BDD0-BB9B46C745FA}
 		{D9AD8764-0327-4760-892F-2CA172A77E9D} = {73D55C1F-F93D-4C25-BA7E-2891EBA9EB49}
 		{74576680-2123-41EA-B630-77CC6519E305} = {D9AD8764-0327-4760-892F-2CA172A77E9D}
+		{6CB7EA21-6D61-4325-9A01-CAD88E3DCB28} = {E0A281F4-6443-463B-AF39-7702F196B31A}
+		{429B8A1A-669F-465C-98C9-C9A3D7302CCB} = {6CB7EA21-6D61-4325-9A01-CAD88E3DCB28}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39D9C2B7-D9E7-4CCF-BF52-ACD8B1297E01}
