@@ -9,7 +9,9 @@ namespace AssessmentDeliveryTestingFramework.Utils
         {
             var js = (IJavaScriptExecutor)driver;
 
-            return (string)js.ExecuteScript(script);
+            var result = js.ExecuteScript(script);
+
+            return result.ToString();
         }
 
         public string ExecuteJS(IWebDriver driver, string script, IWebElement element)

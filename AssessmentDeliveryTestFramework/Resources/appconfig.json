@@ -29,5 +29,10 @@
   },
   "Mobile": {
 
+  },
+  "Resources": {
+    "VisualTests": {
+      "KonvaDragAndDropPatternImagesPath": "\\Resources\\PatternImages\\KonvaJS"
+    }
   }
 }

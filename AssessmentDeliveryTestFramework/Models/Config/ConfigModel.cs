@@ -51,6 +51,11 @@ namespace AssessmentDeliveryTestingFramework.Models.Config
         
     }
 
+    public class VisualTests
+    {
+        public string KonvaDragAndDropPatternImagesPath { get; set; }
+    }
+
     public class ConfigModel
     {
         public FrameworkConfig Framework { get; set; }

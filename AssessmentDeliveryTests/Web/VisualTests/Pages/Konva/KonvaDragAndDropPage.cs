@@ -40,6 +40,8 @@ namespace VisualTests.Pages.Konva
             var w = KonvaFrame.Size.Width;
             var h = KonvaFrame.Size.Height;
 
+
+
             return _screenshotUtils.TakeScreenshotAndCutRoi(Driver, x, y, w, h);
         }
 
@@ -66,7 +68,7 @@ namespace VisualTests.Pages.Konva
 
         public bool CompareTwoScreenshots()
         {
-            var expectedCanvasScreenshot = _screenshotUtils.LoadImageFromFile(ImagePatternsPath + "\\snake.jpg");
+            var expectedCanvasScreenshot = _screenshotUtils.LoadImageFromFile(ImagePatternsPath + "\\expected_result.jpg");
 
             var actualCanvasScreenshot = GetCanvasScreenshot();
 
