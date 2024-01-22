@@ -71,7 +71,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Utils.Config
                 Framework = GetConfiguration().GetSection(ConfigurationTypes.Framework).Get<FrameworkConfig>(),
                 Web = GetConfiguration().GetSection(ConfigurationTypes.Web).Get<WebConfig>(),
                 Desktop = GetConfiguration().GetSection(ConfigurationTypes.Desktop).Get<DesktopConfig>(),
-                Mobile = GetConfiguration().GetSection(ConfigurationTypes.Mobile).Get<MobileConfig>()
+                Mobile = GetConfiguration().GetSection(ConfigurationTypes.Mobile).Get<MobileConfig>(),
+                Resources = GetConfiguration().GetSection(ConfigurationTypes.Resources).Get<ResourcesConfig>()
             };
         }
     }

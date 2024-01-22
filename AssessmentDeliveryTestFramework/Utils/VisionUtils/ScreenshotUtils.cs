@@ -25,8 +25,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 
             magickImageScreenshot.Crop(new MagickGeometry(x, y, w, h));
 
-            //magickImageScreenshot.Write($"screenshot_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.png");
-
             return magickImageScreenshot;
         }
 
@@ -37,9 +35,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 
         public bool CompareTwoScreenshots(MagickImage actualScreenshot, MagickImage expectedScreenshot, double expectedDifference = 0.05)
         {
-            //actualScreenshot.Write($"screenshot_{DateTime.Now.ToString("actualScreenshot")}.png");
-            //expectedScreenshot.Write($"screenshot_{DateTime.Now.ToString("expectedScreenshot")}.png");
-
             double actualDifference = actualScreenshot.Compare(expectedScreenshot, ErrorMetric.MeanAbsolute);
 
             return actualDifference < expectedDifference;

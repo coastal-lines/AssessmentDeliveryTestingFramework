@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AssessmentDeliveryTestingFramework.Models.Config
+﻿namespace AssessmentDeliveryTestingFramework.Models.Config
 {
     public class Timeouts
     {
         public int ImplicitWait { get; set; }
+
         public int PageLoad { get; set; }
     }
 
     public class MinBrowserSettings
     {
         public string NavigationPageUrl { get; set; }
+
         public string DocumentPageUrl { get; set; }
     }
 
@@ -43,12 +39,18 @@ namespace AssessmentDeliveryTestingFramework.Models.Config
     public class DesktopConfig
     {
         public string TestType { get; set; }
+
         public string Platform { get; set; }
     }
 
     public class MobileConfig
     {
         
+    }
+
+    public class ResourcesConfig
+    {
+        public VisualTests VisualTests { get; set; }
     }
 
     public class VisualTests
@@ -59,8 +61,13 @@ namespace AssessmentDeliveryTestingFramework.Models.Config
     public class ConfigModel
     {
         public FrameworkConfig Framework { get; set; }
+
         public WebConfig Web { get; set; }
+
         public DesktopConfig Desktop { get; set; }
+
         public MobileConfig Mobile { get; set; }
+
+        public ResourcesConfig Resources { get; set; }
     }
 }

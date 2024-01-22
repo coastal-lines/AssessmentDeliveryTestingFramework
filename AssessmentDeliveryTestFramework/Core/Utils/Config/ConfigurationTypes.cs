@@ -9,5 +9,7 @@
         public static string Desktop = "Desktop";
 
         public static string Mobile = "Mobile";
+
+        public static string Resources = "Resources";
     }
 }

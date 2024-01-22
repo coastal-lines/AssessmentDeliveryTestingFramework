@@ -4,6 +4,7 @@ using AssessmentDeliveryTestingFramework.Core.Element.Web;
 using AssessmentDeliveryTestingFramework.Core.Session;
 using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
 using ImageMagick;
+using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 
 namespace VisualTests.Pages.Konva
 {
@@ -24,7 +25,9 @@ namespace VisualTests.Pages.Konva
             _sikuliManager = new SikuliManager();
         }
 
-        public string ImagePatternsPath { get; private set; } = Directory.GetCurrentDirectory() + "\\Resources\\PatternImages\\KonvaJS";
+        //public string ImagePatternsPath { get; private set; } = Directory.GetCurrentDirectory() +  "\\Resources\\PatternImages\\KonvaJS";
+
+        public string ImagePatternsPath { get; private set; } = Directory.GetCurrentDirectory() + ConfigurationManager.GetConfigurationModel().Resources.VisualTests.KonvaDragAndDropPatternImagesPath;
 
         public void ScrollToCanvasElement()
         {
