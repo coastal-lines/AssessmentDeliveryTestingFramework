@@ -4,6 +4,7 @@ using AssessmentDeliveryTestingFramework.Core.Element.Web;
 using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
 using ImageMagick;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+using VisualTests.Resources;
 
 namespace VisualTests.Pages.Konva
 {
@@ -47,14 +48,14 @@ namespace VisualTests.Pages.Konva
         {
             var session = _sikuliManager.CreateSikuliSession();
 
-            var snake_picture = _sikuliManager.LoadPatternFromFile(ImagePatternsPath + "\\snake.jpg");
-            var snake_figure = _sikuliManager.LoadPatternFromFile(ImagePatternsPath + "\\snake2.jpg");
-            var lion_picture = _sikuliManager.LoadPatternFromFile(ImagePatternsPath + "\\lion.jpg");
-            var lion_figure = _sikuliManager.LoadPatternFromFile(ImagePatternsPath + "\\lion2.jpg");
-            var giraffe_picture = _sikuliManager.LoadPatternFromFile(ImagePatternsPath + "\\giraffe.jpg");
-            var giraffe_figure = _sikuliManager.LoadPatternFromFile(ImagePatternsPath + "\\giraffe2.jpg");
-            var monkey_picture = _sikuliManager.LoadPatternFromFile(ImagePatternsPath + "\\monkey.jpg");
-            var monkey_figure = _sikuliManager.LoadPatternFromFile(ImagePatternsPath + "\\monkey2.jpg");
+            var snake_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeImg);
+            var snake_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeFig);
+            var lion_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionImg);
+            var lion_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionFig);
+            var giraffe_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeImg);
+            var giraffe_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeFig);
+            var monkey_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyImg);
+            var monkey_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeFig);
 
             _sikuliManager.DragAndDropElementns(session, snake_picture, snake_figure);
             _sikuliManager.DragAndDropElementns(session, lion_picture, lion_figure);
