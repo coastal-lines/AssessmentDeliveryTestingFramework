@@ -1,5 +1,6 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Wait;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using AssessmentDeliveryTestingFramework.Core.Element.Web;
+using AssessmentDeliveryTestingFramework.Core.Wait;
 
 namespace VisualTests.Pages
 {
@@ -9,10 +10,15 @@ namespace VisualTests.Pages
 
         public WebElementWaiting WebElementWaiting { get; }
 
-        public WebBasePage(IWebDriver driver, WebElementWaiting webElementWaiting)
+        public WebElementActions WebElementActions { get; }
+
+        public WebBasePage(IWebDriver driver, WebElementWaiting webElementWaiting, WebElementActions webElementActions)
         {
             Driver = driver;
+
             WebElementWaiting = webElementWaiting;
+
+            WebElementActions = webElementActions;
         }
     }
 }

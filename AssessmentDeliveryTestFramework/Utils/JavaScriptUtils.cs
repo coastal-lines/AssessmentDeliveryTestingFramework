@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AngleSharp.Dom;
+using OpenQA.Selenium;
 
 namespace AssessmentDeliveryTestingFramework.Utils
 {
@@ -23,6 +24,11 @@ namespace AssessmentDeliveryTestingFramework.Utils
             ExecuteJS(driver, "return arguments[0].scrollIntoView(true);", element);
         }
 
-        //public int Get
+        public int GetVerticalDifferenceBetweenTopAndCurrentPagePosition(IWebDriver driver)
+        {
+            var result = ExecuteJS(driver, "return window.scrollY");
+
+            return Int16.Parse(result);
+        }
     }
 }

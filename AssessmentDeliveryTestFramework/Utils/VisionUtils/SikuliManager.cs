@@ -8,6 +8,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         public ISikuliSession CreateSikuliSession()
         {
             var session = Sikuli.CreateSession();
+
             return session;
         }
 

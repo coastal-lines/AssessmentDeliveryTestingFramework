@@ -1,17 +1,14 @@
 ﻿using AssessmentDeliveryTestingFramework.Models.Config;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
 
 namespace AssessmentDeliveryTestingFramework.Core.Utils.Config
 {
     public class ConfigurationManager
     {
-        //private ServiceCollection _serviceCollection;
-
         private readonly IConfiguration _configuration;
 
         private static ConfigurationManager _instance;
+
         private static readonly object _lock = new object();
 
         public ConfigModel ConfigModel { get; private set; }
@@ -19,8 +16,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Utils.Config
         private ConfigurationManager()
         {
             _configuration = LoadConfiguration();
-
-            //_serviceCollection = new ServiceCollection();
 
             InitConfigModel();
         }
@@ -58,8 +53,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Utils.Config
             }
             catch (Exception ex)
             {
-                // Handle configuration loading errors
                 Console.WriteLine($"Error loading configuration: {ex.Message}");
+
                 return null;
             }
         }

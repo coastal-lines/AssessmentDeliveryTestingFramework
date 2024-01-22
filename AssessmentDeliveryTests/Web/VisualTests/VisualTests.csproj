@@ -26,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\appconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\PatternImages\KonvaJS\expected_result.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

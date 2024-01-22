@@ -28,6 +28,11 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
             return magickImageScreenshot;
         }
 
+        public MagickImage LoadImageFromFile(string filePath)
+        {
+            return new MagickImage(filePath);
+        }
+
         public bool CompareTwoScreenshots(MagickImage actualScreenshot, MagickImage expectedScreenshot, double expectedDifference = 0.05)
         {
             double actualDifference = actualScreenshot.Compare(expectedScreenshot, ErrorMetric.MeanAbsolute);
