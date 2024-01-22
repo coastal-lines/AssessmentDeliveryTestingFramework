@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using AssessmentDeliveryTestingFramework.Core.Wait;
 using AssessmentDeliveryTestingFramework.Core.Element.Web;
-using AssessmentDeliveryTestingFramework.Core.Session;
 using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
 using ImageMagick;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
@@ -25,8 +24,6 @@ namespace VisualTests.Pages.Konva
             _sikuliManager = new SikuliManager();
         }
 
-        //public string ImagePatternsPath { get; private set; } = Directory.GetCurrentDirectory() +  "\\Resources\\PatternImages\\KonvaJS";
-
         public string ImagePatternsPath { get; private set; } = Directory.GetCurrentDirectory() + ConfigurationManager.GetConfigurationModel().Resources.VisualTests.KonvaDragAndDropPatternImagesPath;
 
         public void ScrollToCanvasElement()
@@ -42,8 +39,6 @@ namespace VisualTests.Pages.Konva
             var y = KonvaFrame.Location.Y - v_difference;
             var w = KonvaFrame.Size.Width;
             var h = KonvaFrame.Size.Height;
-
-
 
             return _screenshotUtils.TakeScreenshotAndCutRoi(Driver, x, y, w, h);
         }
@@ -69,6 +64,7 @@ namespace VisualTests.Pages.Konva
             session.Dispose();
         }
 
+        //TODO - move actual and expected images into test's method
         public bool CompareTwoScreenshots()
         {
             var expectedCanvasScreenshot = _screenshotUtils.LoadImageFromFile(ImagePatternsPath + "\\expected_result.jpg");
