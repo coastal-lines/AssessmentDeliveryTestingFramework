@@ -51,7 +51,10 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 case TestType.Desktop:
                     WindowsDriverFactory.StartWinAppDriver();
                     //return new DesktopDriverContainer(WindowsDriverFactory.CreateWindowsDriver(), testType + "_count_", ConfigManager.Config.Platform, "Windows");
-                    return new DesktopDriverContainer(WindowsDriverFactory.CreateWindowsDriver(), "desktop_test_name", ConfigurationManager.GetConfigurationModel().Desktop.Platform, "Windows");
+                    return new DesktopDriverContainer(WindowsDriverFactory.CreateWindowsDriver(), 
+                        "desktop_test_name", 
+                        ConfigurationManager.GetConfigurationModel().Desktop.Platform, 
+                        "Windows");
                 default:
                     throw new NotSupportedException($"Test type {testType} is not supported.");
             }

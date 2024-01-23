@@ -41,6 +41,8 @@
         public string TestType { get; set; }
 
         public string Platform { get; set; }
+
+        public string ApplicationPath { get; set; }
     }
 
     public class MobileConfig

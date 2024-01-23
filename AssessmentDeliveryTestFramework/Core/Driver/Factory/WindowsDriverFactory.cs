@@ -90,27 +90,26 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             service.Start();
         }
 
-        public WindowsDriver CreateWindowsDriver()
+        public WindowsDriver CreateWindowsDriver(string automationName = "Windows", string applicationPath = "Root", string deviceName = "WindowsPC", string platformName = "Windows")
         {
-            var appCapabilities = new AppiumOptions();
-            appCapabilities.AutomationName = "Windows";
-            appCapabilities.App = "C:\\Program Files (x86)\\Media Freeware\\Free Quiz Maker\\FreeQuizMaker.exe";
-            appCapabilities.DeviceName = "WindowsPC";
-            appCapabilities.PlatformName = "Windows";
-            var driverUrl = "http://127.0.0.1:4723";
-
-            //var serverUri = Env.ServerIsRemote() ? AppiumServers.RemoteServerUri : AppiumServers.LocalServiceUri;
-
             WindowsDriver driver = null;
+
+            var appCapabilities = new AppiumOptions();
+            appCapabilities.AutomationName = automationName;
+            //appCapabilities.App = "C:\\Program Files (x86)\\Media Freeware\\Free Quiz Maker\\FreeQuizMaker.exe";
+            appCapabilities.App = applicationPath;
+            appCapabilities.DeviceName = deviceName;
+            appCapabilities.PlatformName = platformName;
+            var driverUrl = new Uri("http://127.0.0.1:4723");
 
             try
             {
-                driver = new WindowsDriver(new Uri("http://127.0.0.1:4723"), appCapabilities);
+                driver = new WindowsDriver(driverUrl, appCapabilities);
             }
             catch (WebDriverArgumentException ex)
             {
-                Console.WriteLine(ex); //TODO
-                Console.WriteLine("Probable previous winappdriver.exe was not closed."); //TODO
+                Console.WriteLine(ex);
+                Console.WriteLine("Previous 'winappdriver' process was not closed.");
             }
 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(120);

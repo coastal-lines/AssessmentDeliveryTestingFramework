@@ -16,6 +16,8 @@ namespace FreeQuizMakerTests.Pages
         [SetUp]
         public void Setup()
         {
+            var applicationPath = ;
+
             _session = new DesktopSession();
         }
 

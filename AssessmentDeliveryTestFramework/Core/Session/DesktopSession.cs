@@ -92,7 +92,5 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
                 Console.WriteLine("'node.exe' was closed or was not started");
             }
         }
-
-
     }
 }

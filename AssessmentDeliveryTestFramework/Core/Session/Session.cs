@@ -115,9 +115,16 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             return _defaultBrowser;
         }
 
-        public void AddNewWebSession()
+        public void AddNewWebContainer()
         {
 
+        }
+
+        public void AddAdditionalDesktopContainer()
+        {
+            WindowsDriverFactory.StartWinAppDriver();
+
+            driverContainers.Add(new DesktopDriverContainer(driverFactory.WindowsDriverFactory.CreateWindowsDriver(), "desktop_test_name", ConfigurationManager.GetConfigurationModel().Desktop.Platform, "Windows"));
         }
 
         public string GetDefaultBrowser()

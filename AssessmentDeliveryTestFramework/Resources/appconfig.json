@@ -25,7 +25,8 @@
   },
   "Desktop": {
     "TestType": "Desktop",
-    "Platform": "Windows"
+    "Platform": "Windows",
+    "ApplicationPath": "C:\\Program Files (x86)\\Media Freeware\\Free Quiz Maker\\FreeQuizMaker.exe"
   },
   "Mobile": {
 

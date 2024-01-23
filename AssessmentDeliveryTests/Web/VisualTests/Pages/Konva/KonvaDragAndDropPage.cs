@@ -44,7 +44,24 @@ namespace VisualTests.Pages.Konva
             return _screenshotUtils.TakeScreenshotAndCutRoi(x, y, w, h);
         }
 
-        public void MatchAllElements()
+        public void MatchAllElementsBySikuli()
+        {
+            var snake_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeImg);
+            var snake_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeFig);
+            var lion_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionImg);
+            var lion_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionFig);
+            var giraffe_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeImg);
+            var giraffe_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeFig);
+            var monkey_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyImg);
+            var monkey_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyFig);
+
+            _sikuliManager.DragAndDropElementns(snake_picture, snake_figure);
+            _sikuliManager.DragAndDropElementns(lion_picture, lion_figure);
+            _sikuliManager.DragAndDropElementns(giraffe_picture, giraffe_figure);
+            _sikuliManager.DragAndDropElementns(monkey_picture, monkey_figure);
+        }
+
+        public void MatchAllElementsByAppium()
         {
             var snake_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeImg);
             var snake_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeFig);
