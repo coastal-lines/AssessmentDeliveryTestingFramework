@@ -1,5 +1,6 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Session;
 using AssessmentDeliveryTestingFramework.Core.TestManagement;
+using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -16,9 +17,9 @@ namespace FreeQuizMakerTests.Pages
         [SetUp]
         public void Setup()
         {
-            var applicationPath = ;
+            var applicationPath = ConfigurationManager.GetConfigurationModel().Desktop.ApplicationPath;
 
-            _session = new DesktopSession();
+            _session = new DesktopSession(applicationPath);
         }
 
         [TearDown]

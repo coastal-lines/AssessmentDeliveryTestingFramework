@@ -44,14 +44,14 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             }
         }
 
-        public IDriverContainer CreateDesktopDriverContainer(string testType)
+        public IDriverContainer CreateDesktopDriverContainer(string testType, string applicationPath)
         {
             switch (testType)
             {
                 case TestType.Desktop:
                     WindowsDriverFactory.StartWinAppDriver();
                     //return new DesktopDriverContainer(WindowsDriverFactory.CreateWindowsDriver(), testType + "_count_", ConfigManager.Config.Platform, "Windows");
-                    return new DesktopDriverContainer(WindowsDriverFactory.CreateWindowsDriver(), 
+                    return new DesktopDriverContainer(WindowsDriverFactory.CreateWindowsDriver("Windows", applicationPath, "WindowsPC", "Windows"), 
                         "desktop_test_name", 
                         ConfigurationManager.GetConfigurationModel().Desktop.Platform, 
                         "Windows");

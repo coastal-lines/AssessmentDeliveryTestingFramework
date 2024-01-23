@@ -20,21 +20,21 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
 
         public DesktopWindowsElementWaiting DesktopWindowsElementWaiting { get; private set; }
 
-        public DesktopSession()
+        public DesktopSession(string applicationPath)
         {
             _categories = GetCurrentTestCategories();
 
-            AddDriverContainer();
+            AddDriverContainer(applicationPath);
         }
 
-        public void AddDriverContainer()
+        public void AddDriverContainer(string applicationPath)
         {
             if (driverContainers == null)
             {
                 driverContainers = new List<IDriverContainer>();
             }
 
-            driverContainers.Add(driverFactory.CreateDesktopDriverContainer(_categories));
+            driverContainers.Add(driverFactory.CreateDesktopDriverContainer(_categories, applicationPath));
 
             WebElementWaiting = driverContainers.OfType<DesktopDriverContainer>().Last().WebElementWaiting;
 
