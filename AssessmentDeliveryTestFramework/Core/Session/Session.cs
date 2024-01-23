@@ -115,8 +115,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             return _defaultBrowser;
         }
 
-
-
         public void AddNewWebSession()
         {
 
