@@ -19,7 +19,7 @@ namespace VisualTests.Pages
         [TearDown]
         public void TearDown()
         {
-            _session.GetDriver().Quit();
+            Session.GetDriver().Quit();
 
             Session.TearDown();
         }

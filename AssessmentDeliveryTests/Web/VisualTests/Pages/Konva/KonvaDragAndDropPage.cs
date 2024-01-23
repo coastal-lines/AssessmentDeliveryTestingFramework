@@ -20,7 +20,7 @@ namespace VisualTests.Pages.Konva
 
         public KonvaDragAndDropPage(IWebDriver driver, WebElementWaiting webElementWaiting, WebElementActions webElementActions) : base(driver, webElementWaiting, webElementActions)
         {
-            _screenshotUtils = new ScreenshotUtils();
+            _screenshotUtils = new ScreenshotUtils(Driver);
 
             _sikuliManager = new SikuliManager();
         }
@@ -41,13 +41,11 @@ namespace VisualTests.Pages.Konva
             var w = KonvaFrame.Size.Width;
             var h = KonvaFrame.Size.Height;
 
-            return _screenshotUtils.TakeScreenshotAndCutRoi(Driver, x, y, w, h);
+            return _screenshotUtils.TakeScreenshotAndCutRoi(x, y, w, h);
         }
 
         public void MatchAllElements()
         {
-            var session = _sikuliManager.CreateSikuliSession();
-
             var snake_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeImg);
             var snake_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeFig);
             var lion_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionImg);
@@ -55,20 +53,17 @@ namespace VisualTests.Pages.Konva
             var giraffe_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeImg);
             var giraffe_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeFig);
             var monkey_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyImg);
-            var monkey_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeFig);
+            var monkey_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyFig);
 
-            _sikuliManager.DragAndDropElementns(session, snake_picture, snake_figure);
-            _sikuliManager.DragAndDropElementns(session, lion_picture, lion_figure);
-            _sikuliManager.DragAndDropElementns(session, giraffe_picture, giraffe_figure);
-            _sikuliManager.DragAndDropElementns(session, monkey_picture, monkey_figure);
-
-            session.Dispose();
+            _sikuliManager.DragAndDropElementns(snake_picture, snake_figure);
+            _sikuliManager.DragAndDropElementns(lion_picture, lion_figure);
+            _sikuliManager.DragAndDropElementns(giraffe_picture, giraffe_figure);
+            _sikuliManager.DragAndDropElementns(monkey_picture, monkey_figure);
         }
 
-        //TODO - move actual and expected images into test's method
-        public bool CompareTwoScreenshots()
+        public bool IsDifferenceBetweenCanvas()
         {
-            var expectedCanvasScreenshot = _screenshotUtils.LoadImageFromFile(ImagePatternsPath + "\\expected_result.jpg");
+            var expectedCanvasScreenshot = _screenshotUtils.LoadImageFromFile(KonvaImagesData.ExpectedResult);
 
             var actualCanvasScreenshot = GetCanvasScreenshot();
 

@@ -1,15 +1,19 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Session;
-using SikuliSharp;
+﻿using SikuliSharp;
 
 namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 {
-    public class SikuliManager
+    public class SikuliManager : IDisposable
     {
-        public ISikuliSession CreateSikuliSession()
-        {
-            var session = Sikuli.CreateSession();
+        private ISikuliSession _session;
 
-            return session;
+        public ISikuliSession GetSikuliSession()
+        {
+            if (_session == null) 
+            {
+                _session = Sikuli.CreateSession();
+            }
+            
+            return _session;
         }
 
         public IPattern LoadPatternFromFile(string filePath, float similarity = 0.9f)
@@ -19,27 +23,37 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
             return pattern;
         }
 
-        public Match FindMatch(ISikuliSession session, IPattern pattern)
+        public Match FindMatch(IPattern pattern)
         {
-            var match = session.Find(pattern);
+            var match = GetSikuliSession().Find(pattern);
 
             return match;
         }
 
-        public void DragAndDropElementns(ISikuliSession session, IPattern patternSource, IPattern patternDestination)
+        public void DragAndDropElementns(IPattern patternSource, IPattern patternDestination)
         {
-            session.DragDrop(patternSource, patternDestination);
+            GetSikuliSession().DragDrop(patternSource, patternDestination);
         }
 
-        public bool IsPatternExisted(ISikuliSession session, IPattern pattern)
+        public bool IsPatternExisted(IPattern pattern)
         {
-            var isVisible = session.Exists(pattern);
+            var isVisible = GetSikuliSession().Exists(pattern);
+
             return isVisible;
         }
 
-        public void HighlightRegion(ISikuliSession session, SikuliSharp.Region region)
+        public void HighlightRegion(SikuliSharp.Region region)
         {
-            session.Highlight(region, "Green");
+            GetSikuliSession().Highlight(region, "Green");
+        }
+
+        public void Dispose()
+        {
+            if (_session != null)
+            {
+                _session.Dispose();
+                _session = null;
+            }
         }
     }
 }

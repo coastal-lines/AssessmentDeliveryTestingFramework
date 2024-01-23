@@ -14,5 +14,6 @@ namespace VisualTests.Resources
         public static string GiraffeFig = Path.Combine(ImagePatternsPath, "giraffe2.jpg");
         public static string MonkeyImg = Path.Combine(ImagePatternsPath, "monkey.jpg");
         public static string MonkeyFig = Path.Combine(ImagePatternsPath, "monkey2.jpg");
+        public static string ExpectedResult = Path.Combine(ImagePatternsPath, "expected_result.jpg");
     }
 }

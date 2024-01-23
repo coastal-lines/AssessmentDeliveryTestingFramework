@@ -1,13 +1,5 @@
-using AngleSharp.Dom;
-using AssessmentDeliveryTestingFramework.Core.Element.Web;
-using AssessmentDeliveryTestingFramework.Core.Session;
 using AssessmentDeliveryTestingFramework.Core.TestManagement.Extensions.NUnit;
-using AssessmentDeliveryTestingFramework.Utils;
-using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using SikuliSharp;
 using System.Drawing;
 using VisualTests.Pages;
 using VisualTests.Pages.Konva;
@@ -17,6 +9,7 @@ namespace VisualTests.Tests
     public class Tests : WebPageObject
     {
         [Test]
+        [NonParallelizable]
         [BrowserType("Chrome")]
         [Description("TC1 - KonvaJS - Drag and Drop by Sikuli")]
         public void TC1KonvaJSDragAndDropBySikuliTest()
@@ -33,7 +26,7 @@ namespace VisualTests.Tests
             konvaDragAndDropPage.MatchAllElements();
 
             //Step 4
-            Assert.IsTrue(konvaDragAndDropPage.CompareTwoScreenshots(), "Actual canvas has some changes.");
+            Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenCanvas(), "Actual canvas has some changes.");
         }
     }
 }
