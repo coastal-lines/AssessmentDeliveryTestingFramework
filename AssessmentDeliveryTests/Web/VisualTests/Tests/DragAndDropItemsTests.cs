@@ -47,7 +47,7 @@ namespace VisualTests.Tests
             konvaDragAndDropPage.ScrollToCanvasElement();
 
             //Step 3
-            var winDriver = new DesktopSession();
+            Session.AddAdditionalDesktopContainer();
             konvaDragAndDropPage.MatchAllElementsByAppium();
 
             //Step 4

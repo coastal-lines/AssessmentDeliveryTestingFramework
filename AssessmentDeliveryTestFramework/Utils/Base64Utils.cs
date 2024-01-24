@@ -7,6 +7,11 @@ namespace AssessmentDeliveryTestingFramework.Utils
     {
         public TextFileUtils TextFileUtils { get; } = new TextFileUtils();
 
+        public string ConvertByteArrayToBase64(byte[] bytesArray)
+        {
+            return Convert.ToBase64String(bytesArray);
+        }
+
         public string ConvertStringToBase64(string text)
         {
             var textBase64 = Encoding.UTF8.GetBytes(text);

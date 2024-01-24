@@ -124,7 +124,14 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
         {
             WindowsDriverFactory.StartWinAppDriver();
 
-            driverContainers.Add(new DesktopDriverContainer(driverFactory.WindowsDriverFactory.CreateWindowsDriver(), "desktop_test_name", ConfigurationManager.GetConfigurationModel().Desktop.Platform, "Windows"));
+            driverContainers.Add(
+                new DesktopDriverContainer(
+                    driverFactory.WindowsDriverFactory.CreateWindowsDriver("Windows", "Root", "WindowsPC", "Windows"), 
+                    "desktop_test_name", 
+                    ConfigurationManager.GetConfigurationModel().Desktop.Platform, 
+                    "Windows"
+                    )
+                );
         }
 
         public string GetDefaultBrowser()
