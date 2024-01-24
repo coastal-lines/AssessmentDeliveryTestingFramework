@@ -1,7 +1,9 @@
+using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
 using AssessmentDeliveryTestingFramework.Core.Session;
 using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using AssessmentDeliveryTestingFramework.Core.TestManagement.Extensions.NUnit;
 using NUnit.Framework;
+using OpenQA.Selenium.Appium.Windows;
 using System.Drawing;
 using VisualTests.Pages;
 using VisualTests.Pages.Konva;
@@ -35,7 +37,7 @@ namespace VisualTests.Tests
         [NonParallelizable]
         [BrowserType("Chrome")]
         [Category(TestType.Desktop)]
-        [Description("TC1 - KonvaJS - Drag and Drop by Sikuli")]
+        [Description("TC2 - KonvaJS - Drag and Drop by Sikuli")]
         public void TC2KonvaJSDragAndDropByImagePluginTest()
         {
             //Step 1
@@ -48,7 +50,9 @@ namespace VisualTests.Tests
 
             //Step 3
             Session.AddAdditionalDesktopContainer();
-            konvaDragAndDropPage.MatchAllElementsByAppium();
+            var winDriverContainer = Session.GetDriverContainer<DesktopDriverContainer>("Windows");
+            var winDriver = (WindowsDriver)winDriverContainer.Driver;
+            konvaDragAndDropPage.MatchAllElementsByAppium(winDriver);
 
             //Step 4
             Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenCanvas(), "Actual canvas has some changes.");

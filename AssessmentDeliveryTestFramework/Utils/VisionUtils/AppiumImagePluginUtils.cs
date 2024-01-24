@@ -24,15 +24,17 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 
             var base64ImageRepresentation = _base64Utils.ConvertByteArrayToBase64(imageFile);
 
-            var appiumElement = windowsDriver.FindElement(MobileBy.Image(base64ImageRepresentation));
-
-            if (appiumElement != null)
+            try
             {
-                return appiumElement;
+                return windowsDriver.FindElement(MobileBy.Image(base64ImageRepresentation));
             }
-            else
+            catch (InvalidSelectorException ex)
             {
-                throw new ElementNotVisibleException(imagePath);
+                Console.WriteLine("Please check Appium Image plugin.");
+
+                Console.WriteLine(ex);
+
+                throw ex;
             }
         }
     }

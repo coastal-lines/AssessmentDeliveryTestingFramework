@@ -8,6 +8,7 @@ using AssessmentDeliveryTestingFramework.Core.Driver.Factory;
 using AssessmentDeliveryTestingFramework.Core.Wait;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers.CustomContainers;
+using System.Linq;
 
 namespace AssessmentDeliveryTestingFramework.Core.Session
 {
@@ -49,23 +50,21 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             }
         }
 
-        /*
-        public IWebDriver GetDriver(string browserType = BrowserType.Chrome)
+        public IDriverContainer GetDriverContainer<T>(string containerType)
         {
-            switch (driverContainers.Count)
+            switch (containerType)
             {
-                //case 0:
+                //case "Web":
                 //    _sessionDrivers.Add(_driverFactory.GetDriverContainer());
                 //    return _sessionDrivers[0].Driver;
 
-                case 1:
-                    return driverContainers[0].Driver;
+                case "Windows":
+                    return driverContainers.OfType<DesktopDriverContainer>().FirstOrDefault();
 
                 default:
-                    return driverContainers.OfType<BrowserDriverContainer>().ToList().Where(d => d.BrowserType.Equals(browserType)).First().Driver;
+                    throw new Exception($"Driver container {containerType} not supported.");
             }
         }
-        */
 
         public PlatformDriverUtils PlatformDriverUtils
         {
