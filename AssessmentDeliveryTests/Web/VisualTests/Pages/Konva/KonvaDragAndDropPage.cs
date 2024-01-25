@@ -21,6 +21,8 @@ namespace VisualTests.Pages.Konva
 
         private IWebElement KonvaFrame => WebElementWaiting.WaitElement(By.XPath("//div[@class='page-entry']//iframe[contains(@src, 'Beach_Game.html')]"));
 
+        private IWebElement CanvasElement => WebElementWaiting.WaitElement(By.ClassName("konvajs-content"));
+
         public KonvaDragAndDropPage(IWebDriver driver, WebElementWaiting webElementWaiting, WebElementActions webElementActions) : base(driver, webElementWaiting, webElementActions)
         {
             _screenshotUtils = new ScreenshotUtils(Driver);
@@ -51,38 +53,39 @@ namespace VisualTests.Pages.Konva
 
         public void MatchAllElementsBySikuli()
         {
-            var snake_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeImg);
-            var snake_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeFig);
-            var lion_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionImg);
-            var lion_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionFig);
-            var giraffe_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeImg);
-            var giraffe_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeFig);
-            var monkey_picture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyImg);
-            var monkey_figure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyFig);
+            var snakePicture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeImg);
+            var snakeFigure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeFig);
+            var lionPicture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionImg);
+            var lionFigure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionFig);
+            var giraffePicture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeImg);
+            var giraffeFigure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeFig);
+            var monkeyPicture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyImg);
+            var monkeyFigure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyFig);
 
-            _sikuliManager.DragAndDropElementns(snake_picture, snake_figure);
-            _sikuliManager.DragAndDropElementns(lion_picture, lion_figure);
-            _sikuliManager.DragAndDropElementns(giraffe_picture, giraffe_figure);
-            _sikuliManager.DragAndDropElementns(monkey_picture, monkey_figure);
+            _sikuliManager.DragAndDropElementns(snakePicture, snakeFigure);
+            _sikuliManager.DragAndDropElementns(lionPicture, lionFigure);
+            _sikuliManager.DragAndDropElementns(giraffePicture, giraffeFigure);
+            _sikuliManager.DragAndDropElementns(monkeyPicture, monkeyFigure);
         }
 
         public void MatchAllElementsByAppium(WindowsDriver windowsDriver)
         {
-            var snake_picture = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.SnakeImg);
-            var snake_figure = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.SnakeFig);
-            var lion_picture = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.LionImg);
-            var lion_figure = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.LionFig);
-            var giraffe_picture = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.GiraffeImg);
-            var giraffe_figure = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.GiraffeFig);
-            var monkey_picture = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.MonkeyImg);
-            var monkey_figure = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.MonkeyFig);
+            var snakePictureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.SnakeImg);
+            var snakeFigureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.SnakeFig);
+            var lionPictureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.LionImg);
+            var lionFigureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.LionFig);
+            var giraffePictureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.GiraffeImg);
+            var giraffeFigureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.GiraffeFig);
+            var monkeyPictureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.MonkeyImg);
+            var monkeyFigureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.MonkeyFig);
 
-            /*
-            _sikuliManager.DragAndDropElementns(snake_picture, snake_figure);
-            _sikuliManager.DragAndDropElementns(lion_picture, lion_figure);
-            _sikuliManager.DragAndDropElementns(giraffe_picture, giraffe_figure);
-            _sikuliManager.DragAndDropElementns(monkey_picture, monkey_figure);
-            */
+            //Calculate vertical shift. Difference betveen frame position and current page position.
+            var v_difference = WebElementActions.JavaScriptUtils.GetVerticalDifferenceBetweenTopAndCurrentPagePosition(Driver);
+
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(windowsDriver, KonvaFrame, CanvasElement, snakePictureElement, snakeFigureElement, v_difference);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(windowsDriver, KonvaFrame, CanvasElement, lionPictureElement, lionFigureElement, v_difference);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(windowsDriver, KonvaFrame, CanvasElement, giraffePictureElement, giraffeFigureElement, v_difference);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(windowsDriver, KonvaFrame, CanvasElement, monkeyPictureElement, monkeyFigureElement, v_difference);
         }
 
         public bool IsDifferenceBetweenCanvas()

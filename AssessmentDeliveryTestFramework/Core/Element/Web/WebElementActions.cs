@@ -1,5 +1,6 @@
 ﻿using AssessmentDeliveryTestingFramework.Utils;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Interactions;
 using System.Drawing;
 
@@ -33,12 +34,12 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
             new Actions(driver).DoubleClick(element).Build().Perform();
         }
 
-        public void DragAndDropBySelenium(IWebDriver driver, IWebElement elementSource, IWebElement elementTarget)
+        public void DragAndDrop(IWebDriver driver, IWebElement elementSource, IWebElement elementTarget)
         {
             new Actions(driver).DragAndDrop(elementSource, elementTarget).Build().Perform();
         }
 
-        public void DragAndDropByCoordinatesBySelenium(IWebDriver driver, IWebElement elementSource, int x, int y)
+        public void DragAndDropByCoordinates(IWebDriver driver, IWebElement elementSource, int x, int y)
         {
             new Actions(driver).DragAndDropToOffset(elementSource, x, y).Build().Perform();
         }
