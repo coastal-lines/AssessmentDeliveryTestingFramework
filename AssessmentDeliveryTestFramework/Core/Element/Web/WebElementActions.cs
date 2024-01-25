@@ -44,6 +44,17 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
             new Actions(driver).DragAndDropToOffset(elementSource, x, y).Build().Perform();
         }
 
+        //public void DragAndDropFromsourceToDestinationByCoordinates(IWebDriver driver, IWebElement canvasElement, int xSource, int ySource, int xDest, int yDest)
+        public void DragAndDropFromsourceToDestinationByCoordinates(IWebElement canvasElement, int xSource, int ySource, int xDest, int yDest)
+        {
+            new Actions(_driver).MoveToElement(canvasElement, xSource, ySource).
+                ClickAndHold().
+                MoveToElement(canvasElement, xDest, yDest).
+                Click().
+                Build().
+                Perform();
+        }
+
         public void ScrollBySelenium(IWebDriver driver, int x, int y)
         {
             string script = $"window.scroll({x}, {y});";

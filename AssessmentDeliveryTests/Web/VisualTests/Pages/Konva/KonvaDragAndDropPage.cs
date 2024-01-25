@@ -32,6 +32,11 @@ namespace VisualTests.Pages.Konva
             _appiumImagePluginUtils = new AppiumImagePluginUtils();
         }
 
+        public IWebElement GetCanvasElement()
+        {
+            return WebElementWaiting.WaitElement(By.ClassName("konvajs-content"));
+        }
+
         public string ImagePatternsPath { get; private set; } = Directory.GetCurrentDirectory() + ConfigurationManager.GetConfigurationModel().Resources.VisualTests.KonvaDragAndDropPatternImagesPath;
 
         public void ScrollToCanvasElement()
@@ -82,10 +87,10 @@ namespace VisualTests.Pages.Konva
             //Calculate vertical shift. Difference betveen frame position and current page position.
             var v_difference = WebElementActions.JavaScriptUtils.GetVerticalDifferenceBetweenTopAndCurrentPagePosition(Driver);
 
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(windowsDriver, KonvaFrame, CanvasElement, snakePictureElement, snakeFigureElement, v_difference);
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(windowsDriver, KonvaFrame, CanvasElement, lionPictureElement, lionFigureElement, v_difference);
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(windowsDriver, KonvaFrame, CanvasElement, giraffePictureElement, giraffeFigureElement, v_difference);
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(windowsDriver, KonvaFrame, CanvasElement, monkeyPictureElement, monkeyFigureElement, v_difference);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, snakePictureElement, snakeFigureElement, v_difference);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, lionPictureElement, lionFigureElement, v_difference);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, giraffePictureElement, giraffeFigureElement, v_difference);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, monkeyPictureElement, monkeyFigureElement, v_difference);
         }
 
         public bool IsDifferenceBetweenCanvas()
