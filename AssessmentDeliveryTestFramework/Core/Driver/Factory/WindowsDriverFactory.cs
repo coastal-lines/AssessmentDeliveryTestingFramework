@@ -3,6 +3,9 @@ using OpenQA.Selenium.Appium.Service;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
+using System.Diagnostics;
+using AssessmentDeliveryTestingFramework.Utils.FileUtils;
+using AssessmentDeliveryTestingFramework.Utils;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
@@ -115,6 +118,52 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(120);
 
             return driver;
+        }
+
+
+        /// <summary>
+        /// In this case 'WinAppDriver' will starts automatically.
+        /// Don't try to run manually, Image plugin will not works correctly.
+        /// </summary>
+        public WindowsDriver CreateWindowsDriverForBrowserConnecting(string browserProcessName, string windowTitle, string platformName = "Windows", string automationName = "Windows")
+        {
+            var currentProcesses = new List<Process>(Process.GetProcesses().Where(p => p.ProcessName.Equals(browserProcessName)));
+            var userProcess = currentProcesses.Where(process => process.MainWindowHandle.ToString() != "0" && process.MainWindowTitle.ToString().Contains(windowTitle)).ToList();
+            var appTopLevelWindowHandle = userProcess[0].MainWindowHandle;
+            var appTopLevelWindowHandleHex = appTopLevelWindowHandle.ToString("x");
+
+            var builder = new AppiumServiceBuilder();
+            KeyValuePair<string, string> arguments = new KeyValuePair<string, string>("--use-plugins", "images");
+            builder.WithArguments(new OptionCollector().AddArguments(arguments));
+            builder.WithLogFile(new FileInfo(@"appium_log.txt"));
+            var service = builder.Build();
+            service.Start();
+
+            var serverUri = new Uri("http://127.0.0.1:4723");
+            var appCapabilities = new AppiumOptions();
+            appCapabilities.PlatformName = platformName;
+            appCapabilities.AutomationName = automationName;
+            appCapabilities.AddAdditionalAppiumOption("appTopLevelWindow", appTopLevelWindowHandleHex);
+            appCapabilities.AddAdditionalAppiumOption("ms:experimental-webdriver", true);
+            appCapabilities.AddAdditionalAppiumOption("newCommandTimeout", 10000);
+
+            //Wait few seconds for NodeJS
+            Thread.Sleep(3000);
+
+            WindowsDriver driver = null;
+
+            try
+            {
+                return new WindowsDriver(serverUri, appCapabilities, TimeSpan.FromSeconds(300));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                Console.WriteLine("Additional Windows driver was not started.");
+
+                throw new Exception();
+            }
         }
     }
 }

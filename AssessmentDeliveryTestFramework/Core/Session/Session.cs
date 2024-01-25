@@ -121,11 +121,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
 
         public void AddAdditionalDesktopContainer()
         {
-            WindowsDriverFactory.StartWinAppDriver();
-
             driverContainers.Add(
                 new DesktopDriverContainer(
-                    driverFactory.WindowsDriverFactory.CreateWindowsDriver("Windows", "Root", "WindowsPC", "Windows"), 
+                    driverFactory.WindowsDriverFactory.CreateWindowsDriverForBrowserConnecting("chrome", "Konva"), 
                     "desktop_test_name", 
                     ConfigurationManager.GetConfigurationModel().Desktop.Platform, 
                     "Windows"

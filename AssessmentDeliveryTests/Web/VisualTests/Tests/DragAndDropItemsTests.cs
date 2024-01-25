@@ -42,7 +42,7 @@ namespace VisualTests.Tests
         {
             //Step 1
             Session.GetDriver().Navigate().GoToUrl("https://konvajs.org/docs/sandbox/Animals_on_the_Beach_Game.html");
-            Session.GetDriver().Manage().Window.Size = new Size(880, 880);
+            Session.GetDriver().Manage().Window.Maximize();
 
             //Step 2
             var konvaDragAndDropPage = new KonvaDragAndDropPage(Session.GetDriver(), Session.WebElementWaiting, Session.WebElementActions);
