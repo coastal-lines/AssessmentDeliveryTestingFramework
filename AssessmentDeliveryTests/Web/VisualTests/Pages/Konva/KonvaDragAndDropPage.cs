@@ -6,6 +6,8 @@ using ImageMagick;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 using VisualTests.Resources;
 using OpenQA.Selenium.Appium.Windows;
+using AssessmentDeliveryTestingFramework.Utils.FileUtils;
+using AssessmentDeliveryTestingFramework.Utils;
 
 namespace VisualTests.Pages.Konva
 {
@@ -16,6 +18,10 @@ namespace VisualTests.Pages.Konva
         private SikuliManager _sikuliManager;
 
         private AppiumImagePluginUtils _appiumImagePluginUtils;
+
+        private Base64Utils _base64Utils;
+
+        private LoadFilesUtils _loadFilesUtils;
 
         private IWebElement OptionDnDTestLink => WebElementWaiting.WaitElement(By.PartialLinkText("Drag and Drop Stress Test"));
 
@@ -30,6 +36,10 @@ namespace VisualTests.Pages.Konva
             _sikuliManager = new SikuliManager();
 
             _appiumImagePluginUtils = new AppiumImagePluginUtils();
+
+            _base64Utils = new Base64Utils();
+
+            _loadFilesUtils = new LoadFilesUtils();
         }
 
         public IWebElement GetCanvasElement()
@@ -96,16 +106,17 @@ namespace VisualTests.Pages.Konva
 
             var actualCanvasScreenshot = GetCanvasScreenshot();
 
-            return _screenshotUtils.CompareTwoScreenshots(actualCanvasScreenshot, expectedCanvasScreenshot);
+            return _screenshotUtils.MagickImageCompareTwoScreenshots(actualCanvasScreenshot, expectedCanvasScreenshot);
         }
 
-        public bool IsDifferenceBetweenScreenshots()
+        public bool IsDifferenceBetweenScreenshots(WindowsDriver windowsDriver)
         {
             var actualScreenshot = _screenshotUtils.TakeScreenshotAsBase64();
 
-            var expectedScreenshot = _screenshotUtils.LoadImageFromFile(KonvaImagesData.ExpectedResult);
+            var imageFile = _loadFilesUtils.ReadFileAsByteArray(KonvaImagesData.ExpectedResultFullScreenshot);
+            var expectedScreenshot = _base64Utils.ConvertByteArrayToBase64(imageFile);
 
-            _appiumImagePluginUtils
+            return _screenshotUtils.AppiumCompareTwoScreenshots(windowsDriver, actualScreenshot, expectedScreenshot);
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using ImageMagick;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.ImageComparison;
+using OpenQA.Selenium.Appium.Windows;
 using System.Drawing;
 
 namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
@@ -75,7 +77,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         /// <param name="expectedScreenshot">Expected image..</param>
         /// <param name="expectedDifference">Max difference between two images. Using 'ErrorMetric.MeanAbsolute' metric.</param>
         /// <returns>If no difference return 'True'.</returns>
-        public bool CompareTwoScreenshots(MagickImage actualScreenshot, MagickImage expectedScreenshot, double expectedDifference = 0.005)
+        public bool MagickImageCompareTwoScreenshots(MagickImage actualScreenshot, MagickImage expectedScreenshot, double expectedDifference = 0.005)
         {
             double actualDifference = actualScreenshot.Compare(expectedScreenshot, ErrorMetric.MeanAbsolute);
 
@@ -88,7 +90,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         }
 
 
-        public bool CompareTwoScreenshots(string actualScreenshotBase64, string expectedScreenshotBase64,)
+        public bool AppiumCompareTwoScreenshots(AppiumDriver appiumDriver, string actualScreenshotBase64, string expectedScreenshotBase64)
         {
             var featuresMatchingOptions = new FeaturesMatchingOptions()
             {
@@ -98,11 +100,22 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
                 Visualize = true
             };
 
-            var compareResult = GetCoordinates.GetWindowsDriver().MatchImageFeatures(actualPageScreenshot, expectedPageScreenshot, featuresMatchingOptions);
+            var compareResult = appiumDriver.MatchImageFeatures(actualScreenshotBase64, expectedScreenshotBase64, featuresMatchingOptions);
 
             if (compareResult.Visualization.Length <= 0)
             {
-                compareResult.SaveVisualizationAsFile($"{TestContext.CurrentContext.Test.Name}_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.png");
+                try
+                {
+                    compareResult.SaveVisualizationAsFile($"{TestContext.CurrentContext.Test.Name}_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.png");
+                }
+                catch (KeyNotFoundException ex)
+                {
+                    Console.WriteLine(ex);
+
+                    Console.WriteLine("Please check 'FeaturesMatchingOptions' object. Parameter 'Visualize' should be 'true'.");
+
+                    Console.WriteLine($"Logging screenshot for '{TestContext.CurrentContext.Test.Name}' was not saved.");
+                }
             }
 
             return compareResult.Visualization.Length > 0;

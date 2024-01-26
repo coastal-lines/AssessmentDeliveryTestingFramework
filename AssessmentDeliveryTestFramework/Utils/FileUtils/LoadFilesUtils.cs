@@ -23,7 +23,7 @@
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
 
                 throw new FileNotFoundException($"File {filePath} was not loaded.");
             }

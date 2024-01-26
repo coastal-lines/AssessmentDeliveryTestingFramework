@@ -2,6 +2,7 @@ using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
 using AssessmentDeliveryTestingFramework.Core.Session;
 using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using AssessmentDeliveryTestingFramework.Core.TestManagement.Extensions.NUnit;
+using NPOI.SS.Formula.Functions;
 using NUnit.Framework;
 using OpenQA.Selenium.Appium.Windows;
 using System.Drawing;
@@ -54,7 +55,7 @@ namespace VisualTests.Tests
             konvaDragAndDropPage.MatchAllElementsByAppium(windowsDriver);
 
             //Step 4
-            Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenCanvases(), "Actual canvas has some changes.");
+            Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenScreenshots(windowsDriver), "Actual canvas has some changes.");
         }
     }
 }
