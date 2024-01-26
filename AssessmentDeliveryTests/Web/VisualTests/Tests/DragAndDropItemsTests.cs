@@ -1,4 +1,4 @@
-using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
+﻿using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
 using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using AssessmentDeliveryTestingFramework.Core.TestManagement.Extensions.NUnit;
 using NUnit.Framework;
@@ -6,6 +6,9 @@ using OpenQA.Selenium.Appium.Windows;
 using System.Drawing;
 using CanvasTests.Pages;
 using CanvasTests.Pages.Konva;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium;
 
 namespace CanvasTests.Tests
 {
@@ -15,8 +18,8 @@ namespace CanvasTests.Tests
         [NonParallelizable]
         [BrowserType("Chrome")]
         [Category(TestType.Web)]
-        [Description("TC1 - KonvaJS - Drag and Drop by Sikuli")]
-        public void TC1KonvaJSDragAndDropBySikuliTest()
+        [Description("TC2 - KonvaJS - Drag and Drop by Sikuli")]
+        public void TC2KonvaJSDragAndDropBySikuliTest()
         {
             //Step 1
             Session.GetDriver().Navigate().GoToUrl("https://konvajs.org/docs/sandbox/Animals_on_the_Beach_Game.html");
@@ -37,8 +40,8 @@ namespace CanvasTests.Tests
         [NonParallelizable]
         [BrowserType("Chrome")]
         [Category(TestType.Web)]
-        [Description("TC2 - KonvaJS - Drag and Drop by Sikuli")]
-        public void TC2KonvaJSDragAndDropByImagePluginTest()
+        [Description("TC3 - KonvaJS - Drag and Drop by Sikuli")]
+        public void TC3KonvaJSDragAndDropByImagePluginTest()
         {
             //Step 1
             Session.GetDriver().Navigate().GoToUrl("https://konvajs.org/docs/sandbox/Animals_on_the_Beach_Game.html");
