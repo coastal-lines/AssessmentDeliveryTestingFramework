@@ -1,6 +1,6 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 
-namespace VisualTests.Resources
+namespace CanvasTests.Resources
 {
     internal static class KonvaImagesData
     {

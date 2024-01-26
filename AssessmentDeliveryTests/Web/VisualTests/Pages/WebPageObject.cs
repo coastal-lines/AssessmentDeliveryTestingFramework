@@ -1,7 +1,7 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Session;
 using NUnit.Framework;
 
-namespace VisualTests.Pages
+namespace CanvasTests.Pages
 {
     [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     public class WebPageObject

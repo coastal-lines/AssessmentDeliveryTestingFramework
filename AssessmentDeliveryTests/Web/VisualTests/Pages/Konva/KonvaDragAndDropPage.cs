@@ -4,12 +4,12 @@ using AssessmentDeliveryTestingFramework.Core.Element.Web;
 using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
 using ImageMagick;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
-using VisualTests.Resources;
+using CanvasTests.Resources;
 using OpenQA.Selenium.Appium.Windows;
 using AssessmentDeliveryTestingFramework.Utils.FileUtils;
 using AssessmentDeliveryTestingFramework.Utils;
 
-namespace VisualTests.Pages.Konva
+namespace CanvasTests.Pages.Konva
 {
     internal class KonvaDragAndDropPage : WebBasePage
     {

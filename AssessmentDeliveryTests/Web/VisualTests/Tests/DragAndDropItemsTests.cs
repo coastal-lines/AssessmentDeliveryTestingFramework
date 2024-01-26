@@ -1,21 +1,20 @@
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
-using AssessmentDeliveryTestingFramework.Core.Session;
 using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using AssessmentDeliveryTestingFramework.Core.TestManagement.Extensions.NUnit;
-using NPOI.SS.Formula.Functions;
 using NUnit.Framework;
 using OpenQA.Selenium.Appium.Windows;
 using System.Drawing;
-using VisualTests.Pages;
-using VisualTests.Pages.Konva;
+using CanvasTests.Pages;
+using CanvasTests.Pages.Konva;
 
-namespace VisualTests.Tests
+namespace CanvasTests.Tests
 {
     public class Tests : WebPageObject
     {
         [Test]
         [NonParallelizable]
         [BrowserType("Chrome")]
+        [Category(TestType.Web)]
         [Description("TC1 - KonvaJS - Drag and Drop by Sikuli")]
         public void TC1KonvaJSDragAndDropBySikuliTest()
         {
@@ -37,7 +36,7 @@ namespace VisualTests.Tests
         [Test]
         [NonParallelizable]
         [BrowserType("Chrome")]
-        [Category(TestType.Desktop)]
+        [Category(TestType.Web)]
         [Description("TC2 - KonvaJS - Drag and Drop by Sikuli")]
         public void TC2KonvaJSDragAndDropByImagePluginTest()
         {

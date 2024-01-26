@@ -2,7 +2,7 @@
 using AssessmentDeliveryTestingFramework.Core.Element.Web;
 using AssessmentDeliveryTestingFramework.Core.Wait;
 
-namespace VisualTests.Pages
+namespace CanvasTests.Pages
 {
     internal class WebBasePage
     {
