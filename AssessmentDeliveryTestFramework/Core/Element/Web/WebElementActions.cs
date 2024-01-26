@@ -1,6 +1,8 @@
 ﻿using AssessmentDeliveryTestingFramework.Utils;
+using MathNet.Numerics.LinearAlgebra;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using System.Drawing;
 
@@ -44,7 +46,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
             new Actions(driver).DragAndDropToOffset(elementSource, x, y).Build().Perform();
         }
 
-        //public void DragAndDropFromsourceToDestinationByCoordinates(IWebDriver driver, IWebElement canvasElement, int xSource, int ySource, int xDest, int yDest)
         public void DragAndDropFromsourceToDestinationByCoordinates(IWebElement canvasElement, int xSource, int ySource, int xDest, int yDest)
         {
             new Actions(_driver).MoveToElement(canvasElement, xSource, ySource).
@@ -86,6 +87,21 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
             element.SendKeys(text);
         }
 
+        public void MoveToElementByCoordinatesAndRemoveTextAndSendTextByKeys(int x, int y, string text)
+        {
+            new Actions(_driver).
+                MoveByOffset(x, y).
+                DoubleClick().
+                KeyDown(Keys.Control).
+                SendKeys("a").
+                KeyUp(Keys.Control).
+                SendKeys(Keys.Backspace).
+                SendKeys(text).
+                Release().
+                Build().
+                Perform();
+        }
+
         public Point GetElementCoordinatesBySelenium(IWebElement element)
         {
             return element.Location;
@@ -93,7 +109,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
 
         #endregion
 
-        #region for IFrames
+        #region For IFrames
 
         public void SwitchToTheFirstIFrame(IWebDriver driver)
         {
@@ -109,7 +125,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
 
         #endregion
 
-        #region validate
+        #region Validate
 
         public bool IsScrollBarPresentedJS(IWebDriver driver)
         {

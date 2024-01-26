@@ -6,13 +6,10 @@ using OpenQA.Selenium.Appium.Windows;
 using System.Drawing;
 using CanvasTests.Pages;
 using CanvasTests.Pages.Konva;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium;
 
 namespace CanvasTests.Tests
 {
-    public class Tests : WebPageObject
+    public class DragAndDropItemsTests : WebPageObject
     {
         [Test]
         [NonParallelizable]
