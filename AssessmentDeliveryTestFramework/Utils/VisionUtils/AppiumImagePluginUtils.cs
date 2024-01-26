@@ -1,8 +1,11 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Element.Web;
 using AssessmentDeliveryTestingFramework.Utils.FileUtils;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.ImageComparison;
 using OpenQA.Selenium.Appium.Windows;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 
 namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
@@ -44,7 +47,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
             }
         }
 
-        public void DragAndDropByCoordinatesInFrame(IWebDriver driver, IWebElement frame, Func<IWebElement> FindCanvasElement, WebElementActions webElementActions, IWebElement sourceElement, IWebElement destinationElement, int verticalShift = 0)
+        public void DragAndDropByCoordinatesInFrame(IWebDriver driver, IWebElement frame, Func<IWebElement> FindCanvasElement, WebElementActions webElementActions, IWebElement sourceElement, IWebElement destinationElement)
         {
             //Calculate coordinates for the source and the destination
             var xSource = Math.Abs(frame.Location.X - sourceElement.Location.X) + (sourceElement.Size.Width / 2);
@@ -63,15 +66,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 
             //Drag and Drop action
             webElementActions.DragAndDropFromsourceToDestinationByCoordinates(canvas, xZero + xSource, yZero + ySource, xZero + xDest, yZero + yDest);
-
-            /*
-            new Actions(driver).MoveToElement(canvas, x_zero + x_source, y_zero + y_source).
-                ClickAndHold().
-                MoveToElement(canvas, x_zero + x_dest, y_zero + y_dest).
-                Click().
-                Build().
-                Perform();
-            */
 
             //Switch back into default frame
             driver.SwitchTo().DefaultContent();

@@ -30,7 +30,7 @@ namespace VisualTests.Tests
             konvaDragAndDropPage.MatchAllElementsBySikuli();
 
             //Step 4
-            Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenCanvas(), "Actual canvas has some changes.");
+            Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenCanvases(), "Actual canvas has some changes.");
         }
 
         [Test]
@@ -50,12 +50,11 @@ namespace VisualTests.Tests
 
             //Step 3
             Session.AddAdditionalDesktopContainer();
-            //var winDriverContainer = (WindowsDriver)Session.GetDriverContainer<DesktopDriverContainer>("Windows").Driver;
             var windowsDriver = (WindowsDriver)Session.GetDriverContainer<DesktopDriverContainer>("Windows").Driver;
             konvaDragAndDropPage.MatchAllElementsByAppium(windowsDriver);
 
             //Step 4
-            //Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenCanvas(), "Actual canvas has some changes.");
+            Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenCanvases(), "Actual canvas has some changes.");
         }
     }
 }

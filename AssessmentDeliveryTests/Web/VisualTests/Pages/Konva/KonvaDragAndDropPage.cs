@@ -84,22 +84,28 @@ namespace VisualTests.Pages.Konva
             var monkeyPictureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.MonkeyImg);
             var monkeyFigureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.MonkeyFig);
 
-            //Calculate vertical shift. Difference betveen frame position and current page position.
-            var v_difference = WebElementActions.JavaScriptUtils.GetVerticalDifferenceBetweenTopAndCurrentPagePosition(Driver);
-
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, snakePictureElement, snakeFigureElement, v_difference);
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, lionPictureElement, lionFigureElement, v_difference);
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, giraffePictureElement, giraffeFigureElement, v_difference);
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, monkeyPictureElement, monkeyFigureElement, v_difference);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, snakePictureElement, snakeFigureElement);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, lionPictureElement, lionFigureElement);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, giraffePictureElement, giraffeFigureElement);
+            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, monkeyPictureElement, monkeyFigureElement);
         }
 
-        public bool IsDifferenceBetweenCanvas()
+        public bool IsDifferenceBetweenCanvases()
         {
             var expectedCanvasScreenshot = _screenshotUtils.LoadImageFromFile(KonvaImagesData.ExpectedResult);
 
             var actualCanvasScreenshot = GetCanvasScreenshot();
 
             return _screenshotUtils.CompareTwoScreenshots(actualCanvasScreenshot, expectedCanvasScreenshot);
+        }
+
+        public bool IsDifferenceBetweenScreenshots()
+        {
+            var actualScreenshot = _screenshotUtils.TakeScreenshotAsBase64();
+
+            var expectedScreenshot = _screenshotUtils.LoadImageFromFile(KonvaImagesData.ExpectedResult);
+
+            _appiumImagePluginUtils
         }
     }
 }

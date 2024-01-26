@@ -1,6 +1,7 @@
 ﻿using ImageMagick;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.ImageComparison;
 using System.Drawing;
 
 namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
@@ -17,6 +18,11 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         public Screenshot TakeScreenshot()
         {
             return ((ITakesScreenshot)_driver).GetScreenshot();
+        }
+
+        public string TakeScreenshotAsBase64()
+        {
+            return ((ITakesScreenshot)_driver).GetScreenshot().AsBase64EncodedString;
         }
 
         public void TakeScreenshotAndSaveAsFile(string filePath = "")
@@ -79,6 +85,27 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
             }
 
             return actualDifference < expectedDifference;
+        }
+
+
+        public bool CompareTwoScreenshots(string actualScreenshotBase64, string expectedScreenshotBase64,)
+        {
+            var featuresMatchingOptions = new FeaturesMatchingOptions()
+            {
+                DetectorName = "ORB",
+                MatchFunc = "BruteForce",
+                GoodMatchesFactor = 250,
+                Visualize = true
+            };
+
+            var compareResult = GetCoordinates.GetWindowsDriver().MatchImageFeatures(actualPageScreenshot, expectedPageScreenshot, featuresMatchingOptions);
+
+            if (compareResult.Visualization.Length <= 0)
+            {
+                compareResult.SaveVisualizationAsFile($"{TestContext.CurrentContext.Test.Name}_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.png");
+            }
+
+            return compareResult.Visualization.Length > 0;
         }
     }
 }
