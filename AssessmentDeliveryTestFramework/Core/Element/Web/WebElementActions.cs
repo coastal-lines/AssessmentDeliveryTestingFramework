@@ -102,11 +102,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
                 Perform();
         }
 
-        public Point GetElementCoordinatesBySelenium(IWebElement element)
-        {
-            return element.Location;
-        }
-
         #endregion
 
         #region For IFrames
@@ -133,6 +128,27 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
             string result = Convert.ToString(jsExecutor.ExecuteScript(@"let nda = document.querySelector('.confirmation-container'); return nda.clientHeight < nda.scrollHeight;"));
 
             return Boolean.Parse(result);
+        }
+
+        #endregion
+
+        #region Utils
+
+        public Point GetElementCoordinatesBySelenium(IWebElement element)
+        {
+            return element.Location;
+        }
+
+        /// <summary>
+        /// Top left corner of the element
+        /// </summary>
+        /// <param name="element"></param>
+        public Point GetStartPointOfElement(IWebElement element)
+        {
+            var xZero = -(element.Size.Width / 2);
+            var yZero = -(element.Size.Height / 2);
+
+            return new Point(xZero, yZero);
         }
 
         #endregion

@@ -35,55 +35,6 @@ namespace CanvasTests.Tests
             var konvaEditableTextPage = new KonvaEditableTextPage(Session.GetDriver(), Session.WebElementWaiting, Session.WebElementActions);
             konvaEditableTextPage.ScrollToComplexDemoTextElement();
 
-            Thread.Sleep(3000);
-
-            var iframe = Session.GetDriver().FindElement(By.XPath("/html/body/article/div/div[2]/div[1]/iframe[1]"));
-            Session.GetDriver().SwitchTo().Frame(iframe);
-            var canvas = Session.GetDriver().FindElement(By.TagName("canvas"));
-            var xZero = -(canvas.Size.Width / 2);
-            var yZero = -(canvas.Size.Height / 2);
-
-            Session.WebElementActions.MoveToElement(canvas);
-            //new Actions(Session.GetDriver()).MoveByOffset(xZero + 130, yZero + 60).DoubleClick().Release().Build().Perform();
-
-
-            new Actions(Session.GetDriver()).
-                MoveByOffset(xZero + 130, yZero + 60).
-                Release().
-                Build().
-                Perform();
-
-            new Actions(Session.GetDriver()).
-                DoubleClick().
-                Release().
-                Build().
-                Perform();
-
-            new Actions(Session.GetDriver()).
-                KeyDown(Keys.Control).
-                SendKeys("a").
-                KeyUp(Keys.Control).
-                SendKeys(Keys.Backspace).
-                Release().
-                Build().
-                Perform();
-
-            new Actions(Session.GetDriver()).
-                SendKeys("Click by coordinates. 9999999999. 888888888888.").
-                Release().
-                Build().
-                Perform();
-
-            new Actions(Session.GetDriver()).
-                SendKeys(Keys.Enter).
-                Release().
-                Build().
-                Perform();
-
-            //Session.WebElementActions.MoveToElementByCoordinatesAndRemoveTextAndSendTextByKeys(160, 425, "Click by coordinates");
-
-
-
             //konvaEditableTextPage.PutTextIntoCanvasElement();
 
             //Step 3

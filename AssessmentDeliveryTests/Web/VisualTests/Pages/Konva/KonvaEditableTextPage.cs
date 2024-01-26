@@ -17,6 +17,8 @@ namespace CanvasTests.Pages.Konva
 
         private IWebElement EditableTextFrame => WebElementWaiting.WaitElement(By.CssSelector(".page-entry > iframe:nth-of-type(1)"));
 
+        private IWebElement CanvasElement => WebElementWaiting.WaitElement(By.TagName("canvas"));
+
         public KonvaEditableTextPage(IWebDriver driver, WebElementWaiting webElementWaiting, WebElementActions webElementActions) : base(driver, webElementWaiting, webElementActions)
         {
         }
@@ -26,57 +28,46 @@ namespace CanvasTests.Pages.Konva
             WebElementActions.MoveToElement(ComplexDemoTextElement);
         }
 
-        public void PutTextIntoCanvasElement()
+        public void PutTextIntoCanvasElement(string text)
         {
-            var xZero1 = -(Driver.Manage().Window.Size.Width / 2);
-            var yZero1 = -(Driver.Manage().Window.Size.Height / 2);
-
             Driver.SwitchTo().Frame(EditableTextFrame);
 
-            var xZero = -(Driver.FindElement(By.TagName("body")).Size.Width / 2);
-            var yZero = -(Driver.FindElement(By.TagName("body")).Size.Height / 2);
+            WebElementActions.MoveToElement(CanvasElement);
+
+            var startPointElement = WebElementActions.GetStartPointOfElement(CanvasElement);
 
             new Actions(Driver).
-                MoveByOffset(0, 0).
+                MoveByOffset(startPointElement.X + 130, startPointElement.Y + 60).
+                Release().
+                Build().
+                Perform();
+
+            new Actions(Driver).
                 DoubleClick().
                 Release().
                 Build().
                 Perform();
 
             new Actions(Driver).
-                MoveByOffset(xZero + 135, yZero + 60).
-                DoubleClick().
-                Release().
-                Build().
-                Perform();
-
-            new Actions(Driver).
-                MoveByOffset(xZero1 + 135, yZero1 + 60).
-                DoubleClick().
-                Release().
-                Build().
-                Perform();
-
-            new Actions(Driver).
-                MoveByOffset(xZero + 135, yZero + 60).
-                DoubleClick().
-                Release().
-                Build().
-                Perform();
-
-            new Actions(Driver).
-                MoveByOffset(xZero + 135, yZero + 60).
-                DoubleClick().
                 KeyDown(Keys.Control).
                 SendKeys("a").
                 KeyUp(Keys.Control).
                 SendKeys(Keys.Backspace).
-                SendKeys("Click by coordinates").
                 Release().
                 Build().
                 Perform();
 
-            //WebElementActions.MoveToElementByCoordinatesAndRemoveTextAndSendTextByKeys(xZero + 135, yZero + 60, "Click by coordinates");
+            new Actions(Driver).
+                SendKeys(text).
+                Release().
+                Build().
+                Perform();
+
+            new Actions(Driver).
+                SendKeys(Keys.Enter).
+                Release().
+                Build().
+                Perform();
         }
     }
 }
