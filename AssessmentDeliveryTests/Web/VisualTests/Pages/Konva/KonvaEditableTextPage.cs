@@ -2,7 +2,6 @@
 using AssessmentDeliveryTestingFramework.Core.Wait;
 using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
 using CanvasTests.Resources;
-using ImageMagick;
 using OpenQA.Selenium;
 
 namespace CanvasTests.Pages.Konva
@@ -19,6 +18,7 @@ namespace CanvasTests.Pages.Konva
         {
         }
 
+        /*
         public MagickImage GetCanvasScreenshot()
         {
             var v_difference = WebElementActions.JavaScriptUtils.GetVerticalDifferenceBetweenTopAndCurrentPagePosition(Driver);
@@ -30,6 +30,7 @@ namespace CanvasTests.Pages.Konva
 
             return ScreenshotUtils.TakeScreenshotAndCutRoi(x, y, w, h);
         }
+        */
 
         public void ScrollToComplexDemoTextElement()
         {
@@ -47,8 +48,9 @@ namespace CanvasTests.Pages.Konva
 
         public bool IsDifferenceBetweenCanvases()
         {
-            var expectedCanvasScreenshot =ScreenshotUtils.LoadImageFromFile(KonvaEditableTextImagesData.ExpectedResult);
-            var actualCanvasScreenshot = GetCanvasScreenshot();
+            var expectedCanvasScreenshot = ScreenshotUtils.LoadImageFromFile(KonvaEditableTextImagesData.ExpectedResult);
+
+            var actualCanvasScreenshot = ScreenshotUtils.TakeElementScreenshot(EditableTextFrame);
 
             return ScreenshotUtils.MagickImageCompareTwoScreenshots(actualCanvasScreenshot, expectedCanvasScreenshot);
         }

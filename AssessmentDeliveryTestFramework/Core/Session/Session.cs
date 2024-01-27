@@ -119,11 +119,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
 
         }
 
-        public void AddAdditionalDesktopContainer()
+        public void AddAdditionalDesktopContainer(string browserType, string titleTextContains)
         {
             driverContainers.Add(
                 new DesktopDriverContainer(
-                    driverFactory.WindowsDriverFactory.CreateWindowsDriverForBrowserConnecting("chrome", "Konva"), 
+                    driverFactory.WindowsDriverFactory.CreateWindowsDriverForBrowserConnecting(browserType, titleTextContains), 
                     "desktop_test_name", 
                     ConfigurationManager.GetConfigurationModel().Desktop.Platform, 
                     "Windows"

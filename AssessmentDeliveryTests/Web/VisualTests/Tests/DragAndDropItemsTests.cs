@@ -49,7 +49,7 @@ namespace CanvasTests.Tests
             konvaDragAndDropPage.ScrollToCanvasElement();
 
             //Step 3
-            Session.AddAdditionalDesktopContainer();
+            Session.AddAdditionalDesktopContainer("chrome", "Konva");
             var windowsDriver = (WindowsDriver)Session.GetDriverContainer<DesktopDriverContainer>("Windows").Driver;
             konvaDragAndDropPage.MatchAllElementsByAppium(windowsDriver);
 

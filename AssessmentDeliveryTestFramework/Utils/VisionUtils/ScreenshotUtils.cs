@@ -1,4 +1,5 @@
-﻿using ImageMagick;
+﻿using AssessmentDeliveryTestingFramework.Core.Element.Web;
+using ImageMagick;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
@@ -12,9 +13,13 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
     {
         private IWebDriver _driver;
 
+        private JavaScriptUtils _javaScriptUtils;
+
         public ScreenshotUtils(IWebDriver driver)
         {
             _driver = driver;
+
+            _javaScriptUtils = new JavaScriptUtils();
         }
 
         public Screenshot TakeScreenshot()
@@ -54,6 +59,22 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
             }
         }
 
+        /// <summary>
+        /// Vertical Difference needs for calculate total Horizontal coordinate.
+        /// </summary>
+        /// <param name="element"></param>
+        public MagickImage TakeElementScreenshot(IWebElement element)
+        {
+            var vertical_difference = _javaScriptUtils.GetVerticalDifferenceBetweenTopAndCurrentPagePosition(_driver);
+
+            var x = element.Location.X;
+            var y = element.Location.Y - vertical_difference;
+            var w = element.Size.Width;
+            var h = element.Size.Height;
+
+            return TakeScreenshotAndCutRoi(x, y, w, h);
+        }
+
         public MagickImage TakeScreenshotAndCutRoi(int x, int y, int w, int h)
         {
             var screenshot = TakeScreenshot();
@@ -88,7 +109,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 
             return actualDifference < expectedDifference;
         }
-
 
         public bool AppiumCompareTwoScreenshots(AppiumDriver appiumDriver, string actualScreenshotBase64, string expectedScreenshotBase64)
         {

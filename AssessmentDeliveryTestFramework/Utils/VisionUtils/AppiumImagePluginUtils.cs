@@ -1,12 +1,8 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Element.Web;
 using AssessmentDeliveryTestingFramework.Utils.FileUtils;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Appium.ImageComparison;
 using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
 
 namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 {
@@ -34,11 +30,18 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
                 return windowsDriver.FindElement(MobileBy.Image(base64ImageRepresentation));
             }
 
+            catch (NoSuchElementException ex)
+            {
+                Console.WriteLine(ex);
+                throw ex;
+            }
+
             catch (WebDriverTimeoutException ex)
             {
                 Console.WriteLine(ex);
                 throw ex;
             }
+
             catch (InvalidSelectorException ex)
             {
                 Console.WriteLine("Please check Appium Image plugin.");

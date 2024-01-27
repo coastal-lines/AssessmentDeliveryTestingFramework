@@ -36,6 +36,7 @@ namespace CanvasTests.Pages.Konva
             WebElementActions.MoveToElement(OptionDnDTestLink);
         }
 
+        /*
         public MagickImage GetCanvasScreenshot()
         {
             var v_difference = WebElementActions.JavaScriptUtils.GetVerticalDifferenceBetweenTopAndCurrentPagePosition(Driver);
@@ -47,6 +48,7 @@ namespace CanvasTests.Pages.Konva
 
             return ScreenshotUtils.TakeScreenshotAndCutRoi(x, y, w, h);
         }
+        */
 
         public void MatchAllElementsBySikuli()
         {
@@ -86,7 +88,7 @@ namespace CanvasTests.Pages.Konva
         {
             var expectedCanvasScreenshot = ScreenshotUtils.LoadImageFromFile(KonvaDragAndDropImagesData.ExpectedResult);
 
-            var actualCanvasScreenshot = GetCanvasScreenshot();
+            var actualCanvasScreenshot = ScreenshotUtils.TakeElementScreenshot(KonvaFrame);
 
             return ScreenshotUtils.MagickImageCompareTwoScreenshots(actualCanvasScreenshot, expectedCanvasScreenshot);
         }
