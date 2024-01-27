@@ -28,7 +28,7 @@ namespace CanvasTests.Tests
             konvaEditableTextPage.PutTextIntoCanvasElement(130, 60, "Canvas test");
 
             //Step 4
-            Assert.IsTrue(konvaEditableTextPage.IsDifferenceBetweenCanvases(), "Actual canvas has some changes.");
+            Assert.IsTrue(konvaEditableTextPage.IsDifferenceBetweenCanvases(), "Actual canvas has some changes. Please check TeamCity artifacts.");
         }
     }
 }

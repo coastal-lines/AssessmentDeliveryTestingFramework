@@ -6,6 +6,6 @@ namespace CanvasTests.Resources
     {
         private static string ImagePatternsPath { get; set; } = Directory.GetCurrentDirectory() + ConfigurationManager.GetConfigurationModel().Resources.VisualTests.KonvaDragAndDropPatternImagesPath;
 
-        public static string ExpectedResult = Path.Combine(ImagePatternsPath, "expected_result.jpg");
+        public static string ExpectedResult = Path.Combine(ImagePatternsPath, "editable_text_expected_result.jpg");
     }
 }

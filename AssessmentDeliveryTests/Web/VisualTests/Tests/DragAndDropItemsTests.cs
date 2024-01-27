@@ -30,7 +30,7 @@ namespace CanvasTests.Tests
             konvaDragAndDropPage.MatchAllElementsBySikuli();
 
             //Step 4
-            Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenCanvases(), "Actual canvas has some changes.");
+            Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenCanvases(), "Actual canvas has some changes. Please check TeamCity artifacts.");
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace CanvasTests.Tests
             konvaDragAndDropPage.MatchAllElementsByAppium(windowsDriver);
 
             //Step 4
-            Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenScreenshots(windowsDriver), "Actual canvas has some changes.");
+            Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenScreenshots(windowsDriver), "Actual canvas has some changes. Please check TeamCity artifacts.");
         }
     }
 }
