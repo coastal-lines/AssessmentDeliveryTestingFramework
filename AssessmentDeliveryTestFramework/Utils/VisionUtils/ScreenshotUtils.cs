@@ -1,11 +1,8 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Element.Web;
-using ImageMagick;
+﻿using ImageMagick;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.ImageComparison;
-using OpenQA.Selenium.Appium.Windows;
-using System.Drawing;
 
 namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 {

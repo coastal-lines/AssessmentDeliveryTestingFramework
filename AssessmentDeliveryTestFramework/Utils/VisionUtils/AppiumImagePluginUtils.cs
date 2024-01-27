@@ -27,25 +27,35 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 
             try
             {
+                return WaitElementDisplayedByImagePattern(base64ImageRepresentation);
+
                 return windowsDriver.FindElement(MobileBy.Image(base64ImageRepresentation));
             }
 
             catch (NoSuchElementException ex)
             {
                 Console.WriteLine(ex);
+
+                Console.WriteLine($"Element for image pattern '{imagePath}' was not found.");
+
                 throw ex;
             }
 
             catch (WebDriverTimeoutException ex)
             {
                 Console.WriteLine(ex);
+
+                Console.WriteLine($"Timeout for waiting image pattern '{imagePath}'.");
+
                 throw ex;
             }
 
             catch (InvalidSelectorException ex)
             {
                 Console.WriteLine("Please check Appium Image plugin.");
+
                 Console.WriteLine(ex);
+
                 throw ex;
             }
         }
