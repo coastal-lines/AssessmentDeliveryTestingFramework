@@ -1,8 +1,5 @@
 ﻿using AssessmentDeliveryTestingFramework.Utils;
-using MathNet.Numerics.LinearAlgebra;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using System.Drawing;
 
@@ -34,6 +31,15 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
         public void DoubleClickBySelenium(IWebDriver driver, IWebElement element)
         {
             new Actions(driver).DoubleClick(element).Build().Perform();
+        }
+
+        public void DoubleClickBySelenium()
+        {
+            new Actions(_driver).
+                DoubleClick().
+                Release().
+                Build().
+                Perform();
         }
 
         public void DragAndDrop(IWebDriver driver, IWebElement elementSource, IWebElement elementTarget)
@@ -77,17 +83,59 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
             }
         }
 
-        public void MoveToElement(IWebElement element)
-        {
-            new Actions(_driver).MoveToElement(element).Build().Perform();
-        }
-
         public void SendKeysBySelenium(IWebElement element, string text)
         {
             element.SendKeys(text);
         }
 
-        public void MoveToElementByCoordinatesAndRemoveTextAndSendTextByKeys(int x, int y, string text)
+        public void SendKeysBySelenium(string text)
+        {
+            new Actions(_driver).
+                SendKeys(text).
+                Release().
+                Build().
+                Perform();
+        }
+
+        public void PressEnterKey()
+        {
+            new Actions(_driver).
+                SendKeys(Keys.Enter).
+                Release().
+                Build().
+                Perform();
+        }
+
+        public void RemoveTextByActions()
+        {
+            new Actions(_driver).
+                KeyDown(Keys.Control).
+                SendKeys("a").
+                KeyUp(Keys.Control).
+                SendKeys(Keys.Backspace).
+                Release().
+                Build().
+                Perform();
+        }
+
+        public void MoveToElement(IWebElement element)
+        {
+            new Actions(_driver).
+                MoveToElement(element).
+                Build().
+                Perform();
+        }
+
+        public void MoveToElementByOffset(int x, int y)
+        {
+            new Actions(_driver).
+                MoveByOffset(x, y).
+                Release().
+                Build().
+                Perform();
+        }
+
+        public void PutTextIntoElementByOffset(int x, int y, string text)
         {
             new Actions(_driver).
                 MoveByOffset(x, y).
@@ -100,6 +148,23 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
                 Release().
                 Build().
                 Perform();
+        }
+
+        public void PutTextIntoElementByOffset(IWebElement element, int x, int y, string text)
+        {
+            MoveToElement(element);
+
+            var startPointElement = GetStartPointOfElement(element);
+
+            MoveToElementByOffset(startPointElement.X + x, startPointElement.Y + y);
+
+            DoubleClickBySelenium();
+
+            RemoveTextByActions();
+
+            SendKeysBySelenium(text);
+
+            PressEnterKey();
         }
 
         #endregion

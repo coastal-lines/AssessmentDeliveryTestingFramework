@@ -2,7 +2,7 @@
 
 namespace CanvasTests.Resources
 {
-    internal static class KonvaImagesData
+    internal static class KonvaDragAndDropImagesData
     {
         private static string ImagePatternsPath { get; set; } = Directory.GetCurrentDirectory() + ConfigurationManager.GetConfigurationModel().Resources.VisualTests.KonvaDragAndDropPatternImagesPath;
 

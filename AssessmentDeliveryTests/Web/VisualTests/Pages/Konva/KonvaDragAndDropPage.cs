@@ -13,16 +13,6 @@ namespace CanvasTests.Pages.Konva
 {
     internal class KonvaDragAndDropPage : WebBasePage
     {
-        private ScreenshotUtils _screenshotUtils;
-
-        private SikuliManager _sikuliManager;
-
-        private AppiumImagePluginUtils _appiumImagePluginUtils;
-
-        private Base64Utils _base64Utils;
-
-        private LoadFilesUtils _loadFilesUtils;
-
         private IWebElement OptionDnDTestLink => WebElementWaiting.WaitElement(By.PartialLinkText("Drag and Drop Stress Test"));
 
         private IWebElement KonvaFrame => WebElementWaiting.WaitElement(By.XPath("//div[@class='page-entry']//iframe[contains(@src, 'Beach_Game.html')]"));
@@ -31,15 +21,7 @@ namespace CanvasTests.Pages.Konva
 
         public KonvaDragAndDropPage(IWebDriver driver, WebElementWaiting webElementWaiting, WebElementActions webElementActions) : base(driver, webElementWaiting, webElementActions)
         {
-            _screenshotUtils = new ScreenshotUtils(Driver);
 
-            _sikuliManager = new SikuliManager();
-
-            _appiumImagePluginUtils = new AppiumImagePluginUtils();
-
-            _base64Utils = new Base64Utils();
-
-            _loadFilesUtils = new LoadFilesUtils();
         }
 
         public IWebElement GetCanvasElement()
@@ -63,60 +45,60 @@ namespace CanvasTests.Pages.Konva
             var w = KonvaFrame.Size.Width;
             var h = KonvaFrame.Size.Height;
 
-            return _screenshotUtils.TakeScreenshotAndCutRoi(x, y, w, h);
+            return ScreenshotUtils.TakeScreenshotAndCutRoi(x, y, w, h);
         }
 
         public void MatchAllElementsBySikuli()
         {
-            var snakePicture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeImg);
-            var snakeFigure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.SnakeFig);
-            var lionPicture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionImg);
-            var lionFigure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.LionFig);
-            var giraffePicture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeImg);
-            var giraffeFigure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.GiraffeFig);
-            var monkeyPicture = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyImg);
-            var monkeyFigure = _sikuliManager.LoadPatternFromFile(KonvaImagesData.MonkeyFig);
+            var snakePicture = SikuliManager.LoadPatternFromFile(KonvaDragAndDropImagesData.SnakeImg);
+            var snakeFigure = SikuliManager.LoadPatternFromFile(KonvaDragAndDropImagesData.SnakeFig);
+            var lionPicture = SikuliManager.LoadPatternFromFile(KonvaDragAndDropImagesData.LionImg);
+            var lionFigure = SikuliManager.LoadPatternFromFile(KonvaDragAndDropImagesData.LionFig);
+            var giraffePicture = SikuliManager.LoadPatternFromFile(KonvaDragAndDropImagesData.GiraffeImg);
+            var giraffeFigure = SikuliManager.LoadPatternFromFile(KonvaDragAndDropImagesData.GiraffeFig);
+            var monkeyPicture = SikuliManager.LoadPatternFromFile(KonvaDragAndDropImagesData.MonkeyImg);
+            var monkeyFigure = SikuliManager.LoadPatternFromFile(KonvaDragAndDropImagesData.MonkeyFig);
 
-            _sikuliManager.DragAndDropElementns(snakePicture, snakeFigure);
-            _sikuliManager.DragAndDropElementns(lionPicture, lionFigure);
-            _sikuliManager.DragAndDropElementns(giraffePicture, giraffeFigure);
-            _sikuliManager.DragAndDropElementns(monkeyPicture, monkeyFigure);
+            SikuliManager.DragAndDropElementns(snakePicture, snakeFigure);
+            SikuliManager.DragAndDropElementns(lionPicture, lionFigure);
+            SikuliManager.DragAndDropElementns(giraffePicture, giraffeFigure);
+            SikuliManager.DragAndDropElementns(monkeyPicture, monkeyFigure);
         }
 
         public void MatchAllElementsByAppium(WindowsDriver windowsDriver)
         {
-            var snakePictureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.SnakeImg);
-            var snakeFigureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.SnakeFig);
-            var lionPictureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.LionImg);
-            var lionFigureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.LionFig);
-            var giraffePictureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.GiraffeImg);
-            var giraffeFigureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.GiraffeFig);
-            var monkeyPictureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.MonkeyImg);
-            var monkeyFigureElement = _appiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaImagesData.MonkeyFig);
+            var snakePictureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.SnakeImg);
+            var snakeFigureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.SnakeFig);
+            var lionPictureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.LionImg);
+            var lionFigureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.LionFig);
+            var giraffePictureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.GiraffeImg);
+            var giraffeFigureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.GiraffeFig);
+            var monkeyPictureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.MonkeyImg);
+            var monkeyFigureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.MonkeyFig);
 
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, snakePictureElement, snakeFigureElement);
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, lionPictureElement, lionFigureElement);
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, giraffePictureElement, giraffeFigureElement);
-            _appiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, monkeyPictureElement, monkeyFigureElement);
+            AppiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, snakePictureElement, snakeFigureElement);
+            AppiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, lionPictureElement, lionFigureElement);
+            AppiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, giraffePictureElement, giraffeFigureElement);
+            AppiumImagePluginUtils.DragAndDropByCoordinatesInFrame(Driver, KonvaFrame, GetCanvasElement, WebElementActions, monkeyPictureElement, monkeyFigureElement);
         }
 
         public bool IsDifferenceBetweenCanvases()
         {
-            var expectedCanvasScreenshot = _screenshotUtils.LoadImageFromFile(KonvaImagesData.ExpectedResult);
+            var expectedCanvasScreenshot = ScreenshotUtils.LoadImageFromFile(KonvaDragAndDropImagesData.ExpectedResult);
 
             var actualCanvasScreenshot = GetCanvasScreenshot();
 
-            return _screenshotUtils.MagickImageCompareTwoScreenshots(actualCanvasScreenshot, expectedCanvasScreenshot);
+            return ScreenshotUtils.MagickImageCompareTwoScreenshots(actualCanvasScreenshot, expectedCanvasScreenshot);
         }
 
         public bool IsDifferenceBetweenScreenshots(WindowsDriver windowsDriver)
         {
-            var actualScreenshot = _screenshotUtils.TakeScreenshotAsBase64();
+            var actualScreenshot = ScreenshotUtils.TakeScreenshotAsBase64();
 
-            var imageFile = _loadFilesUtils.ReadFileAsByteArray(KonvaImagesData.ExpectedResultFullScreenshot);
-            var expectedScreenshot = _base64Utils.ConvertByteArrayToBase64(imageFile);
+            var imageFile = LoadFilesUtils.ReadFileAsByteArray(KonvaDragAndDropImagesData.ExpectedResultFullScreenshot);
+            var expectedScreenshot = Base64Utils.ConvertByteArrayToBase64(imageFile);
 
-            return _screenshotUtils.AppiumCompareTwoScreenshots(windowsDriver, actualScreenshot, expectedScreenshot);
+            return ScreenshotUtils.AppiumCompareTwoScreenshots(windowsDriver, actualScreenshot, expectedScreenshot);
         }
     }
 }

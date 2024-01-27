@@ -1,13 +1,9 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Element.Web;
-using AssessmentDeliveryTestingFramework.Core.Session;
 using AssessmentDeliveryTestingFramework.Core.Wait;
+using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
+using CanvasTests.Resources;
+using ImageMagick;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CanvasTests.Pages.Konva
 {
@@ -23,51 +19,38 @@ namespace CanvasTests.Pages.Konva
         {
         }
 
+        public MagickImage GetCanvasScreenshot()
+        {
+            var v_difference = WebElementActions.JavaScriptUtils.GetVerticalDifferenceBetweenTopAndCurrentPagePosition(Driver);
+
+            var x = EditableTextFrame.Location.X;
+            var y = EditableTextFrame.Location.Y - v_difference;
+            var w = EditableTextFrame.Size.Width;
+            var h = EditableTextFrame.Size.Height;
+
+            return ScreenshotUtils.TakeScreenshotAndCutRoi(x, y, w, h);
+        }
+
         public void ScrollToComplexDemoTextElement()
         {
             WebElementActions.MoveToElement(ComplexDemoTextElement);
         }
 
-        public void PutTextIntoCanvasElement(string text)
+        public void PutTextIntoCanvasElement(int x, int y, string text)
         {
             Driver.SwitchTo().Frame(EditableTextFrame);
 
-            WebElementActions.MoveToElement(CanvasElement);
+            WebElementActions.PutTextIntoElementByOffset(CanvasElement, x, y, text);
 
-            var startPointElement = WebElementActions.GetStartPointOfElement(CanvasElement);
+            Driver.SwitchTo().DefaultContent();
+        }
 
-            new Actions(Driver).
-                MoveByOffset(startPointElement.X + 130, startPointElement.Y + 60).
-                Release().
-                Build().
-                Perform();
+        public bool IsDifferenceBetweenCanvases()
+        {
+            var expectedCanvasScreenshot =ScreenshotUtils.LoadImageFromFile(KonvaEditableTextImagesData.ExpectedResult);
+            var actualCanvasScreenshot = GetCanvasScreenshot();
 
-            new Actions(Driver).
-                DoubleClick().
-                Release().
-                Build().
-                Perform();
-
-            new Actions(Driver).
-                KeyDown(Keys.Control).
-                SendKeys("a").
-                KeyUp(Keys.Control).
-                SendKeys(Keys.Backspace).
-                Release().
-                Build().
-                Perform();
-
-            new Actions(Driver).
-                SendKeys(text).
-                Release().
-                Build().
-                Perform();
-
-            new Actions(Driver).
-                SendKeys(Keys.Enter).
-                Release().
-                Build().
-                Perform();
+            return ScreenshotUtils.MagickImageCompareTwoScreenshots(actualCanvasScreenshot, expectedCanvasScreenshot);
         }
     }
 }
