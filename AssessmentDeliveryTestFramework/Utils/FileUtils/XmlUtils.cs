@@ -1,4 +1,6 @@
 ﻿using System.Xml;
+using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
 {
@@ -29,6 +31,73 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
             var xmlDoc = LoadXmlFileFromFile(filePath);
 
             return xmlDoc.DocumentElement;
+        }
+
+        public XElement GetElementByXPath(XDocument xmlDoc, string xpath = "//*")
+        {
+            var element = xmlDoc.XPathSelectElement(xpath);
+
+            if (element != null)
+            {
+                return element;
+            }
+            else
+            {
+                Console.WriteLine($"Element '{xpath}' not found.");
+                throw new NullReferenceException();
+            }
+        }
+
+        public string GetTextFromElementAttributeByXPath(XDocument xmlDoc, string attribute, string xpath = "//*")
+        {
+            string elementText = null;
+
+            var element = GetElementByXPath(xmlDoc, xpath);
+
+            if (element.Attribute("default-value") != null)
+            {
+                elementText = element.Attribute(attribute).Value;
+
+                Console.WriteLine($"Attribute '{attribute}' of element '{xpath}' has next text: '{elementText}'");
+            }
+            else
+            {
+                Console.WriteLine($"Attribute '{attribute}' of element '{xpath}' not found.");
+            }
+
+            return elementText;
+        }
+
+        /// <summary>
+        /// Get text from Element by parameters
+        /// </summary>
+        /// <param name="xmlDoc">XML document</param>
+        /// <param name="elementName">Html elements like div, p, canvas, etc.</param>
+        /// <param name="attribute">Any element's attribute like value, name, enabled, etc.</param>
+        /// <param name="attributeValue">User data</param>
+        /// <returns></returns>
+        /// <exception cref="NullReferenceException"></exception>
+        public string GetTextFromElementByAttributeValue(XDocument xmlDoc, string elementName, string attribute, string attributeValue)
+        {
+            var element = xmlDoc.Descendants(elementName);
+
+            if (element != null)
+            {
+                return element.Where(x => x.Attribute(attribute).Value == attributeValue).
+                    FirstOrDefault().
+                    Elements("value").
+                    Single().Value;
+            }
+            else
+            {
+                Console.WriteLine($"Element '{elementName}' not found.");
+                throw new NullReferenceException();
+            }
+        }
+
+        public void ChangeElementByOtherElement()
+        {
+
         }
     }
 }

@@ -37,15 +37,17 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
             }
         }
 
-        //TODO - update after debug
-        public string GetTextBySelector(HtmlDocument doc)
+        public string GetTextBySelector(HtmlDocument doc, string selector)
         {
-            var value = doc.DocumentNode
-             .SelectNodes("//div")[1]
-             .Attributes["id"]
-             .Value;
+            string elementText = null;
 
-            return value;
+            HtmlNode selectedNode = doc.DocumentNode.SelectSingleNode(selector);
+            if (selectedNode != null)
+            {
+                elementText = selectedNode.InnerText.Trim();
+            }
+
+            return elementText;
         }
     }
 }

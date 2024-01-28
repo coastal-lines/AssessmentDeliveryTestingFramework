@@ -2,21 +2,19 @@
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager;
-using WebDriverManager.Helpers;
-using OpenQA.Selenium.Interactions;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
     public sealed class WebDriverFactory
     {
+        private void AddChromeExtension(ref ChromeOptions options, string chromeCRXExtensionPath)
+        {
+            options.AddExtension(chromeCRXExtensionPath);
+        }
+
         public T GetWebDriverByDriverManagerSolution<T>(string driverType)
         {
                 //INFO = 0, 
