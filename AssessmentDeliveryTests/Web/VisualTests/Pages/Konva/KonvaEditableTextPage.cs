@@ -3,6 +3,7 @@ using AssessmentDeliveryTestingFramework.Core.Wait;
 using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
 using CanvasTests.Resources;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace CanvasTests.Pages.Konva
 {
@@ -16,21 +17,8 @@ namespace CanvasTests.Pages.Konva
 
         public KonvaEditableTextPage(IWebDriver driver, WebElementWaiting webElementWaiting, WebElementActions webElementActions) : base(driver, webElementWaiting, webElementActions)
         {
+
         }
-
-        /*
-        public MagickImage GetCanvasScreenshot()
-        {
-            var v_difference = WebElementActions.JavaScriptUtils.GetVerticalDifferenceBetweenTopAndCurrentPagePosition(Driver);
-
-            var x = EditableTextFrame.Location.X;
-            var y = EditableTextFrame.Location.Y - v_difference;
-            var w = EditableTextFrame.Size.Width;
-            var h = EditableTextFrame.Size.Height;
-
-            return ScreenshotUtils.TakeScreenshotAndCutRoi(x, y, w, h);
-        }
-        */
 
         public void ScrollToComplexDemoTextElement()
         {
@@ -44,6 +32,13 @@ namespace CanvasTests.Pages.Konva
             WebElementActions.PutTextIntoElementByOffset(CanvasElement, x, y, text);
 
             Driver.SwitchTo().DefaultContent();
+        }
+
+        public string GetTextFromCanvasElement()
+        {
+            Driver.SwitchTo().Frame(EditableTextFrame);
+
+            return WebElementActions.JavaScriptUtils.ExecuteJS(Driver, "return window.layer.children[0].text()");
         }
 
         public bool IsDifferenceBetweenCanvases()

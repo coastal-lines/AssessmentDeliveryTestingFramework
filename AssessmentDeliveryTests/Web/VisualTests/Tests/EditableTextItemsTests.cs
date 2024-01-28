@@ -9,11 +9,13 @@ namespace CanvasTests.Tests
 {
     internal class EditableTextItemsTests : WebPageObject
     {
+        private const string _canvasText = "Some text here";
+
         [Test]
         [NonParallelizable]
         [BrowserType("Chrome")]
         [Category(TestType.Web)]
-        [Description("TC1 - KonvaJS - Interract by coordinates")]
+        [Description("TC1 - KonvaJS - Interract by coordinates and compare by screenshots")]
         public void TС1KonvaJSInterractByCoordinates()
         {
             //Step 1
@@ -29,6 +31,26 @@ namespace CanvasTests.Tests
 
             //Step 4
             Assert.IsTrue(konvaEditableTextPage.IsDifferenceBetweenCanvases(), "Actual canvas has some changes. Please check TeamCity artifacts.");
+        }
+
+        [Test]
+        [NonParallelizable]
+        [BrowserType("Chrome")]
+        [Category(TestType.Web)]
+        [Description("TC2 - KonvaJS - Interract and compare by JS")]
+        public void TС2KonvaJSInterractByJS()
+        {
+            //Step 1
+            Session.GetDriver().Navigate().GoToUrl("https://konvajs.org/docs/sandbox/Editable_Text.html");
+            Session.GetDriver().Manage().Window.Size = new Size(765, 900);
+
+            //Step 2
+            var konvaEditableTextPage = new KonvaEditableTextPage(Session.GetDriver(), Session.WebElementWaiting, Session.WebElementActions);
+            konvaEditableTextPage.ScrollToComplexDemoTextElement();
+
+            //Step 3
+            var canvasText = konvaEditableTextPage.GetTextFromCanvasElement();
+            Assert.AreEqual(_canvasText, canvasText, $"Canvas has '{canvasText}' text but text should be '{_canvasText}'");
         }
     }
 }

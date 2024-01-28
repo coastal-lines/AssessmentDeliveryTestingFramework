@@ -33,11 +33,15 @@ namespace CanvasTests.Tests
             Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenCanvases(), "Actual canvas has some changes. Please check TeamCity artifacts.");
         }
 
+        /// <summary>
+        /// Test works on the primary screen only.
+        /// If you have more than one screen, please switch into primary screen and switch off other screens.
+        /// </summary>
         [Test]
         [NonParallelizable]
         [BrowserType("Chrome")]
         [Category(TestType.Web)]
-        [Description("TC3 - KonvaJS - Drag and Drop by Sikuli")]
+        [Description("TC3 - KonvaJS - Drag and Drop by Appium Image Plugin")]
         public void TC3KonvaJSDragAndDropByImagePluginTest()
         {
             //Step 1
@@ -50,10 +54,11 @@ namespace CanvasTests.Tests
 
             //Step 3
             Session.AddAdditionalDesktopContainer("chrome", "Konva");
-            var windowsDriver = (WindowsDriver)Session.GetDriverContainer<DesktopDriverContainer>("Windows").Driver;
-            konvaDragAndDropPage.MatchAllElementsByAppium(windowsDriver);
+            var container = (DesktopDriverContainer)Session.GetDriverContainer<DesktopDriverContainer>("Windows");
+            konvaDragAndDropPage.MatchAllElementsByAppium(container);
 
             //Step 4
+            var windowsDriver = (WindowsDriver)Session.GetDriverContainer<DesktopDriverContainer>("Windows").Driver;
             Assert.IsTrue(konvaDragAndDropPage.IsDifferenceBetweenScreenshots(windowsDriver), "Actual canvas has some changes. Please check TeamCity artifacts.");
         }
     }

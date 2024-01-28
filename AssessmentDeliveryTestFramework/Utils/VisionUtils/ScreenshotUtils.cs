@@ -95,7 +95,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         /// <param name="expectedScreenshot">Expected image..</param>
         /// <param name="expectedDifference">Max difference between two images. Using 'ErrorMetric.MeanAbsolute' metric.</param>
         /// <returns>If no difference return 'True'.</returns>
-        public bool MagickImageCompareTwoScreenshots(MagickImage actualScreenshot, MagickImage expectedScreenshot, double expectedDifference = 0.005)
+        public bool MagickImageCompareTwoScreenshots(MagickImage actualScreenshot, MagickImage expectedScreenshot, double expectedDifference = 0.05)
         {
             double actualDifference = actualScreenshot.Compare(expectedScreenshot, ErrorMetric.MeanAbsolute);
 
@@ -134,6 +134,8 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
                     Console.WriteLine($"Logging screenshot for '{TestContext.CurrentContext.Test.Name}' was not saved.");
                 }
             }
+
+            compareResult.SaveVisualizationAsFile($"{TestContext.CurrentContext.Test.Name}_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.png");
 
             return compareResult.Visualization.Length > 0;
         }

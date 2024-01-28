@@ -19,6 +19,12 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
             _loadFilesUtils = new LoadFilesUtils();
         }
 
+        /// <summary>
+        /// Method doesn't have any waiting for the element. Use 'ElementWaitFactory' class instead of.
+        /// </summary>
+        /// <param name="windowsDriver"></param>
+        /// <param name="imagePath"></param>
+        /// <returns></returns>
         public IWebElement FindElementByImagePattern(WindowsDriver windowsDriver, string imagePath)
         {
             var imageFile = _loadFilesUtils.ReadFileAsByteArray(imagePath);
@@ -27,8 +33,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 
             try
             {
-                return WaitElementDisplayedByImagePattern(base64ImageRepresentation);
-
                 return windowsDriver.FindElement(MobileBy.Image(base64ImageRepresentation));
             }
 
