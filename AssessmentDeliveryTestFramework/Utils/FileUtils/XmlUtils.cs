@@ -33,6 +33,11 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
             return xmlDoc.DocumentElement;
         }
 
+        public void SaveXmlDocument(XDocument xmlDoc, string path)
+        {
+            xmlDoc.Save(path);
+        }
+
         public XElement GetElementByXPath(XDocument xmlDoc, string xpath = "//*")
         {
             var element = xmlDoc.XPathSelectElement(xpath);
@@ -81,23 +86,36 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
         {
             var element = xmlDoc.Descendants(elementName);
 
-            if (element != null)
+            if (element.Any())
             {
                 return element.Where(x => x.Attribute(attribute).Value == attributeValue).
                     FirstOrDefault().
                     Elements("value").
                     Single().Value;
             }
-            else
-            {
-                Console.WriteLine($"Element '{elementName}' not found.");
-                throw new NullReferenceException();
-            }
+
+            Console.WriteLine($"Element '{elementName}' not found.");
+            throw new NullReferenceException();
         }
 
-        public void ChangeElementByOtherElement()
+        /// <summary>
+        /// Method uses for commenting some elements in the xml document.
+        /// </summary>
+        /// <param name="element"></param>
+        public void CommentElement(XElement element)
         {
+            element.ReplaceWith(new XComment(element.ToString()));
+        }
 
+        public void SetValueToElement(XDocument xmlDoc, string elementName, string attribute, string attributeValue, string attributeForUpdate, string newValue)
+        {
+            xmlDoc.Descendants(elementName).
+                Where(x => x.Attribute(attribute).
+                Value == attributeValue).
+                FirstOrDefault().
+                Elements(attributeForUpdate).
+                Single().
+                Value = newValue;
         }
     }
 }
