@@ -49,6 +49,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualTests", "VisualTests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CanvasTests", "..\AssessmentDeliveryTests\Web\VisualTests\CanvasTests.csproj", "{429B8A1A-669F-465C-98C9-C9A3D7302CCB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SoapUIMockService", "SoapUIMockService", "{6E15DEF3-326F-4110-A4D0-6BF4177A6B87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoapUIMockServiceTests", "..\AssessmentDeliveryTests\API\SoapUIMockService\SoapUIMockServiceTests\SoapUIMockServiceTests.csproj", "{11474737-6478-43CB-9D3B-D591649E16AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,10 @@ Global
 		{429B8A1A-669F-465C-98C9-C9A3D7302CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{429B8A1A-669F-465C-98C9-C9A3D7302CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{429B8A1A-669F-465C-98C9-C9A3D7302CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11474737-6478-43CB-9D3B-D591649E16AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11474737-6478-43CB-9D3B-D591649E16AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11474737-6478-43CB-9D3B-D591649E16AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11474737-6478-43CB-9D3B-D591649E16AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +121,8 @@ Global
 		{74576680-2123-41EA-B630-77CC6519E305} = {D9AD8764-0327-4760-892F-2CA172A77E9D}
 		{6CB7EA21-6D61-4325-9A01-CAD88E3DCB28} = {E0A281F4-6443-463B-AF39-7702F196B31A}
 		{429B8A1A-669F-465C-98C9-C9A3D7302CCB} = {6CB7EA21-6D61-4325-9A01-CAD88E3DCB28}
+		{6E15DEF3-326F-4110-A4D0-6BF4177A6B87} = {E4F31633-B2CA-4402-9605-8C76131F3377}
+		{11474737-6478-43CB-9D3B-D591649E16AC} = {6E15DEF3-326F-4110-A4D0-6BF4177A6B87}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39D9C2B7-D9E7-4CCF-BF52-ACD8B1297E01}
