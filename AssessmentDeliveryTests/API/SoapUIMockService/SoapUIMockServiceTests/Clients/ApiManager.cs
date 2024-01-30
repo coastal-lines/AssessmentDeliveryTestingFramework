@@ -1,14 +1,24 @@
 ﻿using RestSharp;
 using RestSharp.Authenticators;
-
+using SoapUIMockServiceTests.Models.v1.users.get;
 
 namespace SoapUIMockServiceTests.Clients
 {
-    internal class ApiClient : IDisposable
+    internal class ApiManager : IDisposable
     {
         private RestClient _client;
 
-        public ApiClient(string authUrl, string userName, string password)
+        public ApiManager()
+        {
+            _client = new RestClient();
+        }
+
+        public ApiManager(string baseUrl)
+        {
+            _client = new RestClient(baseUrl);
+        }
+
+        public ApiManager(string authUrl, string userName, string password)
         {
             var options = new RestClientOptions(authUrl)
             {
@@ -16,6 +26,18 @@ namespace SoapUIMockServiceTests.Clients
             };
 
             _client = new RestClient(options);
+        }
+
+        public RestClient GetApiClient()
+        {
+            return _client;
+        }
+
+        public async Task<UserGetResponse> GetUsersAsync()
+        {
+            var request = new RestRequest("/users", Method.Get);
+            var response = await _client.ExecuteAsync<UserGetResponse>(request);
+            return response.Data;
         }
 
         /// <summary>
