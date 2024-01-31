@@ -1,7 +1,13 @@
 ﻿namespace SoapUIMockServiceTests.Models.v1.users.get
 {
-    internal class UserGetResponse
+    public class User
     {
-        public string User { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class UsersResponse
+    {
+        public List<User> Users { get; set; }
     }
 }

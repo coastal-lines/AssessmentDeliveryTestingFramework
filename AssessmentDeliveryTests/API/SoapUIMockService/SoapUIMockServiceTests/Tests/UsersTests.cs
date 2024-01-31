@@ -3,14 +3,17 @@ using SoapUIMockServiceTests.Clients;
 
 namespace SoapUIMockServiceTests.Tests
 {
-    public class Tests
+    public class UsersTests
     {
         private ApiManager _apiManager;
+        private UsersClient _usersClient;
 
         [SetUp]
         public void Setup()
         {
             _apiManager = new ApiManager("http://localhost:3000");
+
+            _usersClient = new UsersClient(_apiManager);
         }
 
         [TearDown]
@@ -22,13 +25,9 @@ namespace SoapUIMockServiceTests.Tests
         [Test]
         public async Task Test_GetUsers()
         {
-            // Act
-            var response = await _apiManager.GetUsersAsync();
+            var userGetResponse = await _usersClient.GetUsersAsync();
 
-            // Assert
-            Assert.IsNotNull(response);
-            Assert.IsNotNull(response.User);
-            Assert.AreEqual("Bob", response.User);
+            Assert.AreEqual("Hamza", userGetResponse.User);
         }
     }
 }

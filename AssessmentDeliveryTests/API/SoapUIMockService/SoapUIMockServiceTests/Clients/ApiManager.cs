@@ -37,7 +37,28 @@ namespace SoapUIMockServiceTests.Clients
         {
             var request = new RestRequest("/users", Method.Get);
             var response = await _client.ExecuteAsync<UserGetResponse>(request);
+
             return response.Data;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="endPoint">"/users"</param>
+        /// <returns></returns>
+        public async Task<RestResponse> GetAsync(string endPoint)
+        {
+            var request = new RestRequest(endPoint, Method.Get);
+            var response = await _client.ExecuteAsync(request);
+
+            return response;
+        }
+
+        public T GetResource<T>() where T : class
+        {
+            var obj = (T)Activator.CreateInstance(typeof(T));
+
+            return obj;
         }
 
         /// <summary>
