@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using SoapUIMockServiceTests.Clients;
+using SoapUIMockServiceTests.Models.v1.users.get;
 
 namespace SoapUIMockServiceTests.Tests
 {
@@ -23,11 +24,32 @@ namespace SoapUIMockServiceTests.Tests
         }
 
         [Test]
-        public async Task Test_GetUsers()
+        public async Task Test_UsersExists()
         {
-            var userGetResponse = await _usersClient.GetUsersAsync();
+            var userResponse = await _usersClient.GetUsersAsync();
+            Assert.True(userResponse.Users.Any());
+        }
 
-            Assert.AreEqual("Hamza", userGetResponse.User);
+        [TestCase("Omkar")]
+        [TestCase("Hamza")]
+        public async Task Test_UserExists_WithValidName(string userName)
+        {
+            var userResponse = await _usersClient.GetUsersAsync();
+            Assert.True(userResponse.Users.Select(user => user.Name.Equals(userName)).Any());
+        }
+
+        [TestCase("Balaji")]
+        public async Task TestPost(string userName)
+        {
+            var userResponse = await _usersClient.PostUsersAsync();
+            Assert.True(userResponse.Users.Select(user => user.Name.Equals(userName)).Any());
+        }
+
+        [Test]
+        public async Task TestPo()
+        {
+            var userResponse = await _usersClient.PostUsersAsync();
+            Assert.True(userResponse.Users.Any());
         }
     }
 }

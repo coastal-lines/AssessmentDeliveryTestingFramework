@@ -7,7 +7,16 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
     {
         public T Deserialize<T>(string jsonResponse)
         {
-            return (T)(object)JsonConvert.DeserializeObject<T>(jsonResponse);
+            try
+            {
+                return (T)(object)JsonConvert.DeserializeObject<T>(jsonResponse);
+            }
+            catch (Newtonsoft.Json.JsonSerializationException ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            throw new Exception($"Error deserialize: {jsonResponse}");
         }
 
         public T LoadJsonFromFile<T>(string filePath)

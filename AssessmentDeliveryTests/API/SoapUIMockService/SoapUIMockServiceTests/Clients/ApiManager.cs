@@ -1,6 +1,5 @@
 ﻿using RestSharp;
 using RestSharp.Authenticators;
-using SoapUIMockServiceTests.Models.v1.users.get;
 
 namespace SoapUIMockServiceTests.Clients
 {
@@ -33,14 +32,6 @@ namespace SoapUIMockServiceTests.Clients
             return _client;
         }
 
-        public async Task<UserGetResponse> GetUsersAsync()
-        {
-            var request = new RestRequest("/users", Method.Get);
-            var response = await _client.ExecuteAsync<UserGetResponse>(request);
-
-            return response.Data;
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -49,7 +40,28 @@ namespace SoapUIMockServiceTests.Clients
         public async Task<RestResponse> GetAsync(string endPoint)
         {
             var request = new RestRequest(endPoint, Method.Get);
+
             var response = await _client.ExecuteAsync(request);
+
+            if (response.ErrorMessage != null && response.ErrorMessage.Contains("No connection could be made because the target machine actively refused it."))
+            {
+                Console.WriteLine("Please check that SoapUI is already opened.");
+                throw new Exception(response.ErrorMessage);
+            }
+
+            if (response.Content.Contains("There are currently 0 running SoapUI MockServices"))
+            {
+                Console.WriteLine("Please check that you started SoapUI MockService.");
+                throw new Exception(response.Content);
+            }
+            
+            return response;
+        }
+
+        public async Task<RestResponse> PostAsync(string endPoint, string body)
+        {
+            var request = new RestRequest("/users").AddJsonBody("{\r\n    \"user\": Balaji,\r\n    \"id\": 4\r\n}");
+            var response = await _client.PostAsync(request);
 
             return response;
         }
