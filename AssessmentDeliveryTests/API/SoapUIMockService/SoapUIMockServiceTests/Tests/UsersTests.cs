@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using SoapUIMockServiceTests.Clients;
-using SoapUIMockServiceTests.Models.v1.users.get;
+using System.Net;
 
 namespace SoapUIMockServiceTests.Tests
 {
@@ -13,7 +13,6 @@ namespace SoapUIMockServiceTests.Tests
         public void Setup()
         {
             _apiManager = new ApiManager("http://localhost:3000");
-
             _usersClient = new UsersClient(_apiManager);
         }
 
@@ -39,17 +38,17 @@ namespace SoapUIMockServiceTests.Tests
         }
 
         [TestCase("Balaji")]
-        public async Task TestPost(string userName)
+        public async Task Test_PostNewUser_ValidNewUserExist(string userName)
         {
             var userResponse = await _usersClient.PostUsersAsync();
             Assert.True(userResponse.Users.Select(user => user.Name.Equals(userName)).Any());
         }
 
         [Test]
-        public async Task TestPo()
+        public async Task Test_PostNewUser_RequestWithoutBody_Validate400BadRequest()
         {
-            var userResponse = await _usersClient.PostUsersAsync();
-            Assert.True(userResponse.Users.Any());
+            var userResponse = await _usersClient.PostUsersAsyncEmptyBody();
+            Assert.That(userResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
         }
     }
 }

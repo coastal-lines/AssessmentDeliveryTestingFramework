@@ -32,16 +32,12 @@ namespace SoapUIMockServiceTests.Clients
             return _client;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="endPoint">"/users"</param>
-        /// <returns></returns>
-        public async Task<RestResponse> GetAsync(string endPoint)
+        private async Task HandleSoapUIResponseErrorsAsync(RestResponse response)
         {
-            var request = new RestRequest(endPoint, Method.Get);
-
-            var response = await _client.ExecuteAsync(request);
+            if (!response.IsSuccessful)
+            {
+                throw new Exception($"Error: {response.ErrorMessage}");
+            }
 
             if (response.ErrorMessage != null && response.ErrorMessage.Contains("No connection could be made because the target machine actively refused it."))
             {
@@ -54,14 +50,29 @@ namespace SoapUIMockServiceTests.Clients
                 Console.WriteLine("Please check that you started SoapUI MockService.");
                 throw new Exception(response.Content);
             }
-            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="endpoint">"/users"</param>
+        /// <returns></returns>
+        public async Task<RestResponse> GetAsync(string endpoint)
+        {
+            var request = new RestRequest(endpoint, Method.Get);
+            var response = await _client.ExecuteAsync(request);
+
+            await HandleSoapUIResponseErrorsAsync(response);
+
             return response;
         }
 
-        public async Task<RestResponse> PostAsync(string endPoint, string body)
+        public async Task<RestResponse> PostAsync(string endpoint, string body)
         {
-            var request = new RestRequest("/users").AddJsonBody("{\r\n    \"user\": Balaji,\r\n    \"id\": 4\r\n}");
-            var response = await _client.PostAsync(request);
+            var request = new RestRequest(endpoint).AddJsonBody(body);
+            var response = await _client.ExecutePostAsync(request);
+
+            await HandleSoapUIResponseErrorsAsync(response);
 
             return response;
         }
@@ -69,7 +80,6 @@ namespace SoapUIMockServiceTests.Clients
         public T GetResource<T>() where T : class
         {
             var obj = (T)Activator.CreateInstance(typeof(T));
-
             return obj;
         }
 
