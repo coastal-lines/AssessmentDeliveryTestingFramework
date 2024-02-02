@@ -76,7 +76,6 @@ namespace SoapUIMockServiceTests.Clients
             var request = new RestRequest(endpoint).AddJsonBody(body);
             var response = await _client.ExecutePostAsync(request);
 
-            await HandleResponseSuccessful(response);
             await HandleSoapUIResponseErrorsAsync(response);
 
             return response;
@@ -87,6 +86,7 @@ namespace SoapUIMockServiceTests.Clients
             var request = new RestRequest(endpoint, Method.Put).AddJsonBody(body);
             var response = await _client.ExecuteAsync(request);
 
+            await HandleResponseSuccessful(response);
             await HandleSoapUIResponseErrorsAsync(response);
 
             return response;
