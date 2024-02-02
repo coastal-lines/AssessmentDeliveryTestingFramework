@@ -29,13 +29,26 @@ namespace SoapUIMockServiceTests.Tests
             Assert.True(userResponse.Users.Any());
         }
 
+        #region GET
+
         [TestCase("Omkar")]
         [TestCase("Hamza")]
-        public async Task Test_UserExists_WithValidName(string userName)
+        public async Task Test_GetAllUsers_WithValidUserExists(string userName)
         {
             var userResponse = await _usersClient.GetUsersAsync();
             Assert.True(userResponse.Users.Select(user => user.Name.Equals(userName)).Any());
         }
+
+        [TestCase(1, "Omkar")]
+        public async Task Test_GetUserByID_WithValidUserExists(int userId, string userName)
+        {
+            var userResponse = await _usersClient.GetUserByIDAsync(userId);
+            Assert.True(userResponse.Users.Select(user => user.Name.Equals(userName)).Any());
+        }
+
+        #endregion
+
+        #region POST
 
         [TestCase("Balaji")]
         public async Task Test_PostNewUser_ValidNewUserExist(string userName)
@@ -50,5 +63,18 @@ namespace SoapUIMockServiceTests.Tests
             var userResponse = await _usersClient.PostUsersAsyncEmptyBody();
             Assert.That(userResponse.StatusCode.Equals(HttpStatusCode.BadRequest));
         }
+
+        #endregion
+
+        #region PUT
+
+        [TestCase(2, "Olga")]
+        public async Task Test_PutUser_ValidUserExist(int userId, string userName)
+        {
+            var userResponse = await _usersClient.PutUser(userId);
+            Assert.True(userResponse.Users.Select(user => user.Name.Equals(userName) && user.Id.Equals(userId)).Any());
+        }
+
+        #endregion
     }
 }

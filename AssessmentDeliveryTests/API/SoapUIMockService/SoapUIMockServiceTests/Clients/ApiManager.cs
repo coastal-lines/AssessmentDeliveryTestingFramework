@@ -32,13 +32,16 @@ namespace SoapUIMockServiceTests.Clients
             return _client;
         }
 
-        private async Task HandleSoapUIResponseErrorsAsync(RestResponse response)
+        private async Task HandleResponseSuccessful(RestResponse response)
         {
             if (!response.IsSuccessful)
             {
                 throw new Exception($"Error: {response.ErrorMessage}");
             }
+        }
 
+        private async Task HandleSoapUIResponseErrorsAsync(RestResponse response)
+        {
             if (response.ErrorMessage != null && response.ErrorMessage.Contains("No connection could be made because the target machine actively refused it."))
             {
                 Console.WriteLine("Please check that SoapUI is already opened.");
@@ -62,6 +65,7 @@ namespace SoapUIMockServiceTests.Clients
             var request = new RestRequest(endpoint, Method.Get);
             var response = await _client.ExecuteAsync(request);
 
+            await HandleResponseSuccessful(response);
             await HandleSoapUIResponseErrorsAsync(response);
 
             return response;
@@ -71,6 +75,17 @@ namespace SoapUIMockServiceTests.Clients
         {
             var request = new RestRequest(endpoint).AddJsonBody(body);
             var response = await _client.ExecutePostAsync(request);
+
+            await HandleResponseSuccessful(response);
+            await HandleSoapUIResponseErrorsAsync(response);
+
+            return response;
+        }
+
+        public async Task<RestResponse> PutAsync(string endpoint, string body)
+        {
+            var request = new RestRequest(endpoint, Method.Put).AddJsonBody(body);
+            var response = await _client.ExecuteAsync(request);
 
             await HandleSoapUIResponseErrorsAsync(response);
 
