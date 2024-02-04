@@ -19,7 +19,6 @@ namespace AzureDevOpsApiTests.Clients
         public WireMockClient(int port)
         {
             _wireMockServer = WireMockServer.Start(port);
-
             _wireMockServer.ReadStaticMappings(MappingPath);
         }
 
@@ -31,7 +30,6 @@ namespace AzureDevOpsApiTests.Clients
         public void Stop()
         {
             _wireMockServer.Stop();
-
             _wireMockServer.Dispose();
         }
     }

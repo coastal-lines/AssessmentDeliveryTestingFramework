@@ -15,7 +15,6 @@ namespace AzureDevOpsApiTests.Tests.Mock
 
     public class WorkItemTestCasesTests
     {
-        private RestUtils _restUtils;
         private RestClient _restClient;
         private WireMockClient _wireMockClient;
 
@@ -66,7 +65,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
         {
             SetupGetTestCaseStub();
 
-            var response = _restUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Get);
+            var response = RestUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Get);
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
         }
 
@@ -75,7 +74,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
         {
             SetupGetTestCaseStub();
 
-            var response = _restUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Get);
+            var response = RestUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Get);
             var content = _wireMockClient.JsonUtils.GetValueFromResponse(response.Content, "response.body");
             var testCase = _wireMockClient.JsonUtils.Deserialize<Models.AzureDevOpsTestCase>(content);
 
@@ -101,7 +100,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
                     ]
                 }"));
 
-            var response = _restUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Patch);
+            var response = RestUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Patch);
             Assert.AreEqual((int)HttpStatusCode.Created, (int)response.StatusCode, "Expected 201 but was " + (int)response.StatusCode);
         }
     }
