@@ -51,7 +51,7 @@ namespace SoapUIMockServiceTests.Clients
                 ""name"": ""{userName}""
             }}";
 
-            var response = await _apiManager.PutAsync($"/users/{userId}", jsonString);
+            var response = await _apiManager.PatchAsync($"/users/{userId}", jsonString);
             return _jsonUtils.Deserialize<UsersObject>(response.Content);
         }
     }

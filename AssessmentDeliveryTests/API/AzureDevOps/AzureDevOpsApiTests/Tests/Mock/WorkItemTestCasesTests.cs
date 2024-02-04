@@ -8,19 +8,15 @@ namespace AzureDevOpsApiTests.Tests.Mock
 {
     public static class TestCaseData
     {
-        public static string Server = "http://localhost";
-
         public static int Port = 8090;
-
+        public static string Server = "http://localhost";
         public static string ExpectedTestCaseName = "Verify Login Functionality";
     }
 
     public class WorkItemTestCasesTests
     {
         private RestUtils _restUtils;
-
         private RestClient _restClient;
-
         private WireMockClient _wireMockClient;
 
         private string _testCaseEndPoint = "/_apis/test/plans/1/suites/1/cases/1";
@@ -31,7 +27,6 @@ namespace AzureDevOpsApiTests.Tests.Mock
         public void Setup()
         {
             _wireMockClient = new WireMockClient(TestCaseData.Port);
-
             _restClient = RestUtils.CreateRestClient($"{TestCaseData.Server}:{TestCaseData.Port}");
         }
 
@@ -39,7 +34,6 @@ namespace AzureDevOpsApiTests.Tests.Mock
         public void TearDown()
         {
             _wireMockClient.Stop();
-
             _restClient.Dispose();
         }
 
@@ -50,7 +44,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
             _wireMockClient.GetWireMockServer()
                 .Given(WireMock.RequestBuilders.Request.Create().WithPath("/_apis/test/plans/1/suites/1/cases/1").UsingGet())
                 .RespondWith(WireMock.ResponseBuilders.Response.Create()
-                    .WithHeader("Content-Type", "text/plain")
+                    .WithHeader("Content-Type", "application/json")
                     .WithStatusCode(200)
                     .WithBodyFromFile(mappingAzureDevOpsTest1Path));
         }
@@ -62,7 +56,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
             _wireMockClient.GetWireMockServer()
                 .Given(WireMock.RequestBuilders.Request.Create().WithPath("/_apis/test/plans/1/suites/1/cases/1").UsingPatch())
                 .RespondWith(WireMock.ResponseBuilders.Response.Create()
-                    .WithHeader("Content-Type", "text/plain")
+                    .WithHeader("Content-Type", "application/json")
                     .WithStatusCode(201)
                     .WithBodyFromFile(mappingAzureDevOpsTest1Path));
         }
@@ -73,7 +67,6 @@ namespace AzureDevOpsApiTests.Tests.Mock
             SetupGetTestCaseStub();
 
             var response = _restUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Get);
-
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
         }
 
@@ -83,9 +76,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
             SetupGetTestCaseStub();
 
             var response = _restUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Get);
-
             var content = _wireMockClient.JsonUtils.GetValueFromResponse(response.Content, "response.body");
-
             var testCase = _wireMockClient.JsonUtils.Deserialize<Models.AzureDevOpsTestCase>(content);
 
             Assert.AreEqual("Login test", testCase.Fields.SystemTitle);
@@ -98,7 +89,7 @@ namespace AzureDevOpsApiTests.Tests.Mock
 
             _wireMockClient.GetWireMockServer()
             .Given(WireMock.RequestBuilders.Request.Create().WithPath("/_apis/test/plans/1/suites/1/cases/1").UsingPatch()
-                .WithHeader("Content-Type", "text/plain")
+                .WithHeader("Content-Type", "application/json")
                 .WithBody(@"{
                     ""bodyPatterns"": [
                         {
@@ -111,7 +102,6 @@ namespace AzureDevOpsApiTests.Tests.Mock
                 }"));
 
             var response = _restUtils.ExecureRequest(_restClient, _testCaseEndPoint, Method.Patch);
-
             Assert.AreEqual((int)HttpStatusCode.Created, (int)response.StatusCode, "Expected 201 but was " + (int)response.StatusCode);
         }
     }

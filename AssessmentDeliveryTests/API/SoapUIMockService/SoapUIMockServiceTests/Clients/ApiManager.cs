@@ -92,6 +92,17 @@ namespace SoapUIMockServiceTests.Clients
             return response;
         }
 
+        public async Task<RestResponse> PatchAsync(string endpoint, string body)
+        {
+            var request = new RestRequest(endpoint, Method.Patch).AddJsonBody(body);
+            var response = await _client.ExecuteAsync(request);
+
+            await HandleResponseSuccessful(response);
+            await HandleSoapUIResponseErrorsAsync(response);
+
+            return response;
+        }
+
         public T GetResource<T>() where T : class
         {
             var obj = (T)Activator.CreateInstance(typeof(T));
