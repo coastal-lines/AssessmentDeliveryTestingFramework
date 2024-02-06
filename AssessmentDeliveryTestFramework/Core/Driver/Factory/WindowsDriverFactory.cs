@@ -4,38 +4,40 @@ using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
 using System.Diagnostics;
-using AssessmentDeliveryTestingFramework.Utils.FileUtils;
-using AssessmentDeliveryTestingFramework.Utils;
+using AssessmentDeliveryTestingFramework.Utils.System;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
     public sealed class WindowsDriverFactory
     {
-        //Appium 4.4.5
-        /*
-        public void StartWinAppDriver()
+        private WindowsSystemUtils _windowsSystemUtils;
+
+        public WindowsDriverFactory() 
         {
-            var currentProcesses = new List<Process>(Process.GetProcesses().Where(p => p.ProcessName.Equals("WinAppDriver")));
+            _windowsSystemUtils = new WindowsSystemUtils();
+        }
+
+        /// <summary>
+        /// For Appium 4.4.5 and Selenium3 only!
+        /// </summary>
+        [Obsolete]
+        public void StartWinAppDriverForAppium1()
+        {
+            //var currentProcesses = new List<Process>(Process.GetProcesses().Where(p => p.ProcessName.Equals("WinAppDriver")));
+            var currentProcesses = _windowsSystemUtils.GetListProcessesByName("WinAppDriver");
 
             if (currentProcesses.Count == 0)
             {
-                 // Must be run as Administrator - in other case winappdriver doesn't see any app
-                var pathWinAppDriver = "\\WinAppDriver\\WinAppDriver.exe";
-
-                Process p = new Process();
-                p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                p.StartInfo.FileName = pathWinAppDriver;
-                p.StartInfo.Verb = "runas";
-                p.Start();
-
-                //p.Start(pathWinAppDriver);
+                // Must be run as Administrator - in other case winappdriver doesn't see any app
+                _windowsSystemUtils.StartProcess("\\WinAppDriver\\WinAppDriver.exe");
 
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
                 while (stopWatch.Elapsed.Seconds < 10)
                 {
                     Thread.Sleep(500);
-                    currentProcesses = new List<Process>(Process.GetProcesses().Where(p => p.ProcessName.Equals("WinAppDriver")));
+                    //currentProcesses = new List<Process>(Process.GetProcesses().Where(p => p.ProcessName.Equals("WinAppDriver")));
+                    currentProcesses = _windowsSystemUtils.GetListProcessesByName("WinAppDriver");
                     if (currentProcesses.Count > 0)
                     {
                         stopWatch.Stop();
@@ -44,30 +46,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 }
 
                 stopWatch.Stop();
-
                 Thread.Sleep(8000);
             }
         }
-        */
-
-        //Appium 4.4.5
-        /*
-        public WindowsDriver<IWebElement> CreateWindowsDriver()
-        {
-            AppiumOptions Options = new AppiumOptions();
-            Options.AddAdditionalCapability("app", "\\Free Quiz Maker\\FreeQuizMaker.exe");
-            Options.AddAdditionalCapability("deviceName", "WindowsPC");
-            Options.AddAdditionalCapability("platformName", "Windows");
-            //var DesktopSession = new WindowsDriver<IWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), Options);
-
-            var driverUrl = "http://127.0.0.1:4723";
-
-            var applicationSession = new WindowsDriver<IWebElement>(new Uri(driverUrl), Options);
-            applicationSession.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(120);
-
-            return applicationSession;
-        }
-        */
 
         public static void StartWinAppDriver()
         {
@@ -127,10 +108,14 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
         /// </summary>
         public WindowsDriver CreateWindowsDriverForBrowserConnecting(string browserProcessName, string windowTitle, string platformName = "Windows", string automationName = "Windows")
         {
+            /*
             var currentProcesses = new List<Process>(Process.GetProcesses().Where(p => p.ProcessName.Equals(browserProcessName)));
             var userProcess = currentProcesses.Where(process => process.MainWindowHandle.ToString() != "0" && process.MainWindowTitle.ToString().Contains(windowTitle)).ToList();
             var appTopLevelWindowHandle = userProcess[0].MainWindowHandle;
             var appTopLevelWindowHandleHex = appTopLevelWindowHandle.ToString("x");
+            */
+
+            var appTopLevelWindowHandleHex = _windowsSystemUtils.GetApplicationTopLevelWindowHandleHex(browserProcessName, windowTitle);
 
             var builder = new AppiumServiceBuilder();
             KeyValuePair<string, string> arguments = new KeyValuePair<string, string>("--use-plugins", "images");
@@ -150,7 +135,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             //Wait few seconds for NodeJS
             Thread.Sleep(3000);
 
-            WindowsDriver driver = null;
+            //WindowsDriver driver = null;
 
             try
             {

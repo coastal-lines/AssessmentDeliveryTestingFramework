@@ -1,22 +1,16 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.TestManagement;
-using AssessmentDeliveryTestingFramework.Core.Utils;
+using AssessmentDeliveryTestingFramework.Utils.System;
 using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
 {
     public sealed class WindowsDriverUtils : IPlatformDriverUtils
     {
-        private Process[] GetProcessByName(string processName)
+        private WindowsSystemUtils _processUtils;
+
+        public WindowsDriverUtils() 
         {
-            return Process.GetProcessesByName(processName);
+            _processUtils = new WindowsSystemUtils();
         }
 
         public List<int> GetDriversProcessesId(string browserType)
@@ -24,10 +18,10 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
             switch (browserType)
             {
                 case BrowserType.Chrome:
-                    return GetProcessByName("chromedriver").Select(process => process.Id).ToList();
+                    return _processUtils.GetListProcessesId("chromedriver");
 
                 case BrowserType.Firefox:
-                    return GetProcessByName("geckodriver").Select(process => process.Id).ToList();
+                    return _processUtils.GetListProcessesId("geckodriver");
 
                 default:
                     throw new NotSupportedException($"Browser type {browserType} is not supported.");
@@ -36,10 +30,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
 
         public void TerminateProcess(string processName)
         {
-            foreach (var process in Process.GetProcessesByName(processName))
-            {
-                process.Kill();
-            }
+            _processUtils.CloseAllProcesses(processName);
         }
 
         public void TearDownWindowsDriver(WindowsDriver driver, string currentTestType = "Windows")

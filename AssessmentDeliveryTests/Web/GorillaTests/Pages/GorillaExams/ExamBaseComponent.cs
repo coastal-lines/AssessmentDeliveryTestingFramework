@@ -7,7 +7,6 @@ namespace GorillaTests.Pages.GorillaExams
     public class ExamBaseComponent : WebBasePage
     {
         private ExamNavigationComponent _examNavigationComponent;
-
         private ExamToolsComponent _examToolsComponent;
 
         private IList<IWebElement> _ListAnswersMCQ => WebElementWaiting.WaitElements(By.TagName("app-tgo-choice"));

@@ -1,13 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AssessmentDeliveryTestingFramework.Core.Driver.DriverUtils
+namespace AssessmentDeliveryTestingFramework.Core.Element.Mobile.Android
 {
     public class AndroidActions
     {
@@ -53,11 +48,13 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.DriverUtils
         }
     }
 
-    public class ActionUtils
+    /*
+    public class AndroidActions
     {
         public void GetCentreOfScreen(IWebDriver driver)
         {
 
         }
     }
+    */
 }

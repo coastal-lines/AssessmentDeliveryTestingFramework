@@ -1,6 +1,5 @@
 using FluentAssertions;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 using SoapUIMockServiceTests.Clients;
 using SoapUIMockServiceTests.Models.v1.users;
 using System.Net;

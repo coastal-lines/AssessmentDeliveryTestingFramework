@@ -6,6 +6,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Desktop
     {
         #region Windows actions
 
+
+
         /*
         public void WindowsCtrlA()
         {

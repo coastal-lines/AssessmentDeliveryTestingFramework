@@ -17,6 +17,11 @@
             return Id == other.Id && Name == other.Name;
         }
 
+        /// <summary>
+        /// HashCode(object unique id) is not important here for comparing.
+        /// So using only one value.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return Id.GetHashCode();

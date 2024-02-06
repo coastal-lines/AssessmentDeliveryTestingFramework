@@ -7,7 +7,6 @@ namespace SoapUIMockServiceTests.Clients
     internal class UsersClient
     {
         private ApiManager _apiManager;
-
         private JsonUtils _jsonUtils;
 
         public UsersClient(ApiManager apiManager)

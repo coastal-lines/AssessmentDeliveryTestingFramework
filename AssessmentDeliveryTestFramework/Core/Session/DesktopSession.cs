@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using AssessmentDeliveryTestingFramework.Core.Utils;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
 using AssessmentDeliveryTestingFramework.Core.Wait;
+using AssessmentDeliveryTestingFramework.Core.Element.Web;
 
 namespace AssessmentDeliveryTestingFramework.Core.Session
 {
     public class DesktopSession : Session
     {
         private string _categories;
+
+        public WebElementActions WebElementActions { get; private set; }
 
         public WebElementWaiting WebElementWaiting { get; private set; }
 
@@ -35,6 +38,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             }
 
             driverContainers.Add(driverFactory.CreateDesktopDriverContainer(_categories, applicationPath));
+
+            WebElementActions = new WebElementActions((IWebDriver)driverContainers.OfType<DesktopDriverContainer>().Last().Driver);
 
             WebElementWaiting = driverContainers.OfType<DesktopDriverContainer>().Last().WebElementWaiting;
 

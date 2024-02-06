@@ -14,7 +14,6 @@ namespace GorillaTests.Pages.GorillaExams
         public ExamBaseComponent NavigateIntoExam()
         {
             Driver.Navigate().GoToUrl("https://app.testgorilla.com/preview/7aee275a-8df7-469f-98b2-68ea44c994e4?language=en");
-
             return new ExamBaseComponent(Driver, WebElementWaiting);
         }
     }

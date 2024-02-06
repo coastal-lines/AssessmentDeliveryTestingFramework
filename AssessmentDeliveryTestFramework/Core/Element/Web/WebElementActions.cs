@@ -167,6 +167,46 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Web
             PressEnterKey();
         }
 
+        public string GetText(IWebElement element)
+        {
+            var text = element.Text;
+
+            if (string.IsNullOrEmpty(text))
+                text = element.GetAttribute("value");
+
+            return text ?? string.Empty;
+        }
+
+        public void WindowsPasteText()
+        {
+            new Actions(_driver)
+                .KeyDown(Keys.Control)
+                .SendKeys("v")
+                .Release()
+                .Build()
+                .Perform();
+        }
+
+        public void WindowsCopyText()
+        {
+            new Actions(_driver)
+                .KeyDown(Keys.Control)
+                .SendKeys("a")
+                .SendKeys("c")
+                .KeyUp(Keys.Control)
+                .Build()
+                .Perform();
+        }
+
+        public void SaveDocumentByKeyboard()
+        {
+            new Actions(_driver)
+                .KeyDown(Keys.Control)
+                .SendKeys("s")
+                .Build()
+                .Perform();
+        }
+
         #endregion
 
         #region For IFrames

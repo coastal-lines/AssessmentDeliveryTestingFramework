@@ -1,7 +1,7 @@
 using AptitudeTests.Pages;
 using AptitudeTests.Pages.Android;
 using AptitudeTests.Utils;
-using AssessmentDeliveryTestingFramework.Core.Driver.DriverUtils;
+using AssessmentDeliveryTestingFramework.Core.Element.Mobile.Android;
 using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using NUnit.Framework.Internal;
 

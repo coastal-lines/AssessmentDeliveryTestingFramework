@@ -1,11 +1,6 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Driver.DriverUtils;
-using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+﻿using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+using AssessmentDeliveryTestingFramework.Utils;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssessmentDeliveryTestingFramework.Core.Browsers.Min
 {
@@ -14,18 +9,16 @@ namespace AssessmentDeliveryTestingFramework.Core.Browsers.Min
         protected const string CONTENT_TYPE = "text/html";
 
         protected string navigationWindow;
-
         protected string documentWindow;
 
         protected IWebDriver driver;
-
-        protected JsExecutorUtils jsUtils;
+        protected JavaScriptUtils jsUtils;
 
         public ElectronBrowserFeatures(IWebDriver driver)
         {
             this.driver = driver;
 
-            jsUtils = new JsExecutorUtils(driver);
+            jsUtils = new JavaScriptUtils();
 
             //navigationWindow = GetWindowHandle(ConfigManager.Config.MinBrowser.NavigationPageUrl);
 
@@ -38,7 +31,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Browsers.Min
 
         private string GetContentType()
         {
-            return jsUtils.DoScriptAndReturnResult("document.contentType;");
+            return jsUtils.ExecuteJS(driver, "document.contentType;");
         }
 
         protected string GetWindowHandle(string pageName)

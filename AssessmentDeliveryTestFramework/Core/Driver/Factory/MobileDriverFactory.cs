@@ -3,18 +3,21 @@ using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.Service.Options;
 using OpenQA.Selenium.Appium.Service;
 using OpenQA.Selenium.Appium;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
+using AssessmentDeliveryTestingFramework.Utils.System;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
     public sealed class MobileDriverFactory
     {
+        private WindowsSystemUtils _windowsSystemUtils;
+
+        public MobileDriverFactory() 
+        {
+            _windowsSystemUtils = new WindowsSystemUtils();
+        }
+
         public AndroidDriver CreateMobileDriver()
         {
             var builder = new AppiumServiceBuilder();
@@ -49,14 +52,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 //TODO
                 throw;
             }
-            //var driver = new AndroidDriver(new Uri("http://localhost:4723/"), capabilities, TimeSpan.FromSeconds(180));
-
-            //return driver;
         }
 
         public void StartAndroidEmulator()
         {
-            RunCmdScript("/c \"emulator -avd pixel_2_-_api_28", false, false);
+            _windowsSystemUtils.RunCmdScript("/c \"emulator -avd pixel_2_-_api_28", false, false);
 
             var timer = new Stopwatch();
             timer.Start();
@@ -70,7 +70,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                     {
                         timer.Stop();
                         //timer.Restart();
-                        var status = RunCmdScript("/c \"\\android-sdk\\platform-tools\\adb.exe\" -s emulator-5554 shell getprop init.svc.bootanim", true, true);
+                        var status = _windowsSystemUtils.RunCmdScript("/c \"\\android-sdk\\platform-tools\\adb.exe\" -s emulator-5554 shell getprop init.svc.bootanim", true, true);
                         if (status.Equals("stopped\r\n"))
                         {
                             timer.Stop();
@@ -89,46 +89,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 timer.Stop();
                 attepmts = 0;
             }
-        }
-
-        private string RunCmdScript(string arguments, bool waitForExit, bool waitForResponse)
-        {
-            string output = null;
-            string error = null;
-
-            ProcessStartInfo processStartInfo = new ProcessStartInfo
-            {
-                FileName = "cmd.exe",
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-                Arguments = arguments
-            };
-
-            // Create a new process
-            Process process = new Process
-            {
-                StartInfo = processStartInfo
-            };
-
-            // Start the process
-            process.Start();
-
-            if (waitForResponse)
-            {
-                // Read the output and error streams
-                output = process.StandardOutput.ReadToEnd();
-                error = process.StandardError.ReadToEnd();
-            }
-
-            // Wait for the process to exit
-            if (waitForExit)
-            {
-                process.WaitForExit();
-            }
-
-            return !string.IsNullOrEmpty(error) ? error : output;
         }
     }
 }
