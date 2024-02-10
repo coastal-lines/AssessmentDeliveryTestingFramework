@@ -20,6 +20,5 @@ namespace AssessmentDeliveryTestingFramework.Core.Logging
         {
             loggerAdapter.LogError(message, ex);
         }
-        // Add other log methods as needed
     }
 }

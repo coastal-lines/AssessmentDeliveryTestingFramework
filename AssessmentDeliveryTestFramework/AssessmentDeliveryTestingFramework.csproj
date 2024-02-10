@@ -31,6 +31,7 @@
     <PackageReference Include="SeleniumExtras.WaitHelpers" Version="1.0.2" />
     <PackageReference Include="Serilog" Version="3.1.1" />
     <PackageReference Include="Serilog.Sinks.Console" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="SikuliSharp.NetCore" Version="1.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
@@ -46,6 +47,7 @@
   <ItemGroup>
     <Folder Include="Files\Files\DownloadFolder\" />
     <Folder Include="Properties\" />
+    <Folder Include="Resources\TemporaryResources\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties resources_4appconfig_1json__JsonSchema="https://api.airplane.dev/v0/schemas/task.json" /></VisualStudio></ProjectExtensions>

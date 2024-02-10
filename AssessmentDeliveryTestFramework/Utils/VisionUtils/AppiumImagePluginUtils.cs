@@ -1,4 +1,5 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Element.Web;
+using AssessmentDeliveryTestingFramework.Core.Logging;
 using AssessmentDeliveryTestingFramework.Utils.FileUtils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
@@ -38,11 +39,8 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 
             catch (NoSuchElementException ex)
             {
-                Console.WriteLine(ex);
-
-                Console.WriteLine($"Element for image pattern '{imagePath}' was not found.");
-
-                throw ex;
+                Logger.LogError($"Element for image pattern '{imagePath}' was not found.", ex);
+                throw;
             }
 
             catch (WebDriverTimeoutException ex)

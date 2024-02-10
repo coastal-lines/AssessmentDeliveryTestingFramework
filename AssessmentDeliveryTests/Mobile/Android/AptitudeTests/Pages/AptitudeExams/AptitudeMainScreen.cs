@@ -41,7 +41,6 @@ namespace AptitudeTests.Pages.AptitudeExams
         public TestScreen SelectTest(string testName)
         {
             WebElementWaiting.WaitElement(By.XPath($"//android.widget.CheckBox[@text='{testName}']")).Click();
-            //Driver.FindElement(By.XPath($"//android.widget.CheckBox[@text='{testName}']")).Click();
 
             StartTest();
             DoNormalTest();

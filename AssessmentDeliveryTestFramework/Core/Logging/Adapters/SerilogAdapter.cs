@@ -1,32 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AssessmentDeliveryTestingFramework.Utils;
+using Serilog;
 
 namespace AssessmentDeliveryTestFramework.Core.Logging.Adapters
 {
-    using Serilog;
-
     public class SerilogAdapter : ILoggerAdapter
     {
-        private readonly ILogger logger;
+        private static readonly Lazy<ILogger> logger = new Lazy<ILogger>(CreateLogger);
 
-        public SerilogAdapter()
+
+        /// <summary>
+        /// Serilog logger initialization
+        /// </summary>
+        private static ILogger CreateLogger()
         {
-            // Initialize your Serilog logger here
-            this.logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+            return new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.File(DirectoryUtils.GetLogFilePath(), outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
+                .CreateLogger();
         }
 
         public void LogInformation(string message)
         {
-            this.logger.Information(message);
+            logger.Value.Information(message);
         }
 
         public void LogError(string message, Exception ex)
         {
-            this.logger.Error(ex, message);
+            logger.Value.Error(ex, message);
         }
-        // Implement other log methods
     }
 }
