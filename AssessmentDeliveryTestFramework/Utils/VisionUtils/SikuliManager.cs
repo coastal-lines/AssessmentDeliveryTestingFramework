@@ -19,14 +19,12 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         public IPattern LoadPatternFromFile(string filePath, float similarity = 0.9f)
         {
             var pattern = Patterns.FromFile(filePath, similarity);
-
             return pattern;
         }
 
         public Match FindMatch(IPattern pattern)
         {
             var match = GetSikuliSession().Find(pattern);
-
             return match;
         }
 
@@ -38,7 +36,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         public bool IsPatternExisted(IPattern pattern)
         {
             var isVisible = GetSikuliSession().Exists(pattern);
-
             return isVisible;
         }
 

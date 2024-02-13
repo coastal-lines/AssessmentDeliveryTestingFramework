@@ -1,9 +1,4 @@
 ﻿using AssessmentDeliveryTestFramework.Core.Logging.Adapters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssessmentDeliveryTestingFramework.Core.Logging
 {

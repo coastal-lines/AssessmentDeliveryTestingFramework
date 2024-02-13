@@ -10,13 +10,11 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
     public class AppiumImagePluginUtils
     {
         private Base64Utils _base64Utils;
-
         private LoadFilesUtils _loadFilesUtils;
 
         public AppiumImagePluginUtils()
         {
             _base64Utils = new Base64Utils();
-
             _loadFilesUtils = new LoadFilesUtils();
         }
 
@@ -29,7 +27,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         public IWebElement FindElementByImagePattern(WindowsDriver windowsDriver, string imagePath)
         {
             var imageFile = _loadFilesUtils.ReadFileAsByteArray(imagePath);
-
             var base64ImageRepresentation = _base64Utils.ConvertByteArrayToBase64(imageFile);
 
             try
@@ -45,19 +42,13 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
 
             catch (WebDriverTimeoutException ex)
             {
-                Console.WriteLine(ex);
-
-                Console.WriteLine($"Timeout for waiting image pattern '{imagePath}'.");
-
+                Logger.LogError($"Timeout for waiting image pattern '{imagePath}'.", ex);
                 throw ex;
             }
 
             catch (InvalidSelectorException ex)
             {
-                Console.WriteLine("Please check Appium Image plugin.");
-
-                Console.WriteLine(ex);
-
+                Logger.LogError("Please check Appium Image plugin.", ex);
                 throw ex;
             }
         }

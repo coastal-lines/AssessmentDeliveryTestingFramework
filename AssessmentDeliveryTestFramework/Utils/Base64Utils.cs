@@ -27,8 +27,7 @@ namespace AssessmentDeliveryTestingFramework.Utils
         public string ConvertTextFileToBase64(string filePath)
         {
             var text = TextFileUtils.ReadTxtFile(filePath);
-            string base64String = Convert.ToBase64String(Encoding.UTF8.GetBytes(text));
-            return base64String;
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(text));
         }
     }
 }

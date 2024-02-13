@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using System.Data.SqlClient;
 
 namespace AssessmentDeliveryTestingFramework.Utils
 {
@@ -29,10 +30,8 @@ namespace AssessmentDeliveryTestingFramework.Utils
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine($"Error DB connection for '{dataSource}'");
-
-                    return null;
+                    Logger.LogError($"Error DB connection for '{dataSource}'", ex);
+                    throw;
                 }
             }
         }
@@ -44,15 +43,13 @@ namespace AssessmentDeliveryTestingFramework.Utils
                 command = new SqlCommand(sqlScript, connection);
             }
 
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.Message);
-
+                Logger.LogError(ex.Message, ex);
                 connection.Close();
             }
 
             var reader = command.ExecuteReader();
-
             return reader;
         }
     }

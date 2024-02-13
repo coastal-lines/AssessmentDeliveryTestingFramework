@@ -11,6 +11,7 @@ namespace AssessmentDeliveryTestingFramework.Utils
         {
             var directory = new DirectoryInfo(path);
             var listFiles = directory.GetFiles().Select(file => file.Name).ToList();
+
             return listFiles;
         }
 

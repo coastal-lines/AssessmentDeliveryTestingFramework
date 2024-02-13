@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
@@ -20,8 +21,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine($"Error loading XML from file path '{filePath}'");
+                Logger.LogError($"Error loading XML from file path '{filePath}'", ex);
                 throw;
             }
         }
@@ -29,7 +29,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
         public XmlElement LoadXmlFromFileAndGetRoot(string filePath)
         {
             var xmlDoc = LoadXmlFileFromFile(filePath);
-
             return xmlDoc.DocumentElement;
         }
 
@@ -48,7 +47,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
             }
             else
             {
-                Console.WriteLine($"Element '{xpath}' not found.");
+                Logger.LogInformation($"Element '{xpath}' not found.");
                 throw new NullReferenceException();
             }
         }
@@ -62,12 +61,11 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
             if (element.Attribute("default-value") != null)
             {
                 elementText = element.Attribute(attribute).Value;
-
-                Console.WriteLine($"Attribute '{attribute}' of element '{xpath}' has next text: '{elementText}'");
+                Logger.LogInformation($"Attribute '{attribute}' of element '{xpath}' has next text: '{elementText}'");
             }
             else
             {
-                Console.WriteLine($"Attribute '{attribute}' of element '{xpath}' not found.");
+                Logger.LogInformation($"Attribute '{attribute}' of element '{xpath}' not found.");
             }
 
             return elementText;
@@ -88,13 +86,14 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
 
             if (element.Any())
             {
-                return element.Where(x => x.Attribute(attribute).Value == attributeValue).
-                    FirstOrDefault().
-                    Elements("value").
-                    Single().Value;
+                return element
+                    .Where(x => x.Attribute(attribute).Value == attributeValue)
+                    .FirstOrDefault()
+                    .Elements("value")
+                    .Single().Value;
             }
 
-            Console.WriteLine($"Element '{elementName}' not found.");
+            Logger.LogError($"Element '{elementName}' not found.", new NullReferenceException());
             throw new NullReferenceException();
         }
 
@@ -109,13 +108,13 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
 
         public void SetValueToElement(XDocument xmlDoc, string elementName, string attribute, string attributeValue, string attributeForUpdate, string newValue)
         {
-            xmlDoc.Descendants(elementName).
-                Where(x => x.Attribute(attribute).
-                Value == attributeValue).
-                FirstOrDefault().
-                Elements(attributeForUpdate).
-                Single().
-                Value = newValue;
+            xmlDoc.Descendants(elementName)
+                .Where(x => x.Attribute(attribute)
+                .Value == attributeValue)
+                .FirstOrDefault()
+                .Elements(attributeForUpdate)
+                .Single()
+                .Value = newValue;
         }
     }
 }

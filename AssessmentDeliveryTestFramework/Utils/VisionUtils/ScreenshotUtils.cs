@@ -1,4 +1,5 @@
-﻿using ImageMagick;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using ImageMagick;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
@@ -9,13 +10,11 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
     public class ScreenshotUtils
     {
         private IWebDriver _driver;
-
         private JavaScriptUtils _javaScriptUtils;
 
         public ScreenshotUtils(IWebDriver driver)
         {
             _driver = driver;
-
             _javaScriptUtils = new JavaScriptUtils();
         }
 
@@ -32,7 +31,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         public void TakeScreenshotAndSaveAsFile(string filePath = "")
         {
             var screenshot = TakeScreenshot();
-
             screenshot.SaveAsFile($"screenshot_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.png", ScreenshotImageFormat.Png);
         }
 
@@ -75,9 +73,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         public MagickImage TakeScreenshotAndCutRoi(int x, int y, int w, int h)
         {
             var screenshot = TakeScreenshot();
-
             var magickImageScreenshot = new MagickImage(new MemoryStream(screenshot.AsByteArray));
-
             magickImageScreenshot.Crop(new MagickGeometry(x, y, w, h));
 
             return magickImageScreenshot;
@@ -127,16 +123,13 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
                 }
                 catch (KeyNotFoundException ex)
                 {
-                    Console.WriteLine(ex);
-
-                    Console.WriteLine("Please check 'FeaturesMatchingOptions' object. Parameter 'Visualize' should be 'true'.");
-
-                    Console.WriteLine($"Logging screenshot for '{TestContext.CurrentContext.Test.Name}' was not saved.");
+                    Logger.LogError("Please check 'FeaturesMatchingOptions' object. Parameter 'Visualize' should be 'true'. " +
+                        "\n Logging screenshot for '{TestContext.CurrentContext.Test.Name}' was not saved.", ex);
+                    throw;
                 }
             }
 
             compareResult.SaveVisualizationAsFile($"{TestContext.CurrentContext.Test.Name}_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.png");
-
             return compareResult.Visualization.Length > 0;
         }
     }
