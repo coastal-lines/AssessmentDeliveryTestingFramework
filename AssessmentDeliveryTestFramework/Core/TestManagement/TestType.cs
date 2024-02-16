@@ -1,11 +1,4 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AssessmentDeliveryTestingFramework.Core.TestManagement
+﻿namespace AssessmentDeliveryTestingFramework.Core.TestManagement
 {
     public static class TestType
     {

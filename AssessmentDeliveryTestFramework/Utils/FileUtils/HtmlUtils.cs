@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using HtmlAgilityPack;
 
 namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
 {
@@ -15,7 +16,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error loading HTML: " + ex.Message);
+                Logger.LogError("Error loading HTML: " + ex.Message, ex);
                 throw;
             }
         }
@@ -31,8 +32,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine($"Error loading HTML from file path 'filePath'");
+                Logger.LogError($"Error loading HTML from file path 'filePath'", ex);
                 throw;
             }
         }

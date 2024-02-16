@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
@@ -13,10 +14,14 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
             }
             catch (Newtonsoft.Json.JsonSerializationException ex)
             {
-                Console.WriteLine(ex);
+                Logger.LogError($"Error deserialize: {jsonResponse}", ex);
+                throw;
             }
-
-            throw new Exception($"Error deserialize: {jsonResponse}");
+            catch (Exception ex)
+            {
+                Logger.LogError($"Error deserialize: {jsonResponse}", ex);
+                throw;
+            }
         }
 
         public T LoadJsonFromFile<T>(string filePath)

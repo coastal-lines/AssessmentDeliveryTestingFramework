@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+using AssessmentDeliveryTestingFramework.Core.Logging;
 
 namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
 {
@@ -78,7 +79,9 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
             catch (WebDriverTimeoutException)
             {
                 var existedFiles = Directory.EnumerateFiles(_downloadFolderPath).Select(Path.GetFileName).ToArray();
-                throw new Exception($"Download process was not finished." + $"/n Already existed files are:{string.Join(";", existedFiles)}.");
+                string errorMessage = $"Download process was not finished." + $"/n Already existed files are:{string.Join(";", existedFiles)}.";
+                Logger.LogError(errorMessage, new NotSupportedException(errorMessage));
+                throw new NotSupportedException(errorMessage);
             }
         }
     }

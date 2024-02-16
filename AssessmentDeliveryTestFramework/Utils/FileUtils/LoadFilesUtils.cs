@@ -1,4 +1,6 @@
-﻿namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+
+namespace AssessmentDeliveryTestingFramework.Utils.FileUtils
 {
     public class LoadFilesUtils
     {
@@ -16,16 +18,15 @@
                 }
                 else
                 {
-                    Console.WriteLine($"File {filePath} was not loaded.");
-
-                    throw new FileNotFoundException($"File {filePath} was not found.");
+                    string errorMessage = $"File {filePath} was not loaded.";
+                    Logger.LogError(errorMessage, new FileNotFoundException(errorMessage));
+                    throw new FileNotFoundException(errorMessage);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
-
-                throw new FileNotFoundException($"File {filePath} was not loaded.");
+                Logger.LogError(ex.Message, ex);
+                throw;
             }
         }
     }

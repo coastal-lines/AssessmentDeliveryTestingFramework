@@ -10,6 +10,8 @@ using AssessmentDeliveryTestingFramework.Core.Utils;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
 using AssessmentDeliveryTestingFramework.Core.Wait;
 using AssessmentDeliveryTestingFramework.Core.Element.Web;
+using AssessmentDeliveryTestingFramework.Core.TestManagement;
+using AssessmentDeliveryTestingFramework.Core.Logging;
 
 namespace AssessmentDeliveryTestingFramework.Core.Session
 {
@@ -57,7 +59,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
                     }
                     else
                     {
-                        throw new NotSupportedException($"Current session doesn't have any container for {platformType}.");
+                        string errorMessage = $"Current session doesn't have any container for {platformType}.";
+                        Logger.LogError(errorMessage, new NotSupportedException(errorMessage));
+                        throw new NotSupportedException(errorMessage);
                     }
 
                 default:
@@ -73,8 +77,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                Console.WriteLine("Windows driver was closed");
+                Logger.LogError("Windows driver was closed", ex);
+                throw;
             }
 
             try
@@ -83,8 +87,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             }
             catch (NullReferenceException ex)
             {
-                Console.WriteLine(ex);
-                Console.WriteLine("'FreeQuizMaker' was closed or was not started");
+                Logger.LogError($"'{windowsApplicationName}' was closed or was not started", ex);
+                throw;
             }
 
             try
@@ -93,8 +97,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             }
             catch (NullReferenceException ex)
             {
-                Console.WriteLine(ex);
-                Console.WriteLine("'node.exe' was closed or was not started");
+                Logger.LogError("'node.exe' was closed or was not started", ex);
+                throw;
             }
         }
     }

@@ -6,6 +6,9 @@ using OpenQA.Selenium.Appium;
 using System.Diagnostics;
 using OpenQA.Selenium;
 using AssessmentDeliveryTestingFramework.Utils.System;
+using AssessmentDeliveryTestingFramework.Core.Logging;
+using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+using AssessmentDeliveryTestingFramework.Utils;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
@@ -18,45 +21,44 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             _windowsSystemUtils = new WindowsSystemUtils();
         }
 
-        public AndroidDriver CreateMobileDriver()
+        public void StartAppiumService()
         {
-            var builder = new AppiumServiceBuilder();
-
-            //KeyValuePair<string, string> arguments = new KeyValuePair<string, string>("--use-plugins", "images");
-            //builder.WithArguments(new OpenQA.Selenium.Appium.Service.Options.OptionCollector().AddArguments(arguments));
-
-
-            OptionCollector oc = new OptionCollector();
+            var oc = new OptionCollector();
             oc.AddArguments(new KeyValuePair<string, string>("--use-plugins", "images"));
-            //oc.AddArguments(new KeyValuePair<string, string>("--avd", "pixel_2_-_api_28"));
-            builder.WithArguments(oc);
 
-            builder.WithLogFile(new FileInfo(@"\MobileTestsDemo\appium_log.txt"));
+            var builder = new AppiumServiceBuilder();
+            builder.WithArguments(oc);
+            builder.WithLogFile(new FileInfo(Path.Join(DirectoryUtils.GetTemporaryResourcesPath(), $"appium_log_{DateTimeUtils.GetCurrentDate()}.txt")));
+
             var service = builder.Build();
             service.Start();
 
-            Thread.Sleep(5000);
+            _windowsSystemUtils.WaitProcessStarted("nodejs");
+        }
 
+        public AndroidDriver CreateMobileDriver()
+        {
             var capabilities = new AppiumOptions();
-            capabilities.DeviceName = "emulator-5554";
+            capabilities.DeviceName = ConfigurationManager.GetConfigurationModel().Mobile.DeviceName;
             capabilities.PlatformName = "Android";
             capabilities.AutomationName = AutomationName.AndroidUIAutomator2;
-            //capabilities.AddAdditionalAppiumOption("noReset", true);
 
             try
             {
-                return new AndroidDriver(new Uri("http://localhost:4723/"), capabilities, TimeSpan.FromSeconds(180));
+                return new AndroidDriver(
+                    new Uri($"http://{ConfigurationManager.GetConfigurationModel().Mobile.Host}:{ConfigurationManager.GetConfigurationModel().Mobile.Port}/"), 
+                    capabilities, TimeSpan.FromSeconds(90));
             }
             catch (WebDriverException ex)
             {
-                //TODO
+                Logger.LogError($"Android driver was not created", ex);
                 throw;
             }
         }
 
         public void StartAndroidEmulator()
         {
-            _windowsSystemUtils.RunCmdScript("/c \"emulator -avd pixel_2_-_api_28", false, false);
+            _windowsSystemUtils.RunCmdScript($"/c \"emulator -avd {ConfigurationManager.GetConfigurationModel().Mobile.AvdName}", false, false);
 
             var timer = new Stopwatch();
             timer.Start();
@@ -69,8 +71,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                     if (timer.Elapsed.Seconds >= 5)
                     {
                         timer.Stop();
-                        //timer.Restart();
-                        var status = _windowsSystemUtils.RunCmdScript("/c \"\\android-sdk\\platform-tools\\adb.exe\" -s emulator-5554 shell getprop init.svc.bootanim", true, true);
+                        var status = _windowsSystemUtils.RunCmdScript($"/c \"\\android-sdk\\platform-tools\\adb.exe\" -s {ConfigurationManager.GetConfigurationModel().Mobile.DeviceName} shell getprop init.svc.bootanim", true, true);
                         if (status.Equals("stopped\r\n"))
                         {
                             timer.Stop();
@@ -88,6 +89,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             {
                 timer.Stop();
                 attepmts = 0;
+
+                Logger.LogError($"AVD '{ConfigurationManager.GetConfigurationModel().Mobile.AvdName}' was not started.", ex);
+                throw ex;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System.Diagnostics;
@@ -27,7 +28,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Wait
                 return WaitElements(locator)[0];
             }
 
-            throw new NoSuchElementException($"Page doesn't have any element with '{locator}' locator.");
+            string errorMessage = $"Page doesn't have any element with '{locator}' locator.";
+            Logger.LogError(errorMessage, new NoSuchElementException(errorMessage));
+            throw new NoSuchElementException(errorMessage);
         }
 
         public IList<IWebElement> WaitElements(By locator)
@@ -60,14 +63,12 @@ namespace AssessmentDeliveryTestingFramework.Core.Wait
                 }
                 catch (NoSuchElementException ex)
                 {
-                    Console.WriteLine(ex);
-                    Console.WriteLine($"Element {locator} was not found.");
+                    Logger.LogError($"Element {locator} was not found.", ex);
                     throw;
                 }
                 catch (WebDriverTimeoutException ex)
                 {
-                    Console.WriteLine(ex);
-                    Console.WriteLine($"Element timeout waiting. Element is '{locator}'.");
+                    Logger.LogError($"Element timeout waiting. Element is '{locator}'.", ex);
                     throw;
                 }
             }
@@ -76,8 +77,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Wait
 
             if (stopWatch.Elapsed.TotalSeconds > waitTimeout)
             {
-                Console.WriteLine($"Timeout waiting. Element is '{locator}'.");
-                throw new Exception("Element(s) was not found.");
+                string errorMessage = $"Timeout waiting. Element is '{locator}'.";
+                Logger.LogError(errorMessage, new Exception(errorMessage));
+                throw new Exception(errorMessage);
             }
 
             return GetDriver().FindElements(locator);
@@ -95,14 +97,12 @@ namespace AssessmentDeliveryTestingFramework.Core.Wait
             }
             catch (NoSuchElementException ex)
             {
-                Console.WriteLine(ex);
-                Console.WriteLine($"Element {locator} was not found.");
+                Logger.LogError($"Element {locator} was not found.", ex);
                 throw;
             }
             catch (WebDriverTimeoutException ex)
             {
-                Console.WriteLine(ex);
-                Console.WriteLine($"Element timeout waiting. Element is '{locator}'.");
+                Logger.LogError($"Element timeout waiting. Element is '{locator}'.", ex);
                 throw;
             }
         }
@@ -114,10 +114,10 @@ namespace AssessmentDeliveryTestingFramework.Core.Wait
                 WebDriverWait wait = new WebDriverWait(base.GetDriver(), TimeSpan.FromSeconds(30));
                 wait.Until(ExpectedConditions.ElementIsVisible(by));
             }
-            catch (NoSuchElementException err)
+            catch (NoSuchElementException ex)
             {
-                Console.WriteLine(err);
-                Console.WriteLine("Element with locator '" + by + "' is not displayed");
+                Logger.LogError("Element with locator '" + by + "' is not displayed", ex);
+                throw;
             }
         }
 
@@ -128,10 +128,10 @@ namespace AssessmentDeliveryTestingFramework.Core.Wait
                 WebDriverWait wait = new WebDriverWait(base.GetDriver(), TimeSpan.FromSeconds(waitingTime));
                 wait.Until(ExpectedConditions.InvisibilityOfElementLocated(by));
             }
-            catch (NoSuchElementException err)
+            catch (NoSuchElementException ex)
             {
-                Console.WriteLine(err);
-                Console.WriteLine("Element with locator '" + by + "' is displayed");
+                Logger.LogError("Element with locator '" + by + "' is displayed", ex);
+                throw;
             }
         }
     }

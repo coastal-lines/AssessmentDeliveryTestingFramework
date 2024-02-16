@@ -1,4 +1,5 @@
-﻿using AssessmentDeliveryTestingFramework.Core.TestManagement;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using AssessmentDeliveryTestingFramework.Utils.System;
 using OpenQA.Selenium.Appium.Windows;
 
@@ -41,11 +42,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
             }
             catch (ObjectDisposedException ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.LogError(ex.Message, ex);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.LogError(ex.Message, ex);
             }
 
             try
@@ -54,7 +55,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
             }
             catch (ArgumentException ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.LogError(ex.Message, ex);
             }
         }
 

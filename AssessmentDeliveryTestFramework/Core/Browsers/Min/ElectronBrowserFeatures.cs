@@ -1,4 +1,5 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 using AssessmentDeliveryTestingFramework.Utils;
 using OpenQA.Selenium;
 
@@ -19,10 +20,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Browsers.Min
             this.driver = driver;
 
             jsUtils = new JavaScriptUtils();
-
-            //navigationWindow = GetWindowHandle(ConfigManager.Config.MinBrowser.NavigationPageUrl);
-
-            //documentWindow = GetWindowHandle(ConfigManager.Config.MinBrowser.DocumentPageUrl);
 
             navigationWindow = GetWindowHandle(ConfigurationManager.GetConfigurationModel().Web.MinBrowser.NavigationPageUrl);
 
@@ -46,7 +43,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Browsers.Min
                 }
             }
 
-            throw new ArgumentNullException("Electron window was not found");
+            string errorMessage = "Electron window was not found";
+            Logger.LogError(errorMessage, new ArgumentNullException(errorMessage));
+            throw new ArgumentNullException(errorMessage);
         }
 
         protected virtual void SwitchIntoDocument() { }

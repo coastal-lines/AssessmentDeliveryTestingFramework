@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+using AssessmentDeliveryTestingFramework.Core.Logging;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
@@ -45,7 +46,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                     return (T)(object)new FirefoxDriver();
 
                 default:
-                    throw new Exception($"Driver '{driverType}' not supported");
+                    string errorMessage = $"Driver '{driverType}' not supported";
+                    Logger.LogError(errorMessage, new ArgumentNullException(errorMessage));
+                    throw new Exception(errorMessage);
             }
         }
 
@@ -57,16 +60,12 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 options.SetLoggingPreference(LogType.Browser, LogLevel.All);
                 options.SetLoggingPreference(LogType.Driver, LogLevel.All);
 
-
-                //new DriverManager().SetUpDriver(new ChromeConfig());
-
                 new DriverManager().SetUpDriver(
                     "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/120.0.6099.109/win64/chromedriver-win64.zip",
                     Path.Combine(Directory.GetCurrentDirectory(), "chromedriver.exe"),
                     "chromedriver.exe"
                 );
             return new ChromeDriver(options);
-            //return new ChromeDriver();
         }
 
         public IWebDriver CreateFirefoxDriver()
@@ -80,22 +79,20 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             IWebDriver driver = new FirefoxDriver(service, options);
 
             return driver;
-            //return  new FirefoxDriver();
         }
 
         public IWebDriver CreateRemoteFirefoxDriver()
         {
-            //new DriverManager().SetUpDriver(new FirefoxConfig());
-
             var options = new FirefoxOptions();
 
-            return new RemoteWebDriver(new Uri("http://localhost:4444"), options);
+            return new RemoteWebDriver(new Uri(
+                $"http://{ConfigurationManager.GetConfigurationModel().Web.RemoteUrl}:{ConfigurationManager.GetConfigurationModel().Web.RemotePort}"),
+                options);
         }
 
         //TODO - the best example for Selenium 3 demo support!!!
         public IWebDriver CreateElectronBasedBrowserOhHai()
         {
-            //var userSystemFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var options = new ChromeOptions();
 
             string chromeDriverPath = "\\Core\\Driver\\CustomDrivers\\ChromiumBased\\Chrome89\\";

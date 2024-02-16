@@ -10,6 +10,8 @@
     "RunType": "Local",
     "LocalPlatform": "Windows",
     "DefaultBrowser": "Firefox",
+    "RemoteUrl": "127.0.0.1",
+    "RemotePort": "4444",
     "DockerUrl": "http://localhost:4444/wd/hub/",
     "ChromeDriverPath": "Files/CustomDrivers/ChromiumBased/Chrome119",
     "FirefoxDriverPath": "CustomDrivers/GeckoBased/Firefox034/",
@@ -24,12 +26,18 @@
     }
   },
   "Desktop": {
+    "Host": "127.0.0.1",
+    "Port": "4723",
     "TestType": "Desktop",
     "Platform": "Windows",
-    "ApplicationPath": "C:\\Program Files (x86)\\Media Freeware\\Free Quiz Maker\\FreeQuizMaker.exe"
+    "ApplicationPath": "C:\\Program Files (x86)\\Media Freeware\\Free Quiz Maker\\FreeQuizMaker.exe",
+    "WinAppDriverPath": ""
   },
   "Mobile": {
-
+    "Host": "127.0.0.1",
+    "Port": "4723",
+    "DeviceName": "emulator-5554",
+    "AvdName": "pixel_2_-_api_28"
   },
   "Resources": {
     "VisualTests": {

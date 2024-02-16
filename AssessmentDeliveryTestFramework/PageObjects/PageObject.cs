@@ -1,7 +1,4 @@
-﻿using AssessmentDeliveryTestingFramework.Core;
-using AssessmentDeliveryTestingFramework.Core.Session;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using AssessmentDeliveryTestingFramework.Core.Session;
 
 namespace AssessmentDeliveryTestingFramework.Page
 {

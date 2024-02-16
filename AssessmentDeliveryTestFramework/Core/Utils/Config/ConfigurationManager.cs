@@ -1,4 +1,5 @@
-﻿using AssessmentDeliveryTestingFramework.Models.Config;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using AssessmentDeliveryTestingFramework.Models.Config;
 using Microsoft.Extensions.Configuration;
 
 namespace AssessmentDeliveryTestingFramework.Core.Utils.Config
@@ -53,9 +54,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Utils.Config
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error loading configuration: {ex.Message}");
-
-                return null;
+                Logger.LogError($"Error loading configuration: {ex.Message}", ex);
+                throw;
             }
         }
 

@@ -5,6 +5,9 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
 using System.Diagnostics;
 using AssessmentDeliveryTestingFramework.Utils.System;
+using AssessmentDeliveryTestingFramework.Utils;
+using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+using AssessmentDeliveryTestingFramework.Core.Logging;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
@@ -23,7 +26,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
         [Obsolete]
         public void StartWinAppDriverForAppium1()
         {
-            //var currentProcesses = new List<Process>(Process.GetProcesses().Where(p => p.ProcessName.Equals("WinAppDriver")));
             var currentProcesses = _windowsSystemUtils.GetListProcessesByName("WinAppDriver");
 
             if (currentProcesses.Count == 0)
@@ -36,7 +38,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 while (stopWatch.Elapsed.Seconds < 10)
                 {
                     Thread.Sleep(500);
-                    //currentProcesses = new List<Process>(Process.GetProcesses().Where(p => p.ProcessName.Equals("WinAppDriver")));
                     currentProcesses = _windowsSystemUtils.GetListProcessesByName("WinAppDriver");
                     if (currentProcesses.Count > 0)
                     {
@@ -46,32 +47,34 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                 }
 
                 stopWatch.Stop();
-                Thread.Sleep(8000);
             }
         }
 
-        public static void StartWinAppDriver()
+        public void StartAppiumService()
         {
-            //Also work fine
-            /*
-            //string strCmdText = "/C appium -a 127.0.0.1 -p 4723";
-            var appiumServer = new AppiumServiceBuilder()
-                .WithIPAddress("127.0.0.1")
-                .UsingPort(4723)
-                .UsingDriverExecutable(new FileInfo(@"C:\Program Files\nodejs\node.exe"))
-                .WithAppiumJS(new FileInfo(@"\AppData\Roaming\npm\node_modules\appium\build\lib\main.js"))
-                .WithStartUpTimeOut(TimeSpan.FromMinutes(3))
-                .Build();
+            var appiumServiceBuilder = new AppiumServiceBuilder();
+            appiumServiceBuilder.WithLogFile(new FileInfo(Path.Join(DirectoryUtils.GetTemporaryResourcesPath(), $"winappdriver_log_{DateTimeUtils.GetCurrentDate()}.txt")));
 
-            appiumServer.Start();
-            */
-
-            var appiumServer = new AppiumServiceBuilder();
             var appiumOptions = new OptionCollector();
-            appiumServer.WithArguments(appiumOptions);
-            //builder.WithLogFile(new FileInfo(@"MobileTestsDemo\appium_log.txt"));
-            var service = appiumServer.Build();
+            appiumServiceBuilder.WithArguments(appiumOptions);
+
+            var appiumService = appiumServiceBuilder.Build();
+            appiumService.Start();
+
+            _windowsSystemUtils.WaitProcessStarted("nodejs");
+        }
+
+        private void StartAppiumServiceWithImagePlugin()
+        {
+            var appiumServiceBuilder = new AppiumServiceBuilder();
+            KeyValuePair<string, string> arguments = new KeyValuePair<string, string>("--use-plugins", "images");
+            appiumServiceBuilder.WithArguments(new OptionCollector().AddArguments(arguments));
+            appiumServiceBuilder.WithLogFile(new FileInfo(Path.Join(DirectoryUtils.GetTemporaryResourcesPath(), $"additional_windows_driver_log_{DateTimeUtils.GetCurrentDate()}.txt")));
+            
+            var service = appiumServiceBuilder.Build();
             service.Start();
+
+            _windowsSystemUtils.WaitProcessStarted("nodejs");
         }
 
         public WindowsDriver CreateWindowsDriver(string automationName = "Windows", string applicationPath = "Root", string deviceName = "WindowsPC", string platformName = "Windows")
@@ -80,11 +83,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 
             var appCapabilities = new AppiumOptions();
             appCapabilities.AutomationName = automationName;
-            //appCapabilities.App = "C:\\Program Files (x86)\\Media Freeware\\Free Quiz Maker\\FreeQuizMaker.exe";
             appCapabilities.App = applicationPath;
             appCapabilities.DeviceName = deviceName;
             appCapabilities.PlatformName = platformName;
-            var driverUrl = new Uri("http://127.0.0.1:4723");
+
+            var driverUrl = new Uri($"http://{ConfigurationManager.GetConfigurationModel().Desktop.Host}:{ConfigurationManager.GetConfigurationModel().Desktop.Port}");
 
             try
             {
@@ -92,8 +95,9 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             }
             catch (WebDriverArgumentException ex)
             {
-                Console.WriteLine(ex);
-                Console.WriteLine("Previous 'winappdriver' process was not closed.");
+                Logger.LogInformation("Previous 'winappdriver' process was not closed.");
+                Logger.LogError($"Windows driver was not started. Url is {driverUrl}, application is {applicationPath}", ex);
+                throw ex;
             }
 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(120);
@@ -108,23 +112,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
         /// </summary>
         public WindowsDriver CreateWindowsDriverForBrowserConnecting(string browserProcessName, string windowTitle, string platformName = "Windows", string automationName = "Windows")
         {
-            /*
-            var currentProcesses = new List<Process>(Process.GetProcesses().Where(p => p.ProcessName.Equals(browserProcessName)));
-            var userProcess = currentProcesses.Where(process => process.MainWindowHandle.ToString() != "0" && process.MainWindowTitle.ToString().Contains(windowTitle)).ToList();
-            var appTopLevelWindowHandle = userProcess[0].MainWindowHandle;
-            var appTopLevelWindowHandleHex = appTopLevelWindowHandle.ToString("x");
-            */
-
             var appTopLevelWindowHandleHex = _windowsSystemUtils.GetApplicationTopLevelWindowHandleHex(browserProcessName, windowTitle);
 
-            var builder = new AppiumServiceBuilder();
-            KeyValuePair<string, string> arguments = new KeyValuePair<string, string>("--use-plugins", "images");
-            builder.WithArguments(new OptionCollector().AddArguments(arguments));
-            builder.WithLogFile(new FileInfo(@"appium_log.txt"));
-            var service = builder.Build();
-            service.Start();
+            StartAppiumServiceWithImagePlugin();
 
-            var serverUri = new Uri("http://127.0.0.1:4723");
+            var serverUri = new Uri($"http://{ConfigurationManager.GetConfigurationModel().Desktop.Host}:{ConfigurationManager.GetConfigurationModel().Desktop.Port}/");
             var appCapabilities = new AppiumOptions();
             appCapabilities.PlatformName = platformName;
             appCapabilities.AutomationName = automationName;
@@ -133,9 +125,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             appCapabilities.AddAdditionalAppiumOption("newCommandTimeout", 10000);
 
             //Wait few seconds for NodeJS
-            Thread.Sleep(3000);
-
-            //WindowsDriver driver = null;
+            _windowsSystemUtils.WaitProcessStarted("nodejs");
 
             try
             {
@@ -143,11 +133,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-
-                Console.WriteLine("Additional Windows driver was not started.");
-
-                throw new Exception();
+                Logger.LogError("Additional Windows driver was not started.", ex);
+                throw;
             }
         }
     }

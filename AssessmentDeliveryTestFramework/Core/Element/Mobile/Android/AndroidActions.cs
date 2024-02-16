@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Android;
+﻿using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
 
 namespace AssessmentDeliveryTestingFramework.Core.Element.Mobile.Android
@@ -47,14 +46,4 @@ namespace AssessmentDeliveryTestingFramework.Core.Element.Mobile.Android
                 .Perform();
         }
     }
-
-    /*
-    public class AndroidActions
-    {
-        public void GetCentreOfScreen(IWebDriver driver)
-        {
-
-        }
-    }
-    */
 }

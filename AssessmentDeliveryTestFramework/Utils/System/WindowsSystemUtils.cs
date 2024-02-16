@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using System.Diagnostics;
 
 namespace AssessmentDeliveryTestingFramework.Utils.System
 {
@@ -50,6 +51,30 @@ namespace AssessmentDeliveryTestingFramework.Utils.System
             process.StartInfo.FileName = processPath;
             process.StartInfo.Verb = "runas";
             process.Start();
+        }
+
+        public void WaitProcessStarted(string processName, int waitTime = 30)
+        {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            while (stopWatch.Elapsed.Seconds < waitTime)
+            {
+                Thread.Sleep(500);
+                if (GetListProcessesByName(processName).Count > 0)
+                {
+                    stopWatch.Stop();
+                    break;
+                }
+            }
+
+            if (stopWatch.Elapsed.Seconds > waitTime)
+            {
+                stopWatch.Stop();
+
+                Logger.LogError($"Process '{processName}' was not started after {waitTime} seconds.", new TimeoutException());
+                throw new TimeoutException();
+            }
         }
 
         #endregion

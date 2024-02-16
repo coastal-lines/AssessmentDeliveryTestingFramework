@@ -1,5 +1,6 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
 using AssessmentDeliveryTestingFramework.Core.Element.Web;
+using AssessmentDeliveryTestingFramework.Core.Logging;
 using AssessmentDeliveryTestingFramework.Core.Wait;
 using OpenQA.Selenium;
 
@@ -75,8 +76,8 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                Console.WriteLine("Driver was closed");
+                Logger.LogError("Driver was closed", ex);
+                throw;
             }
 
             //TODO

@@ -1,14 +1,12 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils;
 using AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 using AssessmentDeliveryTestingFramework.Core.Driver.Factory;
-using AssessmentDeliveryTestingFramework.Core.Wait;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers.CustomContainers;
-using System.Linq;
+using AssessmentDeliveryTestingFramework.Core.Logging;
 
 namespace AssessmentDeliveryTestingFramework.Core.Session
 {
@@ -25,7 +23,6 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
         public Session()
         {
             driverFactory = new DriverFactory();
-
             _defaultBrowser = GetDefaultBrowser();
         }
 
@@ -36,17 +33,17 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
                 case BrowserType.Min:
                     if (driverContainers[0] is MinBrowserDriverContainer minContainer)
                     {
-                        //ElectronBrowserFeatures browserFeatures = minContainer.BrowserFeatures;
-
                         return (T)(object)minContainer.BrowserFeatures;
                     }
                     else
                     {
-                        throw new NotSupportedException($"Browser type {browserType} is not supported.");
+                        Logger.LogError($"Browser type {browserType} is not supported.", new NotSupportedException());
+                        throw new NotSupportedException();
                     }
 
                 default:
-                    throw new NotSupportedException($"Browser type {browserType} is not supported.");
+                    Logger.LogError($"Browser type {browserType} is not supported.", new NotSupportedException());
+                    throw new NotSupportedException();
             }
         }
 
@@ -54,15 +51,12 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
         {
             switch (containerType)
             {
-                //case "Web":
-                //    _sessionDrivers.Add(_driverFactory.GetDriverContainer());
-                //    return _sessionDrivers[0].Driver;
-
                 case "Windows":
                     return driverContainers.OfType<DesktopDriverContainer>().FirstOrDefault();
 
                 default:
-                    throw new Exception($"Driver container {containerType} not supported.");
+                    Logger.LogError($"Driver container {containerType} not supported.", new Exception());
+                    throw new Exception();
             }
         }
 
@@ -100,23 +94,19 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
                 return TestContext.CurrentContext.Test?.Properties["Category"].FirstOrDefault().ToString();
             }
 
-            catch (InvalidOperationException e)
+            catch (InvalidOperationException ex)
             {
-                Console.WriteLine(e.Message);
+                Logger.LogError(ex.Message, ex);
+                throw;
             }
 
-            catch (NullReferenceException e)
+            catch (NullReferenceException ex)
             {
-                Console.WriteLine("Test " + TestContext.CurrentContext.Test?.Name + " doesn't have any test category");
-                Console.WriteLine(e.Message);
+                Logger.LogError("Test " + TestContext.CurrentContext.Test?.Name + " doesn't have any test category", ex);
+                throw;
             }
 
             return _defaultBrowser;
-        }
-
-        public void AddNewWebContainer()
-        {
-
         }
 
         public void AddAdditionalDesktopContainer(string browserType, string titleTextContains)
@@ -126,9 +116,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
                     driverFactory.WindowsDriverFactory.CreateWindowsDriverForBrowserConnecting(browserType, titleTextContains), 
                     "desktop_test_name", 
                     ConfigurationManager.GetConfigurationModel().Desktop.Platform, 
-                    "Windows"
-                    )
-                );
+                    "Windows"));
         }
 
         public string GetDefaultBrowser()

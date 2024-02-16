@@ -1,4 +1,5 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Session;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using AssessmentDeliveryTestingFramework.Core.Session;
 using OpenQA.Selenium;
 
 namespace AssessmentDeliveryTestingFramework.PageObjects.Desktop.Windows.MSOffice
@@ -77,7 +78,8 @@ namespace AssessmentDeliveryTestingFramework.PageObjects.Desktop.Windows.MSOffic
             }
             catch (WebDriverException ex)
             {
-                Console.WriteLine(ex.Message);
+                Logger.LogError(ex.Message, ex);
+                throw;
             }
         }
     }

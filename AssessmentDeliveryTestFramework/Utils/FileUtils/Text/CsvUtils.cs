@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using System.IO;
 
 namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
 {
@@ -26,8 +27,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                Console.WriteLine($"Can't read csv file from '{filePath}'");
+                Logger.LogError($"Can't read csv file from '{filePath}'", ex);
                 throw;
             }
 

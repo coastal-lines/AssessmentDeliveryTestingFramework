@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using System.Diagnostics;
+using AssessmentDeliveryTestingFramework.Core.Logging;
 
 namespace AssessmentDeliveryTestingFramework.Core.Wait
 {
@@ -44,9 +45,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Wait
 
             if (stopWatch.Elapsed.TotalSeconds > waitTimeout)
             {
+                Logger.LogError($"Element was not found by image pattern.", new Exception());
                 throw new Exception();
             }
 
+            Logger.LogError($"Element was not found by image pattern.", new Exception());
             throw new Exception();
         }
 
@@ -68,29 +71,20 @@ namespace AssessmentDeliveryTestingFramework.Core.Wait
 
                 catch (NoSuchElementException ex)
                 {
-                    Console.WriteLine(ex);
-
-                    Console.WriteLine($"Element for image pattern '{imagePath}' was not found.");
-
-                    throw ex;
+                    Logger.LogError($"Element for image pattern '{imagePath}' was not found.", ex);
+                    throw;
                 }
 
                 catch (WebDriverTimeoutException ex)
                 {
-                    Console.WriteLine(ex);
-
-                    Console.WriteLine($"Timeout for waiting image pattern '{imagePath}'.");
-
-                    throw ex;
+                    Logger.LogError($"Timeout for waiting image pattern '{imagePath}'.", ex);
+                    throw;
                 }
 
                 catch (InvalidSelectorException ex)
                 {
-                    Console.WriteLine("Please check Appium Image plugin.");
-
-                    Console.WriteLine(ex);
-
-                    throw ex;
+                    Logger.LogError("Please check Appium Image plugin.", ex);
+                    throw;
                 }
             }
 
@@ -98,10 +92,13 @@ namespace AssessmentDeliveryTestingFramework.Core.Wait
 
             if (stopWatch.Elapsed.TotalSeconds > waitTimeout)
             {
-                throw new Exception("Element was not found.");
+                Logger.LogError("Element was not found within the specified timeout.", new Exception("Element was not found within the specified timeout."));
+                throw new Exception("Element was not found within the specified timeout.");
             }
 
-            throw new Exception("Element was not found within the specified timeout.");
+            string errorMessage = "Element was not found within the specified timeout.";
+            Logger.LogError(errorMessage, new Exception(errorMessage));
+            throw new Exception(errorMessage);
         }
     }
 }

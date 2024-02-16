@@ -1,12 +1,7 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Session;
-using OpenQA.Selenium.Appium;
+﻿using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium.Appium.Android;
+using AssessmentDeliveryTestingFramework.Core.Logging;
 
 namespace AptitudeTests.Utils
 {
@@ -49,9 +44,9 @@ namespace AptitudeTests.Utils
                         _isPopup = false;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-
+                    Logger.LogInformation("Error while additional thread for waiting adv screen.");
                 }
 
                 Thread.Sleep(200);

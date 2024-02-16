@@ -27,6 +27,10 @@
 
         public string DefaultBrowser { get; set; }
 
+        public string RemoteUrl { get; set; }
+
+        public string RemotePort { get; set; }
+
         public string ChromeDriverPath { get; set; }
 
         public string FirefoxDriverPath { get; set; }
@@ -38,6 +42,10 @@
 
     public class DesktopConfig
     {
+        public string Host { get; set; }
+
+        public string Port { get; set; }
+
         public string TestType { get; set; }
 
         public string Platform { get; set; }
@@ -47,7 +55,13 @@
 
     public class MobileConfig
     {
-        
+        public string Host { get; set; }
+
+        public string Port { get; set; }
+
+        public string DeviceName { get; set; }
+
+        public string AvdName { get; set; }
     }
 
     public class ResourcesConfig
