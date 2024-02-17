@@ -6,6 +6,8 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
 {
     public class JsonUtils
     {
+
+
         public T Deserialize<T>(string jsonResponse)
         {
             try
@@ -13,11 +15,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
                 return (T)(object)JsonConvert.DeserializeObject<T>(jsonResponse);
             }
             catch (Newtonsoft.Json.JsonSerializationException ex)
-            {
-                Logger.LogError($"Error deserialize: {jsonResponse}", ex);
-                throw;
-            }
-            catch (Exception ex)
             {
                 Logger.LogError($"Error deserialize: {jsonResponse}", ex);
                 throw;
@@ -32,7 +29,6 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
         public string GetValueFromResponse(string response, string path)
         {
             var token = JObject.Parse(response).SelectToken(path);
-
             return token?.ToString() ?? string.Empty;
         }
     }

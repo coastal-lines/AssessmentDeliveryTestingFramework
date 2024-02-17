@@ -7,7 +7,6 @@ namespace AssessmentDeliveryTestingFramework.Utils
         public string ExecuteJS(IWebDriver driver, string script)
         {
             var js = (IJavaScriptExecutor)driver;
-
             var result = js.ExecuteScript(script);
 
             return result.ToString();
@@ -16,7 +15,6 @@ namespace AssessmentDeliveryTestingFramework.Utils
         public string ExecuteJS(IWebDriver driver, string script, IWebElement element)
         {
             var js = (IJavaScriptExecutor)driver;
-
             return (string)js.ExecuteScript(script, element);
         }
 
@@ -28,7 +26,6 @@ namespace AssessmentDeliveryTestingFramework.Utils
         public int GetVerticalDifferenceBetweenTopAndCurrentPagePosition(IWebDriver driver)
         {
             var result = ExecuteJS(driver, "return window.scrollY");
-
             return Int16.Parse(result);
         }
     }

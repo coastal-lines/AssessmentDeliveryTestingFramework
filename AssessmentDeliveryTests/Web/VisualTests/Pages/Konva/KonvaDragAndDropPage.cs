@@ -37,20 +37,6 @@ namespace CanvasTests.Pages.Konva
             WebElementActions.MoveToElement(OptionDnDTestLink);
         }
 
-        /*
-        public MagickImage GetCanvasScreenshot()
-        {
-            var v_difference = WebElementActions.JavaScriptUtils.GetVerticalDifferenceBetweenTopAndCurrentPagePosition(Driver);
-
-            var x = KonvaFrame.Location.X;
-            var y = KonvaFrame.Location.Y - v_difference;
-            var w = KonvaFrame.Size.Width;
-            var h = KonvaFrame.Size.Height;
-
-            return ScreenshotUtils.TakeScreenshotAndCutRoi(x, y, w, h);
-        }
-        */
-
         public void MatchAllElementsBySikuli()
         {
             var snakePicture = SikuliManager.LoadPatternFromFile(KonvaDragAndDropImagesData.SnakeImg);
@@ -68,20 +54,8 @@ namespace CanvasTests.Pages.Konva
             SikuliManager.DragAndDropElementns(monkeyPicture, monkeyFigure);
         }
 
-        //public void MatchAllElementsByAppium(WindowsDriver windowsDriver)
         public void MatchAllElementsByAppium(DesktopDriverContainer desktopDriverContainer)
         {
-            /*
-            var snakePictureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.SnakeImg);
-            var snakeFigureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.SnakeFig);
-            var lionPictureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.LionImg);
-            var lionFigureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.LionFig);
-            var giraffePictureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.GiraffeImg);
-            var giraffeFigureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.GiraffeFig);
-            var monkeyPictureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.MonkeyImg);
-            var monkeyFigureElement = AppiumImagePluginUtils.FindElementByImagePattern(windowsDriver, KonvaDragAndDropImagesData.MonkeyFig);
-            */
-
             var snakePictureElement = desktopDriverContainer.DesktopWindowsElementWaiting.FindElementByImagePattern(KonvaDragAndDropImagesData.SnakeImg);
             var snakeFigureElement = desktopDriverContainer.DesktopWindowsElementWaiting.FindElementByImagePattern(KonvaDragAndDropImagesData.SnakeFig);
             var lionPictureElement = desktopDriverContainer.DesktopWindowsElementWaiting.FindElementByImagePattern(KonvaDragAndDropImagesData.LionImg);

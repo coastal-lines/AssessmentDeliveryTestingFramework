@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using AssessmentDeliveryTestingFramework.Core.Logging;
+using System.IO;
 
 namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
 {
@@ -21,15 +22,14 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
                     return text;
                 }
             }
-            catch (FileNotFoundException errorMsg)
+            catch (FileNotFoundException ex)
             {
-                Console.WriteLine("Exception: " + errorMsg.Message);
+                Logger.LogError($"File '{filePath}' was not found.", ex);
                 throw;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + e.Message);
-                Console.WriteLine($"File '{filePath}' was not found.");
+                Logger.LogError(ex.Message, ex);
                 throw;
             }
         }
@@ -43,15 +43,14 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
 
                 return listText;
             }
-            catch (FileNotFoundException errorMsg)
+            catch (FileNotFoundException ex)
             {
-                Console.WriteLine("Exception: " + errorMsg.Message);
+                Logger.LogError($"File '{filePath}' was not found.", ex);
                 throw;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + e.Message);
-                Console.WriteLine($"File '{filePath}' was not found.");
+                Logger.LogError(ex.Message, ex);
                 throw;
             }
         }
@@ -68,10 +67,9 @@ namespace AssessmentDeliveryTestingFramework.Utils.FileUtils.Text
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + e.Message);
-                Console.WriteLine($"File '{filePath}' was not saved.");
+                Logger.LogError($"File '{filePath}' was not saved.", ex);
                 throw;
             }
         }

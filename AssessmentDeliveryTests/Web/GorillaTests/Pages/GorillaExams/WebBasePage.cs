@@ -13,22 +13,5 @@ namespace GorillaTests.Pages.GorillaExams
             Driver = driver;
             WebElementWaiting = webElementWaiting;
         }
-
-        /*
-        private IWebDriver _driver;
-
-        private WebElementWaiting _elementWait;
-
-        public IWebDriver Driver => _driver;
-
-        public WebElementWaiting WebElementWaiting => _elementWait;
-
-        public WebBasePage(IWebDriver driver, WebElementWaiting webElementWaiting)
-        {
-            _driver = driver;
-
-            _elementWait = webElementWaiting;
-        }
-        */
     }
 }
