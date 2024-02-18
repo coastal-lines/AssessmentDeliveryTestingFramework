@@ -2,6 +2,7 @@
 using AssessmentDeliveryTestingFramework.Core.TestManagement;
 using AssessmentDeliveryTestingFramework.Page;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GorillaTests.Tests
 {
@@ -18,7 +19,7 @@ namespace GorillaTests.Tests
             Console.WriteLine("Test executed on thread " + Thread.CurrentThread.ManagedThreadId);
             Session.GetDriverFeatures<ElectronBrowserFeatures>().NavigateToUrl("https://www.testgorilla.com/");
 
-            Assert.AreEqual("Talent Assessments for Skills-Based Hiring - TestGorilla", Session.GetDriver().Title, $"The {"https://www.testgorilla.com/"} page has a wrong title.");
+            ClassicAssert.AreEqual("Talent Assessments for Skills-Based Hiring - TestGorilla", Session.GetDriver().Title, $"The {"https://www.testgorilla.com/"} page has a wrong title.");
         }
     }
 }

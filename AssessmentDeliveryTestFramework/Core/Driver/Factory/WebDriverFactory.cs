@@ -6,6 +6,7 @@ using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager;
 using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 using AssessmentDeliveryTestingFramework.Core.Logging;
+using AssessmentDeliveryTestingFramework.Utils;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
@@ -73,10 +74,13 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
             FirefoxOptions options = new FirefoxOptions();
             options.SetPreference("log.level", "info");
 
-            FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
-            service.FirefoxBinaryPath = Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.GetConfigurationModel().Web.FirefoxDriverPath).Replace("\\", "//");
+            //FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
+            // service.DriverServicePath = Path.Combine(DirectoryUtils.GetCustomDriversPath(), ConfigurationManager.GetConfigurationModel().Web.FirefoxDriverPath).Replace("\\", "///") + "geckodriver.exe";
+            //service.DriverServicePath = "c:\\Repos\\MyGit\\AssessmentDeliveryTestFramework\\AssessmentDeliveryTestFramework\\Files\\Files\\CustomDrivers\\GeckoBased\\Firefox034\\geckodriver.exe";
+            //service.FirefoxBinaryPath = "c:\\Program Files\\Mozilla Firefox\\firefox.exe";
 
-            IWebDriver driver = new FirefoxDriver(service, options);
+            //IWebDriver driver = new FirefoxDriver(service, options);
+            IWebDriver driver = new FirefoxDriver(options);
 
             return driver;
         }

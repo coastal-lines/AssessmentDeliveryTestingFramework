@@ -1,5 +1,6 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Logging;
 using AssessmentDeliveryTestingFramework.Models.Config;
+using AssessmentDeliveryTestingFramework.Utils;
 using Microsoft.Extensions.Configuration;
 
 namespace AssessmentDeliveryTestingFramework.Core.Utils.Config
@@ -48,7 +49,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Utils.Config
             {
                 var configurationBuilder = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("Resources/appconfig.json");
+                    .AddJsonFile(DirectoryUtils.GetAppConfigPath());
 
                 return configurationBuilder.Build();
             }

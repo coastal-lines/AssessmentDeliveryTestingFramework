@@ -6,6 +6,8 @@ namespace AssessmentDeliveryTestingFramework.Utils
     {
         private const string FrameworkRootName = "AssessmentDeliveryTestFramework";
         private const string TemporaryResourcesPath = "AssessmentDeliveryTestFramework\\Resources\\TemporaryResources\\";
+        private const string AppConfigPath = "AssessmentDeliveryTestFramework\\Resources\\appconfig.json";
+        private const string CustomDriversPath = "Files\\Files\\CustomDrivers\\";
 
         public static List<string> GetListFilesFromDirectory(string path)
         {
@@ -19,6 +21,16 @@ namespace AssessmentDeliveryTestingFramework.Utils
         {
             string currentDirectory = Directory.GetCurrentDirectory();
             return currentDirectory.Substring(0, currentDirectory.IndexOf(FrameworkRootName)) + FrameworkRootName;
+        }
+
+        public static string GetAppConfigPath()
+        {
+            return String.Concat(GetRootSolutionPath(), "\\", AppConfigPath);
+        }
+
+        public static string GetCustomDriversPath()
+        {
+            return Path.Combine(GetRootSolutionPath(), CustomDriversPath);
         }
 
         public static string GetTemporaryResourcesPath()
