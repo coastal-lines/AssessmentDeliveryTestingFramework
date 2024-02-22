@@ -31,7 +31,7 @@ namespace AssessmentDeliveryTestingFramework.Utils.VisionUtils
         public void TakeScreenshotAndSaveAsFile(string filePath = "")
         {
             var screenshot = TakeScreenshot();
-            screenshot.SaveAsFile($"screenshot_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.png", ScreenshotImageFormat.Png);
+            screenshot.SaveAsFile($"screenshot_{DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")}.png");
         }
 
         public void SaveDifferenceBetweenScreenshots(MagickImage actualScreenshot, MagickImage expectedScreenshot)

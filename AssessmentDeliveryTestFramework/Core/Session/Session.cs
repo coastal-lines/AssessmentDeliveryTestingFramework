@@ -80,18 +80,16 @@ namespace AssessmentDeliveryTestingFramework.Core.Session
         {
             try
             {
-                var cat = TestContext.CurrentContext.Test?.Properties["Category"].ToList();
-                var testcat = TestContext.CurrentContext.Test?.Properties["TestCategory"].ToList();
-
-
                 var categories = TestContext.CurrentContext.Test?.Properties["Category"].ToList();
 
-                if (categories.Count == 1) 
+                if (categories.Any()) 
                 {
-                    categories[0].ToString();
+                    return TestContext.CurrentContext.Test?.Properties["Category"].FirstOrDefault().ToString();
                 }
-
-                return TestContext.CurrentContext.Test?.Properties["Category"].FirstOrDefault().ToString();
+                else
+                {
+                    return GetDefaultBrowser();
+                }
             }
 
             catch (InvalidOperationException ex)

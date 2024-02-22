@@ -4,7 +4,6 @@ using AssessmentDeliveryTestingFramework.Core.Utils.Config;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
 using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers.CustomContainers;
 using AssessmentDeliveryTestingFramework.Core.Logging;
-using OpenQA.Selenium.Firefox;
 
 namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 {
@@ -72,12 +71,11 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                     return new BrowserDriverContainer(WebDriverFactory.CreateChromeDriver(), browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType, "Web");
 
                 case BrowserType.Firefox:
-                    var driver = WebDriverFactory.GetWebDriverByDriverManagerSolution<FirefoxDriver>("firefox");
+                    var driver = WebDriverFactory.CreateFirefoxDriver();
                     return new BrowserDriverContainer(driver, browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType, "Web");
-                    //return new BrowserDriverContainer(WebDriverFactory.CreateFirefoxDriver(), browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType, "Web");
 
                 case BrowserType.Min:
-                    var minDriver = WebDriverFactory.CreateElectronBasedBrowserMin();
+                    var minDriver = WebDriverFactory.CreateCustomElectronBrowser("", "");
                     return new MinBrowserDriverContainer(new MinBrowserFeatures(minDriver), minDriver, browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType, "Web");
 
                 default:

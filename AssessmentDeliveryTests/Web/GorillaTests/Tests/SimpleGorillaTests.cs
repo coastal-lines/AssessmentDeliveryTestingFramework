@@ -21,7 +21,6 @@ namespace GorillaTests.Tests
             Thread.CurrentThread.Join(3000);
         }
 
-
         [Test(Description = "TC2")]
         [Category(BrowserType.Chrome)]
         public void Test2()
@@ -33,7 +32,6 @@ namespace GorillaTests.Tests
         }
 
         [Test(Description = "TC3")]
-        [Category(BrowserType.Firefox)]
         public void Test3()
         {
             var examBase = new BaseFixtures(Session.GetDriver(), Session.WebElementWaiting);
