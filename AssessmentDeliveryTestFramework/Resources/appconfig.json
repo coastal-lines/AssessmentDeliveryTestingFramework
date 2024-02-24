@@ -22,7 +22,8 @@
     },
     "MinBrowser": {
       "NavigationPageUrl": "index.html",
-      "DocumentPageUrl": "https://minbrowser.org/tour/"
+      "DocumentPageUrl": "https://minbrowser.org/tour/",
+      "BinaryLocation": "AppData\\Local\\min\\app-1.29.0\\min.exe"
     }
   },
   "Desktop": {

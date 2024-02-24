@@ -12,6 +12,8 @@
         public string NavigationPageUrl { get; set; }
 
         public string DocumentPageUrl { get; set; }
+
+        public string BinaryLocation { get; set; }
     }
 
     public class FrameworkConfig

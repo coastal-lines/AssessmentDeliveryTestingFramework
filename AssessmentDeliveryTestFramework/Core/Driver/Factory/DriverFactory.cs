@@ -75,7 +75,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
                     return new BrowserDriverContainer(driver, browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType, "Web");
 
                 case BrowserType.Min:
-                    var minDriver = WebDriverFactory.CreateCustomElectronBrowser("", "");
+                    var minDriver = WebDriverFactory.CreateCustomElectronBrowser();
                     return new MinBrowserDriverContainer(new MinBrowserFeatures(minDriver), minDriver, browserType + "_count_", ConfigurationManager.GetConfigurationModel().Framework.Platform, browserType, "Web");
 
                 default:

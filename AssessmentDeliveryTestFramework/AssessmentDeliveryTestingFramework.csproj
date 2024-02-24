@@ -52,6 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Files\Files\CustomDrivers\ChromiumBased\Chrome116\" />
     <Folder Include="Files\Files\DownloadFolder\" />
     <Folder Include="Properties\" />
     <Folder Include="Resources\TemporaryResources\" />
