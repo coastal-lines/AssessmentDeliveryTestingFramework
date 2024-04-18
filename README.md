@@ -3,7 +3,7 @@
 #
 
 #### Framework diagram
-![image](https://github.com/coastal-lines/AssessmentDeliveryTestingFramework/blob/main/AssessmentDeliveryTestFramework/Resources/Doc/framework_schema.jpg?raw=true)
+![image](https://github.com/coastal-lines/AssessmentDeliveryTestingFramework/blob/main/TestingFramework/Resources/Doc/framework_schema.jpg?raw=true?raw=true)
 
 #
 
