@@ -1,0 +1,18 @@
+﻿using AssessmentDeliveryTestingFramework;
+using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GorillaTests.Pages.GorillaExams
+{
+    public class ExamToolsComponent
+    {
+        public ExamToolsComponent()
+        {
+
+        }
+    }
+}

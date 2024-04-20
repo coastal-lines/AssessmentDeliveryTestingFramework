@@ -1,0 +1,39 @@
+{
+  "Framework": {
+    "Platform": "Windows",
+    "Timeouts": {
+      "ImplicitWait": 10,
+      "PageLoad": 30
+    }
+  },
+  "Web": {
+    "RunType": "Local",
+    "LocalPlatform": "Windows",
+    "DefaultBrowser": "Firefox",
+    "DockerUrl": "http://localhost:4444/wd/hub/",
+    "ChromeDriverPath": "Files/CustomDrivers/ChromiumBased/Chrome119",
+    "FirefoxDriverPath": "CustomDrivers/GeckoBased/Firefox034/",
+    "DownloadFolder": "Files/DownloadFolder",
+    "Timeouts": {
+      "ImplicitWait": 10,
+      "PageLoad": 30
+    },
+    "MinBrowser": {
+      "NavigationPageUrl": "index.html",
+      "DocumentPageUrl": "https://minbrowser.org/tour/"
+    }
+  },
+  "Desktop": {
+    "TestType": "Desktop",
+    "Platform": "Windows",
+    "ApplicationPath": "C:\\Program Files (x86)\\Media Freeware\\Free Quiz Maker\\FreeQuizMaker.exe"
+  },
+  "Mobile": {
+
+  },
+  "Resources": {
+    "VisualTests": {
+      "KonvaDragAndDropPatternImagesPath": "\\Resources\\PatternImages\\KonvaJS"
+    }
+  }
+}

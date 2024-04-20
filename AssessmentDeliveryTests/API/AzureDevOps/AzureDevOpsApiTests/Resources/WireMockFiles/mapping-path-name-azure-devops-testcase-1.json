@@ -1,0 +1,53 @@
+{
+  "request": {
+    "method": "PATCH",
+    "url": "/_apis/test/plans/1/suites/1/cases/1",
+    "bodyPatterns": [
+      {
+        "contains": {
+          "path": "$.fields['System.Title']",
+          "value": "New Test Case Name"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": 1,
+      "fields": {
+        "System.Title": "Login test",
+        "System.State": "Active",
+        "System.AreaPath": "Authentication",
+        "System.IterationPath": "Sprint 1",
+        "Microsoft.VSTS.TCM.AutomatedTestType": "Planned",
+        "Microsoft.VSTS.Common.Priority": 2,
+        "System.Tags": "Regression; UI",
+        "System.Description": "This test case verifies the login functionality.",
+        "Microsoft.VSTS.TCM.Steps": [
+          {
+            "index": 1,
+            "id": 1,
+            "revision": 1,
+            "title": "Navigate to the login page",
+            "expectedResult": "The login page is displayed"
+          },
+          {
+            "index": 2,
+            "id": 2,
+            "revision": 1,
+            "title": "Enter valid username and password",
+            "expectedResult": "User is logged in successfully"
+          },
+          {
+            "index": 3,
+            "id": 3,
+            "revision": 1,
+            "title": "Click on the logout button",
+            "expectedResult": "User is logged out and redirected to the home page"
+          }
+        ]
+      }
+    }
+  }
+}
