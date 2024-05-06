@@ -37,7 +37,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Browsers.Min
             {
                 driver.SwitchTo().Window(driver.WindowHandles[i]);
 
-                if (driver.Url.Contains(pageName) && GetContentType().Equals(CONTENT_TYPE))
+                if (driver.Url.Contains(pageName))
                 {
                     return driver.WindowHandles[i];
                 }

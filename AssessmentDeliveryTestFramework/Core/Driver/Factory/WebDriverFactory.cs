@@ -41,7 +41,7 @@ namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
 
         public IWebDriver CreateCustomElectronBrowser()
         {
-            var driverPath = Path.Combine(DirectoryUtils.GetCustomDriversPath(), "Chrome116");
+            var driverPath = Path.Combine(DirectoryUtils.GetCustomDriversPath(), "ChromiumBased\\Chrome116");
             var binaryLocationPath = Path.Combine(WindowsEnvironmentUtils.GetUserSystemPath(), ConfigurationManager.GetConfigurationModel().Web.MinBrowser.BinaryLocation);
 
             var options = new ChromeOptions();

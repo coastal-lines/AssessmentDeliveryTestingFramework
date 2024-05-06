@@ -46,6 +46,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Files\Files\CustomDrivers\ChromiumBased\Chrome116\chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\appconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

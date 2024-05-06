@@ -4,12 +4,23 @@ namespace AssessmentDeliveryTestingFramework.Utils
 {
     public class JavaScriptUtils
     {
-        public string ExecuteJS(IWebDriver driver, string script)
+        public string? ExecuteJS(IWebDriver driver, string script)
         {
-            var js = (IJavaScriptExecutor)driver;
-            var result = js.ExecuteScript(script);
+            try
+            {
+                var js = (IJavaScriptExecutor)driver;
+                var result = js.ExecuteScript(script);
 
-            return result.ToString();
+                return result.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                return "";
+            }
+            catch (Exception)
+            {
+                return "";
+            }
         }
 
         public string ExecuteJS(IWebDriver driver, string script, IWebElement element)

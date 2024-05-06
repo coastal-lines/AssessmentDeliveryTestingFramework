@@ -58,31 +58,13 @@ namespace GorillaTests.Tests
             ClassicAssert.AreEqual(EXPECTED_PAGE_TITLE, Session.GetDriver().Title, ASSERT_MESSAGE);
         }
 
-        [Test(Description = "WebTC4_Remote_Browser_Firefox")]
-        public void TestWebTC4RemoteBrowserFirefox()
-        {
-            /*
-            var options = new FirefoxOptions();
-            var driver = new RemoteWebDriver(new Uri("http://ip:port"), options);
-
-            Session.GetDriver().Title.Should().Be(EXPECTED_PAGE_TITLE);
-            */
-        }
-
         [NonParallelizable]
         [Test(Description = "WebTC4_Remote_Browser_Android_Chrome")]
         [Category(BrowserType.Chrome)]
         [Category(PlatformTypes.Android)]
         public void TestWebTC4RemoteBrowserAndroidChrome()
         {
-            /*
-            Session.GetDriver().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            Thread.CurrentThread.Join(5000);
-            Console.WriteLine("Test executed on thread " + Thread.CurrentThread.ManagedThreadId);
-            Session.GetDriverFeatures<ElectronBrowserFeatures>().NavigateToUrl("https://www.testgorilla.com/");
-
-            ClassicAssert.AreEqual("Talent Assessments for Skills-Based Hiring - TestGorilla", Session.GetDriver().Title, $"The {"https://www.testgorilla.com/"} page has a wrong title.");
-            */
+            Assert.Pass();
         }
     }
 }

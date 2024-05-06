@@ -1,18 +1,6 @@
 ﻿using AssessmentDeliveryTestingFramework.Core.Session;
 using NUnit.Framework;
 
-/*
-[SetUpFixture]
-public static class MySetUpClass
-{
-    [OneTimeSetUp]
-    public static void RunBeforeAnyTests()
-    {
-        Directory.SetCurrentDirectory("AssessmentDeliveryTests\\Web\\GorillaTests\\bin\\Debug\\net6.0\\");
-    }
-}
-*/
-
 namespace AssessmentDeliveryTestingFramework.Page
 {
     [TestFixture]

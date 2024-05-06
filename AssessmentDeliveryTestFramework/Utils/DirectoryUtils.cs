@@ -7,7 +7,7 @@ namespace AssessmentDeliveryTestingFramework.Utils
         private const string FrameworkRootName = "AssessmentDeliveryTestFramework";
         private const string TemporaryResourcesPath = "AssessmentDeliveryTestFramework\\Resources\\TemporaryResources\\";
         private const string AppConfigPath = "AssessmentDeliveryTestFramework\\Resources\\appconfig.json";
-        private const string CustomDriversPath = "Files\\Files\\CustomDrivers\\";
+        private const string CustomDriversPath = "AssessmentDeliveryTestFramework\\Files\\Files\\CustomDrivers\\";
 
         public static List<string> GetListFilesFromDirectory(string path)
         {
