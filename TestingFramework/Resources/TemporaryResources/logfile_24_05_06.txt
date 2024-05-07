@@ -1,0 +1,66 @@
+2024-05-06 09:20:01 [ERR] Error loading configuration: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\Resources\appconfig.json'.
+System.IO.FileNotFoundException: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\Resources\appconfig.json'.
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.HandleException(ExceptionDispatchInfo info)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load()
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at AssessmentDeliveryTestingFramework.Core.Utils.Config.ConfigurationManager.LoadConfiguration() in C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Core\Utils\Config\ConfigurationManager.cs:line 53
+2024-05-06 09:20:15 [ERR] Error loading configuration: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\Resources\appconfig.json'.
+System.IO.FileNotFoundException: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\Resources\appconfig.json'.
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.HandleException(ExceptionDispatchInfo info)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load()
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at AssessmentDeliveryTestingFramework.Core.Utils.Config.ConfigurationManager.LoadConfiguration() in C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Core\Utils\Config\ConfigurationManager.cs:line 53
+2024-05-06 09:20:43 [ERR] Error loading configuration: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTests\Resources\appconfig.json'.
+System.IO.FileNotFoundException: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTests\Resources\appconfig.json'.
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.HandleException(ExceptionDispatchInfo info)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load()
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at AssessmentDeliveryTestingFramework.Core.Utils.Config.ConfigurationManager.LoadConfiguration() in C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Core\Utils\Config\ConfigurationManager.cs:line 53
+2024-05-06 09:21:03 [ERR] Error loading configuration: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTests\Resources\appconfig.json'.
+System.IO.FileNotFoundException: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTests\Resources\appconfig.json'.
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.HandleException(ExceptionDispatchInfo info)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load()
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at AssessmentDeliveryTestingFramework.Core.Utils.Config.ConfigurationManager.LoadConfiguration() in C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Core\Utils\Config\ConfigurationManager.cs:line 53
+2024-05-06 10:33:03 [ERR] Error loading configuration: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTests\Resources\appconfig.json'.
+System.IO.FileNotFoundException: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTests\Resources\appconfig.json'.
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.HandleException(ExceptionDispatchInfo info)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load()
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at AssessmentDeliveryTestingFramework.Core.Utils.Config.ConfigurationManager.LoadConfiguration() in C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Core\Utils\Config\ConfigurationManager.cs:line 53
+2024-05-06 13:35:39 [ERR] Error loading configuration: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTests\Web\GorillaTests\Resources\appconfig.json'.
+System.IO.FileNotFoundException: The configuration file 'Resources/appconfig.json' was not found and is not optional. The expected physical path was 'c:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTests\Web\GorillaTests\Resources\appconfig.json'.
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.HandleException(ExceptionDispatchInfo info)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load(Boolean reload)
+   at Microsoft.Extensions.Configuration.FileConfigurationProvider.Load()
+   at Microsoft.Extensions.Configuration.ConfigurationRoot..ctor(IList`1 providers)
+   at Microsoft.Extensions.Configuration.ConfigurationBuilder.Build()
+   at AssessmentDeliveryTestingFramework.Core.Utils.Config.ConfigurationManager.LoadConfiguration() in c:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Core\Utils\Config\ConfigurationManager.cs:line 53
+2024-05-06 13:45:30 [ERR] Error loading configuration: C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Resources\appconfig.json\
+System.IO.DirectoryNotFoundException: C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Resources\appconfig.json\
+   at Microsoft.Extensions.FileProviders.PhysicalFileProvider..ctor(String root, ExclusionFilters filters)
+   at Microsoft.Extensions.FileProviders.PhysicalFileProvider..ctor(String root)
+   at Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath(IConfigurationBuilder builder, String basePath)
+   at AssessmentDeliveryTestingFramework.Core.Utils.Config.ConfigurationManager.LoadConfiguration() in C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Core\Utils\Config\ConfigurationManager.cs:line 50
+2024-05-06 13:48:38 [ERR] Error loading configuration: C:\Repos\MyGit\AssessmentDeliveryTestFrameworkAssessmentDeliveryTestFramework\Resources\appconfig.json\
+System.IO.DirectoryNotFoundException: C:\Repos\MyGit\AssessmentDeliveryTestFrameworkAssessmentDeliveryTestFramework\Resources\appconfig.json\
+   at Microsoft.Extensions.FileProviders.PhysicalFileProvider..ctor(String root, ExclusionFilters filters)
+   at Microsoft.Extensions.FileProviders.PhysicalFileProvider..ctor(String root)
+   at Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath(IConfigurationBuilder builder, String basePath)
+   at AssessmentDeliveryTestingFramework.Core.Utils.Config.ConfigurationManager.LoadConfiguration() in C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Core\Utils\Config\ConfigurationManager.cs:line 50
+2024-05-06 13:49:24 [ERR] Error loading configuration: C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Resources\appconfig.json\
+System.IO.DirectoryNotFoundException: C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Resources\appconfig.json\
+   at Microsoft.Extensions.FileProviders.PhysicalFileProvider..ctor(String root, ExclusionFilters filters)
+   at Microsoft.Extensions.FileProviders.PhysicalFileProvider..ctor(String root)
+   at Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath(IConfigurationBuilder builder, String basePath)
+   at AssessmentDeliveryTestingFramework.Core.Utils.Config.ConfigurationManager.LoadConfiguration() in C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Core\Utils\Config\ConfigurationManager.cs:line 50

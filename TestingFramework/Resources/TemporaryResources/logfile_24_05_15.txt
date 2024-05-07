@@ -1,0 +1,3 @@
+2024-05-15 13:12:10 [ERR] Test Test3 doesn't have any test category
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AssessmentDeliveryTestingFramework.Core.Session.Session.GetCurrentTestCategories() in C:\Repos\MyGit\AssessmentDeliveryTestFramework\AssessmentDeliveryTestFramework\Core\Session\Session.cs:line 94
