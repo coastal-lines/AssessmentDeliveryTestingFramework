@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AptitudeTests", "..\Assessm
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GorillaTests", "GorillaTests", "{26447017-C7DC-43B4-89AA-867DD4C63A4D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GorillaTests", "..\AssessmentDeliveryTests\Web\GorillaTests\GorillaTests.csproj", "{AE223A92-1F38-4891-95EC-8CB7CDCE46E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GorillaTests", "..\Tests\Web\GorillaTests\GorillaTests.csproj", "{AE223A92-1F38-4891-95EC-8CB7CDCE46E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureDevOps", "AzureDevOps", "{36DFBF11-BB98-4D22-B9B5-641E37BB920C}"
 EndProject

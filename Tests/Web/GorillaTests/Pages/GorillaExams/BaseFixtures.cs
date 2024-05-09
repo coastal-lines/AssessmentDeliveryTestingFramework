@@ -1,5 +1,4 @@
-﻿using TestingFramework.Core;
-using TestingFramework.Core.Wait;
+﻿using TestingFramework.Core.Wait;
 using OpenQA.Selenium;
 
 namespace GorillaTests.Pages.GorillaExams
