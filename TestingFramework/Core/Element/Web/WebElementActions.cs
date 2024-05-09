@@ -1,9 +1,9 @@
-﻿using AssessmentDeliveryTestingFramework.Utils;
+﻿using TestingFramework.Utils;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System.Drawing;
 
-namespace AssessmentDeliveryTestingFramework.Core.Element.Web
+namespace TestingFramework.Core.Element.Web
 {
     public class WebElementActions
     {

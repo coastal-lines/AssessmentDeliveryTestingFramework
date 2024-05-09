@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
 
-namespace AssessmentDeliveryTestingFramework.Core.Element.Mobile.Android
+namespace TestingFramework.Core.Element.Mobile.Android
 {
     public class AndroidActions
     {

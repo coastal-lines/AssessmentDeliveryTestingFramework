@@ -1,9 +1,9 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Logging;
-using AssessmentDeliveryTestingFramework.Core.Utils.Config;
-using AssessmentDeliveryTestingFramework.Utils;
+﻿using TestingFramework.Core.Logging;
+using TestingFramework.Core.Utils.Config;
+using TestingFramework.Utils;
 using OpenQA.Selenium;
 
-namespace AssessmentDeliveryTestingFramework.Core.Browsers.Min
+namespace TestingFramework.Core.Browsers.Min
 {
     public abstract class ElectronBrowserFeatures
     {

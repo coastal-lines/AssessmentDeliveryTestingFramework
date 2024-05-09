@@ -1,4 +1,4 @@
-﻿using AssessmentDeliveryTestingFramework.Utils;
+﻿using TestingFramework.Utils;
 using Serilog;
 
 namespace TestingFramework.Core.Logging.Adapters

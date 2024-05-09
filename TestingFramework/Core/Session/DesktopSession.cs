@@ -6,12 +6,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AssessmentDeliveryTestingFramework.Core.Utils;
-using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
-using AssessmentDeliveryTestingFramework.Core.Wait;
-using AssessmentDeliveryTestingFramework.Core.Element.Web;
-using AssessmentDeliveryTestingFramework.Core.TestManagement;
-using AssessmentDeliveryTestingFramework.Core.Logging;
+using TestingFramework.Core.Utils;
+using TestingFramework.Core.Driver.DriverContainers;
+using TestingFramework.Core.Wait;
+using TestingFramework.Core.Element.Web;
+using TestingFramework.Core.TestManagement;
+using TestingFramework.Core.Logging;
 
 namespace TestingFramework.Core.Session
 {

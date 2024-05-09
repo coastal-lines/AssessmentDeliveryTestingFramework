@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-
-namespace AssessmentDeliveryTestingFramework.Core.Element.Desktop
+﻿namespace TestingFramework.Core.Element.Desktop
 {
     public class WindowsElementActions
     {

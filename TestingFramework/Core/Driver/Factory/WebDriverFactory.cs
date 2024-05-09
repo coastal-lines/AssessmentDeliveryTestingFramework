@@ -2,11 +2,11 @@
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium;
-using AssessmentDeliveryTestingFramework.Core.Utils.Config;
-using AssessmentDeliveryTestingFramework.Core.Logging;
-using AssessmentDeliveryTestingFramework.Utils;
+using TestingFramework.Core.Utils.Config;
+using TestingFramework.Core.Logging;
+using TestingFramework.Utils;
 
-namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
+namespace TestingFramework.Core.Driver.Factory
 {
     public sealed class WebDriverFactory
     {

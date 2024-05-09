@@ -1,8 +1,8 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Element.Web;
-using AssessmentDeliveryTestingFramework.Core.Wait;
+﻿using TestingFramework.Core.Element.Web;
+using TestingFramework.Core.Wait;
 using OpenQA.Selenium;
 
-namespace AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers
+namespace TestingFramework.Core.Driver.DriverContainers
 {
     public class BrowserDriverContainer : DriverContainer<IWebDriver>
     {

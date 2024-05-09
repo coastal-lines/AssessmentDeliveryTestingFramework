@@ -1,4 +1,4 @@
-﻿using TestFramework.Core.Logging.Adapters;
+﻿using TestingFramework.Core.Logging.Adapters;
 
 namespace TestingFramework.Core.Logging
 {

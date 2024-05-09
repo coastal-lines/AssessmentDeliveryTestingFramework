@@ -1,11 +1,11 @@
-﻿using AssessmentDeliveryTestingFramework.Core.TestManagement;
-using AssessmentDeliveryTestingFramework.Core.Browsers.Min;
-using AssessmentDeliveryTestingFramework.Core.Utils.Config;
-using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
-using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers.CustomContainers;
-using AssessmentDeliveryTestingFramework.Core.Logging;
+﻿using TestingFramework.Core.TestManagement;
+using TestingFramework.Core.Browsers.Min;
+using TestingFramework.Core.Utils.Config;
+using TestingFramework.Core.Driver.DriverContainers;
+using TestingFramework.Core.Driver.DriverContainers.CustomContainers;
+using TestingFramework.Core.Logging;
 
-namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
+namespace TestingFramework.Core.Driver.Factory
 {
     public class DriverFactory
     {

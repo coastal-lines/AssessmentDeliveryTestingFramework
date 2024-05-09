@@ -1,6 +1,6 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
+﻿using TestingFramework.Core.Driver.DriverContainers;
 
-namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils
+namespace TestingFramework.Core.Driver.PlatformUtils
 {
     public class PlatformDriverUtils
     {

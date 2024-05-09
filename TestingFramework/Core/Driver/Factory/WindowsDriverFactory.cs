@@ -4,12 +4,12 @@ using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
 using System.Diagnostics;
-using AssessmentDeliveryTestingFramework.Utils.System;
-using AssessmentDeliveryTestingFramework.Utils;
-using AssessmentDeliveryTestingFramework.Core.Utils.Config;
-using AssessmentDeliveryTestingFramework.Core.Logging;
+using TestingFramework.Utils.System;
+using TestingFramework.Utils;
+using TestingFramework.Core.Utils.Config;
+using TestingFramework.Core.Logging;
 
-namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
+namespace TestingFramework.Core.Driver.Factory
 {
     public sealed class WindowsDriverFactory
     {

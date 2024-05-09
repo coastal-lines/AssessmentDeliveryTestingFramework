@@ -1,13 +1,13 @@
-﻿using AssessmentDeliveryTestingFramework.Utils.System;
+﻿using TestingFramework.Utils.System;
 
 namespace TestingFramework.Utils
 {
     public static class DirectoryUtils
     {
-        private const string FrameworkRootName = "AssessmentDeliveryTestFramework";
-        private const string TemporaryResourcesPath = "AssessmentDeliveryTestFramework\\Resources\\TemporaryResources\\";
-        private const string AppConfigPath = "AssessmentDeliveryTestFramework\\Resources\\appconfig.json";
-        private const string CustomDriversPath = "AssessmentDeliveryTestFramework\\Files\\Files\\CustomDrivers\\";
+        private const string FrameworkRootName = "CSharpTestFramework";
+        private const string TemporaryResourcesPath = "TestingFramework\\Resources\\TemporaryResources\\";
+        private const string AppConfigPath = "TestingFramework\\Resources\\appconfig.json";
+        private const string CustomDriversPath = "TestingFramework\\Files\\Files\\CustomDrivers\\";
 
         public static List<string> GetListFilesFromDirectory(string path)
         {

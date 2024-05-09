@@ -1,4 +1,4 @@
-﻿namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils
+﻿namespace TestingFramework.Core.Driver.PlatformUtils
 {
     public interface IPlatformDriverUtils
     {

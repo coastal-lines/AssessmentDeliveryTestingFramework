@@ -1,7 +1,7 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Wait;
+﻿using TestingFramework.Core.Wait;
 using OpenQA.Selenium.Appium.Windows;
 
-namespace AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers
+namespace TestingFramework.Core.Driver.DriverContainers
 {
     public class DesktopDriverContainer : DriverContainer<WindowsDriver>
     {

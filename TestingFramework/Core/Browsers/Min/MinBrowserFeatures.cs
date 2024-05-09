@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium;
 
-namespace AssessmentDeliveryTestingFramework.Core.Browsers.Min
+namespace TestingFramework.Core.Browsers.Min
 {
     public class MinBrowserFeatures : ElectronBrowserFeatures
     {

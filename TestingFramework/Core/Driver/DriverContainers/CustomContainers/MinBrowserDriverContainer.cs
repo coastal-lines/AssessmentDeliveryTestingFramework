@@ -1,7 +1,7 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Browsers.Min;
+﻿using TestingFramework.Core.Browsers.Min;
 using OpenQA.Selenium;
 
-namespace AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers.CustomContainers
+namespace TestingFramework.Core.Driver.DriverContainers.CustomContainers
 {
     public class MinBrowserDriverContainer : BrowserDriverContainer
     {

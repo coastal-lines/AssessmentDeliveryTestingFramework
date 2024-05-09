@@ -5,12 +5,12 @@ using OpenQA.Selenium.Appium.Service;
 using OpenQA.Selenium.Appium;
 using System.Diagnostics;
 using OpenQA.Selenium;
-using AssessmentDeliveryTestingFramework.Utils.System;
-using AssessmentDeliveryTestingFramework.Core.Logging;
-using AssessmentDeliveryTestingFramework.Core.Utils.Config;
-using AssessmentDeliveryTestingFramework.Utils;
+using TestingFramework.Utils.System;
+using TestingFramework.Core.Logging;
+using TestingFramework.Core.Utils.Config;
+using TestingFramework.Utils;
 
-namespace AssessmentDeliveryTestingFramework.Core.Driver.Factory
+namespace TestingFramework.Core.Driver.Factory
 {
     public sealed class MobileDriverFactory
     {

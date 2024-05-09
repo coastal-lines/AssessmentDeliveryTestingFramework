@@ -1,7 +1,7 @@
 ﻿using TestingFramework.Core.Session;
 using NUnit.Framework;
 
-namespace AssessmentDeliveryTestingFramework.Page
+namespace GorillaTests.Pages
 {
     [TestFixture]
     [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]

@@ -1,5 +1,5 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
-using AssessmentDeliveryTestingFramework.Core.Wait;
+﻿using TestingFramework.Core.Driver.DriverContainers;
+using TestingFramework.Core.Wait;
 using OpenQA.Selenium.Appium.Android;
 
 namespace TestingFramework.Core.Session

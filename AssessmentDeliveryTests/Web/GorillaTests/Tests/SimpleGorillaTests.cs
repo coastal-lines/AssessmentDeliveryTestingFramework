@@ -1,13 +1,11 @@
-﻿using AssessmentDeliveryTestingFramework.Core.TestManagement;
+﻿using TestingFramework.Core.TestManagement;
 using NUnit.Framework;
-using AssessmentDeliveryTestingFramework.Page;
 using GorillaTests.Pages.GorillaExams;
-using AssessmentDeliveryTestingFramework.Core.TestManagement.Extensions.NUnit;
-using AssessmentDeliveryTestingFramework.Core.Browsers.Min;
+using TestingFramework.Core.TestManagement.Extensions.NUnit;
+using TestingFramework.Core.Browsers.Min;
 using NUnit.Framework.Legacy;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Remote;
 using FluentAssertions;
+using GorillaTests.Pages;
 
 namespace GorillaTests.Tests
 {

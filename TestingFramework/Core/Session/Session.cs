@@ -1,12 +1,12 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils;
-using AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows;
+﻿using TestingFramework.Core.Driver.PlatformUtils;
+using TestingFramework.Core.Driver.PlatformUtils.Windows;
 using NUnit.Framework;
-using AssessmentDeliveryTestingFramework.Core.TestManagement;
-using AssessmentDeliveryTestingFramework.Core.Utils.Config;
-using AssessmentDeliveryTestingFramework.Core.Driver.Factory;
-using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
-using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers.CustomContainers;
-using AssessmentDeliveryTestingFramework.Core.Logging;
+using TestingFramework.Core.TestManagement;
+using TestingFramework.Core.Utils.Config;
+using TestingFramework.Core.Driver.Factory;
+using TestingFramework.Core.Driver.DriverContainers;
+using TestingFramework.Core.Driver.DriverContainers.CustomContainers;
+using TestingFramework.Core.Logging;
 
 namespace TestingFramework.Core.Session
 {

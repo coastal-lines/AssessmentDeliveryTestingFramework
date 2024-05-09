@@ -1,9 +1,9 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Logging;
-using AssessmentDeliveryTestingFramework.Core.TestManagement;
-using AssessmentDeliveryTestingFramework.Utils.System;
+﻿using TestingFramework.Core.Logging;
+using TestingFramework.Core.TestManagement;
+using TestingFramework.Utils.System;
 using OpenQA.Selenium.Appium.Windows;
 
-namespace AssessmentDeliveryTestingFramework.Core.Driver.PlatformUtils.Windows
+namespace TestingFramework.Core.Driver.PlatformUtils.Windows
 {
     public sealed class WindowsDriverUtils : IPlatformDriverUtils
     {
