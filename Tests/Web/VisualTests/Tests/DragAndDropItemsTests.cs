@@ -1,6 +1,6 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
-using AssessmentDeliveryTestingFramework.Core.TestManagement;
-using AssessmentDeliveryTestingFramework.Core.TestManagement.Extensions.NUnit;
+﻿using TestingFramework.Core.Driver.DriverContainers;
+using TestingFramework.Core.TestManagement;
+using TestingFramework.Core.TestManagement.Extensions.NUnit;
 using NUnit.Framework;
 using OpenQA.Selenium.Appium.Windows;
 using System.Drawing;

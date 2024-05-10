@@ -1,4 +1,4 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+﻿using TestingFramework.Core.Utils.Config;
 
 namespace CanvasTests.Resources
 {

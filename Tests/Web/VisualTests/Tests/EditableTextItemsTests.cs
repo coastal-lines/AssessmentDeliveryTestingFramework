@@ -2,8 +2,8 @@
 using NUnit.Framework;
 using System.Drawing;
 using CanvasTests.Pages.Konva;
-using AssessmentDeliveryTestingFramework.Core.TestManagement.Extensions.NUnit;
-using AssessmentDeliveryTestingFramework.Core.TestManagement;
+using TestingFramework.Core.TestManagement.Extensions.NUnit;
+using TestingFramework.Core.TestManagement;
 
 namespace CanvasTests.Tests
 {

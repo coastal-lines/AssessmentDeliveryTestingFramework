@@ -1,14 +1,14 @@
 ﻿using OpenQA.Selenium;
-using AssessmentDeliveryTestingFramework.Core.Wait;
-using AssessmentDeliveryTestingFramework.Core.Element.Web;
-using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
+using TestingFramework.Core.Wait;
+using TestingFramework.Core.Element.Web;
+using TestingFramework.Utils.VisionUtils;
 using ImageMagick;
-using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+using TestingFramework.Core.Utils.Config;
 using CanvasTests.Resources;
 using OpenQA.Selenium.Appium.Windows;
-using AssessmentDeliveryTestingFramework.Utils.FileUtils;
-using AssessmentDeliveryTestingFramework.Utils;
-using AssessmentDeliveryTestingFramework.Core.Driver.DriverContainers;
+using TestingFramework.Utils.FileUtils;
+using TestingFramework.Utils;
+using TestingFramework.Core.Driver.DriverContainers;
 
 namespace CanvasTests.Pages.Konva
 {

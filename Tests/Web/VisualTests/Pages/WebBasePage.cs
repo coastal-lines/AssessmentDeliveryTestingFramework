@@ -1,9 +1,10 @@
 ﻿using OpenQA.Selenium;
-using AssessmentDeliveryTestingFramework.Core.Element.Web;
-using AssessmentDeliveryTestingFramework.Core.Wait;
-using AssessmentDeliveryTestingFramework.Utils.FileUtils;
-using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
-using AssessmentDeliveryTestingFramework.Utils;
+using TestingFramework.Core.Element.Web;
+using TestingFramework.Core.Wait;
+using TestingFramework.Utils.FileUtils;
+using TestingFramework.Utils.VisionUtils;
+using TestingFramework.Utils;
+using TestingFramework.Core.Wait;
 
 namespace CanvasTests.Pages
 {

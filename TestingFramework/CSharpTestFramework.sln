@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionProTests", "..\Asse
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualTests", "VisualTests", "{6CB7EA21-6D61-4325-9A01-CAD88E3DCB28}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CanvasTests", "..\AssessmentDeliveryTests\Web\VisualTests\CanvasTests.csproj", "{429B8A1A-669F-465C-98C9-C9A3D7302CCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CanvasTests", "..\Tests\Web\VisualTests\CanvasTests.csproj", "{429B8A1A-669F-465C-98C9-C9A3D7302CCB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SoapUIMockService", "SoapUIMockService", "{6E15DEF3-326F-4110-A4D0-6BF4177A6B87}"
 EndProject

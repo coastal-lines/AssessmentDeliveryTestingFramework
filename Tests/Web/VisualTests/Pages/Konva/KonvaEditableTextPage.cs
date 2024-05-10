@@ -1,6 +1,6 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Element.Web;
-using AssessmentDeliveryTestingFramework.Core.Wait;
-using AssessmentDeliveryTestingFramework.Utils.VisionUtils;
+﻿using TestingFramework.Core.Element.Web;
+using TestingFramework.Core.Wait;
+using TestingFramework.Utils.VisionUtils;
 using CanvasTests.Resources;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
