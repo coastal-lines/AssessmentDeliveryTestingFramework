@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specflow", "Specflow", "{73
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuestionPro", "QuestionPro", "{D9AD8764-0327-4760-892F-2CA172A77E9D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionProTests", "..\AssessmentDeliveryTests\Specflow\QuestionPro\QuestionProTests.csproj", "{74576680-2123-41EA-B630-77CC6519E305}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionProTests", "..\Tests\Specflow\QuestionPro\QuestionProTests.csproj", "{74576680-2123-41EA-B630-77CC6519E305}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VisualTests", "VisualTests", "{6CB7EA21-6D61-4325-9A01-CAD88E3DCB28}"
 EndProject
