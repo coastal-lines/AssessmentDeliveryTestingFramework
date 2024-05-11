@@ -1,6 +1,6 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Element.Mobile.Android;
-using AssessmentDeliveryTestingFramework.Core.Session;
-using AssessmentDeliveryTestingFramework.Core.Wait;
+﻿using TestingFramework.Core.Element.Mobile.Android;
+using TestingFramework.Core.Session;
+using TestingFramework.Core.Wait;
 using OpenQA.Selenium.Appium.Android;
 
 namespace AptitudeTests.Pages

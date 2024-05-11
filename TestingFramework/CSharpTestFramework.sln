@@ -17,15 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{6FF4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{C0EB9859-80F4-44DD-914F-7C68BA0AF601}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AssessmentDeliveryTests", "AssessmentDeliveryTests", "{1C9A9EC1-D91B-4362-A927-FC90F30DFD6E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1C9A9EC1-D91B-4362-A927-FC90F30DFD6E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FreeQuizMakerTests", "FreeQuizMakerTests", "{18E9D857-C81E-4FA7-9039-D4082BE20087}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeQuizMakerTests", "..\AssessmentDeliveryTests\Desktop\Windows\FreeQuizMakerTests\FreeQuizMakerTests.csproj", "{92490819-17B3-4A39-9FC6-81F3546D454C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeQuizMakerTests", "..\Tests\Desktop\Windows\FreeQuizMakerTests\FreeQuizMakerTests.csproj", "{92490819-17B3-4A39-9FC6-81F3546D454C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AptitudeTests", "AptitudeTests", "{77D432F0-97C2-419E-928C-88105192F016}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AptitudeTests", "..\AssessmentDeliveryTests\Mobile\Android\AptitudeTests\AptitudeTests.csproj", "{65DF10CA-EA18-4A91-8102-F0AC6E447966}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AptitudeTests", "..\Tests\Mobile\Android\AptitudeTests\AptitudeTests.csproj", "{65DF10CA-EA18-4A91-8102-F0AC6E447966}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GorillaTests", "GorillaTests", "{26447017-C7DC-43B4-89AA-867DD4C63A4D}"
 EndProject
@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GorillaTests", "..\Tests\We
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureDevOps", "AzureDevOps", "{36DFBF11-BB98-4D22-B9B5-641E37BB920C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureDevOpsApiTests", "..\AssessmentDeliveryTests\API\AzureDevOps\AzureDevOpsApiTests\AzureDevOpsApiTests.csproj", "{CFA0A317-DD2A-4975-BAB4-DA6DAC88DBB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureDevOpsApiTests", "..\Tests\API\AzureDevOps\AzureDevOpsApiTests\AzureDevOpsApiTests.csproj", "{CFA0A317-DD2A-4975-BAB4-DA6DAC88DBB8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specflow", "Specflow", "{73D55C1F-F93D-4C25-BA7E-2891EBA9EB49}"
 EndProject
@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CanvasTests", "..\Tests\Web
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SoapUIMockService", "SoapUIMockService", "{6E15DEF3-326F-4110-A4D0-6BF4177A6B87}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoapUIMockServiceTests", "..\AssessmentDeliveryTests\API\SoapUIMockService\SoapUIMockServiceTests\SoapUIMockServiceTests.csproj", "{11474737-6478-43CB-9D3B-D591649E16AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoapUIMockServiceTests", "..\Tests\API\SoapUIMockService\SoapUIMockServiceTests\SoapUIMockServiceTests.csproj", "{11474737-6478-43CB-9D3B-D591649E16AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

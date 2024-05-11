@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
-using AssessmentDeliveryTestingFramework.Core.Logging;
+using TestingFramework.Core.Logging;
 
 namespace AptitudeTests.Utils
 {

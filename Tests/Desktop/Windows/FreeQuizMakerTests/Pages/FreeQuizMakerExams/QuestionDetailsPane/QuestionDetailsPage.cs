@@ -1,4 +1,4 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Wait;
+﻿using TestingFramework.Core.Wait;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 

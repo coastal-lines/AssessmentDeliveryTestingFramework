@@ -12,14 +12,11 @@
   <ItemGroup>
     <PackageReference Include="Appium.WebDriver" Version="5.0.0-beta04" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
-    <PackageReference Include="NUnit" Version="3.14.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
-    <PackageReference Include="NUnit.Analyzers" Version="3.6.1" />
     <PackageReference Include="coverlet.collector" Version="3.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\AssessmentDeliveryTestFramework\AssessmentDeliveryTestingFramework.csproj" />
+    <ProjectReference Include="..\..\..\..\TestingFramework\TestingFramework.csproj" />
   </ItemGroup>
 
 </Project>

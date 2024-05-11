@@ -1,4 +1,4 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Session;
+﻿using TestingFramework.Core.Session;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium;
 

@@ -1,4 +1,4 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Wait;
+﻿using TestingFramework.Core.Wait;
 using FreeQuizMakerTests.Pages.FreeQuizMakerExams.ControlsPane;
 using FreeQuizMakerTests.Pages.FreeQuizMakerExams.QuestionDetailsPane;
 using OpenQA.Selenium.Appium.Windows;

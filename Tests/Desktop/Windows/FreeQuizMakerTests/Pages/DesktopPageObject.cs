@@ -1,6 +1,6 @@
-﻿using AssessmentDeliveryTestingFramework.Core.Session;
-using AssessmentDeliveryTestingFramework.Core.TestManagement;
-using AssessmentDeliveryTestingFramework.Core.Utils.Config;
+﻿using TestingFramework.Core.Session;
+using TestingFramework.Core.TestManagement;
+using TestingFramework.Core.Utils.Config;
 using NUnit.Framework;
 using OpenQA.Selenium;
 

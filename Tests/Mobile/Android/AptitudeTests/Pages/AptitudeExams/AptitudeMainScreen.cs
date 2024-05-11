@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium;
-using AssessmentDeliveryTestingFramework.Core.Wait;
-using AssessmentDeliveryTestingFramework.Core.Session;
+using TestingFramework.Core.Wait;
+using TestingFramework.Core.Session;
 
 namespace AptitudeTests.Pages.AptitudeExams
 {

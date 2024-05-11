@@ -1,5 +1,5 @@
 ﻿using FreeQuizMakerTests.ApplicationActions;
-using AssessmentDeliveryTestingFramework.Core.TestManagement;
+using TestingFramework.Core.TestManagement;
 using FreeQuizMakerTests.Pages;
 using FreeQuizMakerTests.Pages.FreeQuizMakerExams.ControlsPane;
 

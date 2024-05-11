@@ -1,8 +1,8 @@
 using AptitudeTests.Pages;
 using AptitudeTests.Pages.Android;
 using AptitudeTests.Utils;
-using AssessmentDeliveryTestingFramework.Core.Element.Mobile.Android;
-using AssessmentDeliveryTestingFramework.Core.TestManagement;
+using TestingFramework.Core.Element.Mobile.Android;
+using TestingFramework.Core.TestManagement;
 using NUnit.Framework.Internal;
 
 namespace AptitudeTests.Tests
